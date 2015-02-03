@@ -1,0 +1,81 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api-sandbox.oanda.com/v1/prices?instruments=EUR_USD,EUR_CAD&username=dwaymotim
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Accept-Datetime-Format:
+      - RFC3339
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - 30
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty/1.7.0.1
+      Date:
+      - Tue, 20 Jan 2015 17:22:31 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '258'
+      Connection:
+      - keep-alive
+      Etag:
+      - '"bb3bee85840ca7561196c2e00d0341e667a40188"'
+    body:
+      encoding: UTF-8
+      string: "{\n\t\"prices\" : [\n\t\t{\n\t\t\t\"instrument\" : \"EUR_USD\",\n\t\t\t\"time\"
+        : \"2015-01-20T17:21:05.832175Z\",\n\t\t\t\"bid\" : 1.24089,\n\t\t\t\"ask\"
+        : 1.24101\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"EUR_CAD\",\n\t\t\t\"time\"
+        : \"2015-01-20T17:20:59.875130Z\",\n\t\t\t\"bid\" : 1.4188,\n\t\t\t\"ask\"
+        : 1.41906\n\t\t}\n\t]\n}"
+    http_version: 
+  recorded_at: Tue, 20 Jan 2015 17:22:34 GMT
+- request:
+    method: get
+    uri: http://api-sandbox.oanda.com/v1/prices?instruments=EUR_USD,EUR_CAD&username
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Accept-Datetime-Format:
+      - RFC3339
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - 30
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty/1.7.0.1
+      Date:
+      - Fri, 23 Jan 2015 17:37:54 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '258'
+      Connection:
+      - keep-alive
+      Etag:
+      - '"61b0cfa4b3f60f7fcf1bce3089bbf5a7b706d340"'
+    body:
+      encoding: UTF-8
+      string: "{\n\t\"prices\" : [\n\t\t{\n\t\t\t\"instrument\" : \"EUR_USD\",\n\t\t\t\"time\"
+        : \"2015-01-23T17:37:49.093636Z\",\n\t\t\t\"bid\" : 1.2403,\n\t\t\t\"ask\"
+        : 1.24048\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"EUR_CAD\",\n\t\t\t\"time\"
+        : \"2015-01-23T17:37:48.869787Z\",\n\t\t\t\"bid\" : 1.41832,\n\t\t\t\"ask\"
+        : 1.41855\n\t\t}\n\t]\n}"
+    http_version: 
+  recorded_at: Fri, 23 Jan 2015 17:37:54 GMT
+recorded_with: VCR 2.9.3

@@ -1,0 +1,111 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api-sandbox.oanda.com/v1/accounts?username=dwaymotim
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Accept-Datetime-Format:
+      - RFC3339
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - 30
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty/1.7.0.1
+      Date:
+      - Tue, 20 Jan 2015 17:22:27 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '139'
+      Connection:
+      - keep-alive
+      Etag:
+      - '"2c8bda3c0aced2c86025961c4e2da0452332ea36"'
+    body:
+      encoding: UTF-8
+      string: "{\n\t\"accounts\" : [\n\t\t{\n\t\t\t\"accountId\" : 5342358,\n\t\t\t\"accountName\"
+        : \"Primary\",\n\t\t\t\"accountCurrency\" : \"USD\",\n\t\t\t\"marginRate\"
+        : 0.05\n\t\t}\n\t]\n}"
+    http_version: 
+  recorded_at: Tue, 20 Jan 2015 17:22:29 GMT
+- request:
+    method: get
+    uri: http://api-sandbox.oanda.com/v1/accounts/?username=paudougles
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Accept-Datetime-Format:
+      - RFC3339
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - 30
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty/1.7.0.1
+      Date:
+      - Tue, 20 Jan 2015 23:27:03 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '139'
+      Connection:
+      - keep-alive
+      Etag:
+      - '"61cce213956060b4ccb6fd9f47235b4c03e74095"'
+    body:
+      encoding: UTF-8
+      string: "{\n\t\"accounts\" : [\n\t\t{\n\t\t\t\"accountId\" : 1724176,\n\t\t\t\"accountName\"
+        : \"Primary\",\n\t\t\t\"accountCurrency\" : \"USD\",\n\t\t\t\"marginRate\"
+        : 0.05\n\t\t}\n\t]\n}"
+    http_version: 
+  recorded_at: Tue, 20 Jan 2015 23:27:03 GMT
+- request:
+    method: get
+    uri: http://api-sandbox.oanda.com/v1/accounts?username
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Accept-Datetime-Format:
+      - RFC3339
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - 30
+  response:
+    status:
+      code: 404
+      message: NOT_FOUND
+    headers:
+      Server:
+      - openresty/1.7.0.1
+      Date:
+      - Fri, 23 Jan 2015 17:37:52 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '144'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "{\n\t\"code\" : 55,\n\t\"message\" : \"Username specified is invalid\",\n\t\"moreInfo\"
+        : \"http:\\/\\/developer.oanda.com\\/docs\\/v1\\/troubleshooting\\/#errors\"\n}"
+    http_version: 
+  recorded_at: Fri, 23 Jan 2015 17:37:52 GMT
+recorded_with: VCR 2.9.3

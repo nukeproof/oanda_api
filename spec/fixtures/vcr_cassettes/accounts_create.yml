@@ -1,0 +1,75 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://api-sandbox.oanda.com/v1/accounts
+    body:
+      encoding: UTF-8
+      string: username=dwaymotim
+    headers:
+      X-Accept-Datetime-Format:
+      - RFC3339
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - 30
+  response:
+    status:
+      code: 201
+      message: CREATED
+    headers:
+      Server:
+      - openresty/1.7.0.1
+      Date:
+      - Tue, 20 Jan 2015 17:22:26 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '77'
+      Connection:
+      - keep-alive
+      Location:
+      - http://api-sandbox.oanda.com/v1/accounts/7079317
+    body:
+      encoding: UTF-8
+      string: "{\n\t\"username\" : \"shenry\",\n\t\"password\" : \"heewgUjEd\",\n\t\"accountId\"
+        : 7079317\n}"
+    http_version: 
+  recorded_at: Tue, 20 Jan 2015 17:22:28 GMT
+- request:
+    method: post
+    uri: http://api-sandbox.oanda.com/v1/accounts/
+    body:
+      encoding: UTF-8
+      string: username=paudougles
+    headers:
+      X-Accept-Datetime-Format:
+      - RFC3339
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - 30
+  response:
+    status:
+      code: 201
+      message: CREATED
+    headers:
+      Server:
+      - openresty/1.7.0.1
+      Date:
+      - Tue, 20 Jan 2015 23:27:03 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '79'
+      Connection:
+      - keep-alive
+      Location:
+      - http://api-sandbox.oanda.com/v1/accounts/2107190
+    body:
+      encoding: UTF-8
+      string: "{\n\t\"username\" : \"flouglee\",\n\t\"password\" : \"1Swasyof9\",\n\t\"accountId\"
+        : 2107190\n}"
+    http_version: 
+  recorded_at: Tue, 20 Jan 2015 23:27:03 GMT
+recorded_with: VCR 2.9.3

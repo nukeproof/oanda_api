@@ -1,0 +1,114 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://api-sandbox.oanda.com/v1/accounts/5342358/orders
+    body:
+      encoding: UTF-8
+      string: expiry=2015-01-20T18%3A22%3A30%2B00%3A00&instrument=USD_JPY&price=1.14089&side=buy&type=limit&units=10000&username=dwaymotim
+    headers:
+      X-Accept-Datetime-Format:
+      - RFC3339
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - 30
+  response:
+    status:
+      code: 201
+      message: CREATED
+    headers:
+      Server:
+      - openresty/1.7.0.1
+      Date:
+      - Tue, 20 Jan 2015 17:22:28 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '313'
+      Connection:
+      - keep-alive
+      Location:
+      - http://api-sandbox.oanda.com/v1/accounts/5342358/orders/175503910
+    body:
+      encoding: UTF-8
+      string: "{\n\t\"instrument\" : \"USD_JPY\",\n\t\"time\" : \"2015-01-20T17:22:28.000000Z\",\n\t\"price\"
+        : 1.14089,\n\t\"orderOpened\" : {\n\t\t\"id\" : 175503910,\n\t\t\"units\"
+        : 10000,\n\t\t\"side\" : \"buy\",\n\t\t\"takeProfit\" : 0,\n\t\t\"stopLoss\"
+        : 0,\n\t\t\"expiry\" : \"2015-01-20T18:22:30.000000Z\",\n\t\t\"upperBound\"
+        : 0,\n\t\t\"lowerBound\" : 0,\n\t\t\"trailingStop\" : 0\n\t}\n}"
+    http_version: 
+  recorded_at: Tue, 20 Jan 2015 17:22:30 GMT
+- request:
+    method: get
+    uri: http://api-sandbox.oanda.com/v1/accounts/5342358/orders/175503910?username=dwaymotim
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Accept-Datetime-Format:
+      - RFC3339
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - 30
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty/1.7.0.1
+      Date:
+      - Tue, 20 Jan 2015 17:22:28 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '301'
+      Connection:
+      - keep-alive
+      Etag:
+      - '"f68d2f102464051138244c2c31a00353806398fc"'
+    body:
+      encoding: UTF-8
+      string: "{\n\t\"id\" : 175503910,\n\t\"instrument\" : \"USD_JPY\",\n\t\"units\"
+        : 10000,\n\t\"side\" : \"buy\",\n\t\"type\" : \"limit\",\n\t\"time\" : \"2015-01-20T17:22:28.000000Z\",\n\t\"price\"
+        : 1.14089,\n\t\"takeProfit\" : 0,\n\t\"stopLoss\" : 0,\n\t\"expiry\" : \"2015-01-20T18:22:30.000000Z\",\n\t\"upperBound\"
+        : 0,\n\t\"lowerBound\" : 0,\n\t\"trailingStop\" : 0\n}"
+    http_version: 
+  recorded_at: Tue, 20 Jan 2015 17:22:30 GMT
+- request:
+    method: post
+    uri: http://api-sandbox.oanda.com/v1//accounts/5342358/orders
+    body:
+      encoding: UTF-8
+      string: username=dwaymotim
+    headers:
+      X-Accept-Datetime-Format:
+      - RFC3339
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - 30
+  response:
+    status:
+      code: 400
+      message: BAD_REQUEST
+    headers:
+      Server:
+      - openresty/1.7.0.1
+      Date:
+      - Tue, 20 Jan 2015 21:03:06 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '145'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "{\n\t\"code\" : 2,\n\t\"message\" : \"Missing required argument: type\",\n\t\"moreInfo\"
+        : \"http:\\/\\/developer.oanda.com\\/docs\\/v1\\/troubleshooting\\/#errors\"\n}"
+    http_version: 
+  recorded_at: Tue, 20 Jan 2015 21:03:06 GMT
+recorded_with: VCR 2.9.3

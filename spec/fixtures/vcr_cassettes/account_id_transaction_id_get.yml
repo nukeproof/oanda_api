@@ -1,0 +1,283 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://api-sandbox.oanda.com/v1/accounts/5342358/orders
+    body:
+      encoding: UTF-8
+      string: instrument=USD_JPY&side=buy&type=market&units=10000&username=dwaymotim
+    headers:
+      X-Accept-Datetime-Format:
+      - RFC3339
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - 30
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty/1.7.0.1
+      Date:
+      - Tue, 20 Jan 2015 17:22:34 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '273'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "{\n\t\"instrument\" : \"USD_JPY\",\n\t\"time\" : \"2015-01-20T17:22:34.000000Z\",\n\t\"price\"
+        : 114.893,\n\t\"tradeOpened\" : {\n\t\t\"id\" : 175503929,\n\t\t\"units\"
+        : 10000,\n\t\t\"side\" : \"buy\",\n\t\t\"takeProfit\" : 0,\n\t\t\"stopLoss\"
+        : 0,\n\t\t\"trailingStop\" : 0\n\t},\n\t\"tradesClosed\" : [],\n\t\"tradeReduced\"
+        : {}\n}"
+    http_version: 
+  recorded_at: Tue, 20 Jan 2015 17:22:36 GMT
+- request:
+    method: get
+    uri: http://api-sandbox.oanda.com/v1/accounts/5342358/transactions?instrument=USD_JPY&username=dwaymotim
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Accept-Datetime-Format:
+      - RFC3339
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - 30
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty/1.7.0.1
+      Date:
+      - Tue, 20 Jan 2015 17:22:34 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '7060'
+      Connection:
+      - keep-alive
+      Etag:
+      - '"7353b7028b0c388b6ba98aa736bbc9656984dcf9"'
+      X-Result-Count:
+      - '22'
+    body:
+      encoding: UTF-8
+      string: "{\n\t\"transactions\" : [\n\t\t{\n\t\t\t\"id\" : 175503929,\n\t\t\t\"accountId\"
+        : 5342358,\n\t\t\t\"time\" : \"2015-01-20T17:22:34.000000Z\",\n\t\t\t\"type\"
+        : \"MARKET_ORDER_CREATE\",\n\t\t\t\"instrument\" : \"USD_JPY\",\n\t\t\t\"units\"
+        : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"price\" : 114.893,\n\t\t\t\"pl\"
+        : 0,\n\t\t\t\"interest\" : 0,\n\t\t\t\"accountBalance\" : 99995.1252,\n\t\t\t\"tradeOpened\"
+        : {\n\t\t\t\t\"id\" : 175503929,\n\t\t\t\t\"units\" : 10000\n\t\t\t}\n\t\t},\n\t\t{\n\t\t\t\"id\"
+        : 175503928,\n\t\t\t\"accountId\" : 5342358,\n\t\t\t\"time\" : \"2015-01-20T17:22:33.000000Z\",\n\t\t\t\"type\"
+        : \"MARKET_ORDER_CREATE\",\n\t\t\t\"instrument\" : \"USD_JPY\",\n\t\t\t\"units\"
+        : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"price\" : 114.893,\n\t\t\t\"pl\"
+        : 0,\n\t\t\t\"interest\" : 0,\n\t\t\t\"accountBalance\" : 99995.1252,\n\t\t\t\"tradeOpened\"
+        : {\n\t\t\t\t\"id\" : 175503928,\n\t\t\t\t\"units\" : 10000\n\t\t\t}\n\t\t},\n\t\t{\n\t\t\t\"id\"
+        : 175503927,\n\t\t\t\"accountId\" : 5342358,\n\t\t\t\"time\" : \"2015-01-20T17:22:33.000000Z\",\n\t\t\t\"type\"
+        : \"TRADE_CLOSE\",\n\t\t\t\"instrument\" : \"USD_JPY\",\n\t\t\t\"units\" :
+        10000,\n\t\t\t\"side\" : \"sell\",\n\t\t\t\"price\" : 114.879,\n\t\t\t\"pl\"
+        : -1.2187,\n\t\t\t\"interest\" : 0,\n\t\t\t\"accountBalance\" : 99995.1252,\n\t\t\t\"tradeId\"
+        : 175503921\n\t\t},\n\t\t{\n\t\t\t\"id\" : 175503926,\n\t\t\t\"accountId\"
+        : 5342358,\n\t\t\t\"time\" : \"2015-01-20T17:22:33.000000Z\",\n\t\t\t\"type\"
+        : \"MARKET_ORDER_CREATE\",\n\t\t\t\"instrument\" : \"USD_JPY\",\n\t\t\t\"units\"
+        : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"price\" : 114.893,\n\t\t\t\"pl\"
+        : 0,\n\t\t\t\"interest\" : 0,\n\t\t\t\"accountBalance\" : 99996.3439,\n\t\t\t\"tradeOpened\"
+        : {\n\t\t\t\t\"id\" : 175503926,\n\t\t\t\t\"units\" : 10000\n\t\t\t}\n\t\t},\n\t\t{\n\t\t\t\"id\"
+        : 175503925,\n\t\t\t\"accountId\" : 5342358,\n\t\t\t\"time\" : \"2015-01-20T17:22:33.000000Z\",\n\t\t\t\"type\"
+        : \"TRADE_UPDATE\",\n\t\t\t\"instrument\" : \"USD_JPY\",\n\t\t\t\"units\"
+        : 10000,\n\t\t\t\"takeProfitPrice\" : 116.893,\n\t\t\t\"tradeId\" : 175503924\n\t\t},\n\t\t{\n\t\t\t\"id\"
+        : 175503924,\n\t\t\t\"accountId\" : 5342358,\n\t\t\t\"time\" : \"2015-01-20T17:22:33.000000Z\",\n\t\t\t\"type\"
+        : \"MARKET_ORDER_CREATE\",\n\t\t\t\"instrument\" : \"USD_JPY\",\n\t\t\t\"units\"
+        : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"price\" : 114.893,\n\t\t\t\"pl\"
+        : 0,\n\t\t\t\"interest\" : 0,\n\t\t\t\"accountBalance\" : 99996.3439,\n\t\t\t\"tradeOpened\"
+        : {\n\t\t\t\t\"id\" : 175503924,\n\t\t\t\t\"units\" : 10000\n\t\t\t}\n\t\t},\n\t\t{\n\t\t\t\"id\"
+        : 175503923,\n\t\t\t\"accountId\" : 5342358,\n\t\t\t\"time\" : \"2015-01-20T17:22:32.000000Z\",\n\t\t\t\"type\"
+        : \"MARKET_ORDER_CREATE\",\n\t\t\t\"instrument\" : \"USD_JPY\",\n\t\t\t\"units\"
+        : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"price\" : 114.893,\n\t\t\t\"pl\"
+        : 0,\n\t\t\t\"interest\" : 0,\n\t\t\t\"accountBalance\" : 99996.3439,\n\t\t\t\"tradeOpened\"
+        : {\n\t\t\t\t\"id\" : 175503923,\n\t\t\t\t\"units\" : 10000\n\t\t\t}\n\t\t},\n\t\t{\n\t\t\t\"id\"
+        : 175503922,\n\t\t\t\"accountId\" : 5342358,\n\t\t\t\"time\" : \"2015-01-20T17:22:32.000000Z\",\n\t\t\t\"type\"
+        : \"MARKET_ORDER_CREATE\",\n\t\t\t\"instrument\" : \"USD_JPY\",\n\t\t\t\"units\"
+        : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"price\" : 114.893,\n\t\t\t\"pl\"
+        : 0,\n\t\t\t\"interest\" : 0,\n\t\t\t\"accountBalance\" : 99996.3439,\n\t\t\t\"tradeOpened\"
+        : {\n\t\t\t\t\"id\" : 175503922,\n\t\t\t\t\"units\" : 10000\n\t\t\t}\n\t\t},\n\t\t{\n\t\t\t\"id\"
+        : 175503921,\n\t\t\t\"accountId\" : 5342358,\n\t\t\t\"time\" : \"2015-01-20T17:22:32.000000Z\",\n\t\t\t\"type\"
+        : \"MARKET_ORDER_CREATE\",\n\t\t\t\"instrument\" : \"USD_JPY\",\n\t\t\t\"units\"
+        : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"price\" : 114.893,\n\t\t\t\"pl\"
+        : 0,\n\t\t\t\"interest\" : 0,\n\t\t\t\"accountBalance\" : 99996.3439,\n\t\t\t\"tradeOpened\"
+        : {\n\t\t\t\t\"id\" : 175503921,\n\t\t\t\t\"units\" : 10000\n\t\t\t}\n\t\t},\n\t\t{\n\t\t\t\"id\"
+        : 175503920,\n\t\t\t\"accountId\" : 5342358,\n\t\t\t\"time\" : \"2015-01-20T17:22:30.000000Z\",\n\t\t\t\"type\"
+        : \"TRADE_CLOSE\",\n\t\t\t\"instrument\" : \"USD_JPY\",\n\t\t\t\"units\" :
+        10000,\n\t\t\t\"side\" : \"sell\",\n\t\t\t\"price\" : 114.879,\n\t\t\t\"pl\"
+        : -1.2187,\n\t\t\t\"interest\" : 0,\n\t\t\t\"accountBalance\" : 99996.3439,\n\t\t\t\"tradeId\"
+        : 175503917\n\t\t},\n\t\t{\n\t\t\t\"id\" : 175503919,\n\t\t\t\"accountId\"
+        : 5342358,\n\t\t\t\"time\" : \"2015-01-20T17:22:30.000000Z\",\n\t\t\t\"type\"
+        : \"TRADE_CLOSE\",\n\t\t\t\"instrument\" : \"USD_JPY\",\n\t\t\t\"units\" :
+        10000,\n\t\t\t\"side\" : \"sell\",\n\t\t\t\"price\" : 114.879,\n\t\t\t\"pl\"
+        : -1.2187,\n\t\t\t\"interest\" : 0,\n\t\t\t\"accountBalance\" : 99997.5626,\n\t\t\t\"tradeId\"
+        : 175503916\n\t\t},\n\t\t{\n\t\t\t\"id\" : 175503918,\n\t\t\t\"accountId\"
+        : 5342358,\n\t\t\t\"time\" : \"2015-01-20T17:22:30.000000Z\",\n\t\t\t\"type\"
+        : \"TRADE_CLOSE\",\n\t\t\t\"instrument\" : \"USD_JPY\",\n\t\t\t\"units\" :
+        10000,\n\t\t\t\"side\" : \"sell\",\n\t\t\t\"price\" : 114.879,\n\t\t\t\"pl\"
+        : -1.2187,\n\t\t\t\"interest\" : 0,\n\t\t\t\"accountBalance\" : 99998.7813,\n\t\t\t\"tradeId\"
+        : 175503915\n\t\t},\n\t\t{\n\t\t\t\"id\" : 175503917,\n\t\t\t\"accountId\"
+        : 5342358,\n\t\t\t\"time\" : \"2015-01-20T17:22:29.000000Z\",\n\t\t\t\"type\"
+        : \"MARKET_ORDER_CREATE\",\n\t\t\t\"instrument\" : \"USD_JPY\",\n\t\t\t\"units\"
+        : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"price\" : 114.893,\n\t\t\t\"pl\"
+        : 0,\n\t\t\t\"interest\" : 0,\n\t\t\t\"accountBalance\" : 100000,\n\t\t\t\"tradeOpened\"
+        : {\n\t\t\t\t\"id\" : 175503917,\n\t\t\t\t\"units\" : 10000\n\t\t\t}\n\t\t},\n\t\t{\n\t\t\t\"id\"
+        : 175503916,\n\t\t\t\"accountId\" : 5342358,\n\t\t\t\"time\" : \"2015-01-20T17:22:29.000000Z\",\n\t\t\t\"type\"
+        : \"MARKET_ORDER_CREATE\",\n\t\t\t\"instrument\" : \"USD_JPY\",\n\t\t\t\"units\"
+        : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"price\" : 114.893,\n\t\t\t\"pl\"
+        : 0,\n\t\t\t\"interest\" : 0,\n\t\t\t\"accountBalance\" : 100000,\n\t\t\t\"tradeOpened\"
+        : {\n\t\t\t\t\"id\" : 175503916,\n\t\t\t\t\"units\" : 10000\n\t\t\t}\n\t\t},\n\t\t{\n\t\t\t\"id\"
+        : 175503915,\n\t\t\t\"accountId\" : 5342358,\n\t\t\t\"time\" : \"2015-01-20T17:22:29.000000Z\",\n\t\t\t\"type\"
+        : \"MARKET_ORDER_CREATE\",\n\t\t\t\"instrument\" : \"USD_JPY\",\n\t\t\t\"units\"
+        : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"price\" : 114.893,\n\t\t\t\"pl\"
+        : 0,\n\t\t\t\"interest\" : 0,\n\t\t\t\"accountBalance\" : 100000,\n\t\t\t\"tradeOpened\"
+        : {\n\t\t\t\t\"id\" : 175503915,\n\t\t\t\t\"units\" : 10000\n\t\t\t}\n\t\t},\n\t\t{\n\t\t\t\"id\"
+        : 175503914,\n\t\t\t\"accountId\" : 5342358,\n\t\t\t\"time\" : \"2015-01-20T17:22:29.000000Z\",\n\t\t\t\"type\"
+        : \"ORDER_CANCEL\",\n\t\t\t\"orderId\" : 175503913,\n\t\t\t\"reason\" : \"CLIENT_REQUEST\"\n\t\t},\n\t\t{\n\t\t\t\"id\"
+        : 175503913,\n\t\t\t\"accountId\" : 5342358,\n\t\t\t\"time\" : \"2015-01-20T17:22:28.000000Z\",\n\t\t\t\"type\"
+        : \"LIMIT_ORDER_CREATE\",\n\t\t\t\"instrument\" : \"USD_JPY\",\n\t\t\t\"units\"
+        : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"price\" : 1.14089,\n\t\t\t\"expiry\"
+        : \"2015-01-20T18:22:31.000000Z\",\n\t\t\t\"reason\" : \"CLIENT_REQUEST\"\n\t\t},\n\t\t{\n\t\t\t\"id\"
+        : 175503912,\n\t\t\t\"accountId\" : 5342358,\n\t\t\t\"time\" : \"2015-01-20T17:22:28.000000Z\",\n\t\t\t\"type\"
+        : \"ORDER_UPDATE\",\n\t\t\t\"instrument\" : \"USD_JPY\",\n\t\t\t\"units\"
+        : 9000,\n\t\t\t\"price\" : 1.14089,\n\t\t\t\"expiry\" : \"2015-01-20T18:22:30.000000Z\",\n\t\t\t\"orderId\"
+        : 175503911,\n\t\t\t\"reason\" : \"REPLACES_ORDER\"\n\t\t},\n\t\t{\n\t\t\t\"id\"
+        : 175503911,\n\t\t\t\"accountId\" : 5342358,\n\t\t\t\"time\" : \"2015-01-20T17:22:28.000000Z\",\n\t\t\t\"type\"
+        : \"LIMIT_ORDER_CREATE\",\n\t\t\t\"instrument\" : \"USD_JPY\",\n\t\t\t\"units\"
+        : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"price\" : 1.14089,\n\t\t\t\"expiry\"
+        : \"2015-01-20T18:22:30.000000Z\",\n\t\t\t\"reason\" : \"CLIENT_REQUEST\"\n\t\t},\n\t\t{\n\t\t\t\"id\"
+        : 175503910,\n\t\t\t\"accountId\" : 5342358,\n\t\t\t\"time\" : \"2015-01-20T17:22:28.000000Z\",\n\t\t\t\"type\"
+        : \"LIMIT_ORDER_CREATE\",\n\t\t\t\"instrument\" : \"USD_JPY\",\n\t\t\t\"units\"
+        : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"price\" : 1.14089,\n\t\t\t\"expiry\"
+        : \"2015-01-20T18:22:30.000000Z\",\n\t\t\t\"reason\" : \"CLIENT_REQUEST\"\n\t\t},\n\t\t{\n\t\t\t\"id\"
+        : 175503909,\n\t\t\t\"accountId\" : 5342358,\n\t\t\t\"time\" : \"2015-01-20T17:22:28.000000Z\",\n\t\t\t\"type\"
+        : \"LIMIT_ORDER_CREATE\",\n\t\t\t\"instrument\" : \"USD_JPY\",\n\t\t\t\"units\"
+        : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"price\" : 1.14089,\n\t\t\t\"expiry\"
+        : \"2015-01-20T18:22:30.000000Z\",\n\t\t\t\"reason\" : \"CLIENT_REQUEST\"\n\t\t},\n\t\t{\n\t\t\t\"id\"
+        : 175503908,\n\t\t\t\"accountId\" : 5342358,\n\t\t\t\"time\" : \"2015-01-20T17:22:27.000000Z\",\n\t\t\t\"type\"
+        : \"LIMIT_ORDER_CREATE\",\n\t\t\t\"instrument\" : \"USD_JPY\",\n\t\t\t\"units\"
+        : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"price\" : 1.14089,\n\t\t\t\"expiry\"
+        : \"2015-01-20T18:22:30.000000Z\",\n\t\t\t\"reason\" : \"CLIENT_REQUEST\"\n\t\t}\n\t]\n}"
+    http_version: 
+  recorded_at: Tue, 20 Jan 2015 17:22:36 GMT
+- request:
+    method: get
+    uri: http://api-sandbox.oanda.com/v1/accounts/5342358/transactions/175503929?username=dwaymotim
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Accept-Datetime-Format:
+      - RFC3339
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - 30
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty/1.7.0.1
+      Date:
+      - Tue, 20 Jan 2015 17:22:34 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '322'
+      Connection:
+      - keep-alive
+      Etag:
+      - '"8ff8f01a40e8a57ba96440cf7778b5028df1f20d"'
+    body:
+      encoding: UTF-8
+      string: "{\n\t\"id\" : 175503929,\n\t\"accountId\" : 5342358,\n\t\"time\" :
+        \"2015-01-20T17:22:34.000000Z\",\n\t\"type\" : \"MARKET_ORDER_CREATE\",\n\t\"instrument\"
+        : \"USD_JPY\",\n\t\"units\" : 10000,\n\t\"side\" : \"buy\",\n\t\"price\" :
+        114.893,\n\t\"pl\" : 0,\n\t\"interest\" : 0,\n\t\"accountBalance\" : 99995.1252,\n\t\"tradeOpened\"
+        : {\n\t\t\"id\" : 175503929,\n\t\t\"units\" : 10000\n\t}\n}"
+    http_version: 
+  recorded_at: Tue, 20 Jan 2015 17:22:36 GMT
+- request:
+    method: post
+    uri: http://api-sandbox.oanda.com/v1//accounts/5342358/orders
+    body:
+      encoding: UTF-8
+      string: username=dwaymotim
+    headers:
+      X-Accept-Datetime-Format:
+      - RFC3339
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - 30
+  response:
+    status:
+      code: 400
+      message: BAD_REQUEST
+    headers:
+      Server:
+      - openresty/1.7.0.1
+      Date:
+      - Tue, 20 Jan 2015 21:03:09 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '145'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "{\n\t\"code\" : 2,\n\t\"message\" : \"Missing required argument: type\",\n\t\"moreInfo\"
+        : \"http:\\/\\/developer.oanda.com\\/docs\\/v1\\/troubleshooting\\/#errors\"\n}"
+    http_version: 
+  recorded_at: Tue, 20 Jan 2015 21:03:09 GMT
+- request:
+    method: get
+    uri: http://api-sandbox.oanda.com/v1/accounts/5342358/transactions/transactions/175503929?instrument=USD_JPY&username=dwaymotim
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Accept-Datetime-Format:
+      - RFC3339
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - 30
+  response:
+    status:
+      code: 400
+      message: BAD_REQUEST
+    headers:
+      Server:
+      - openresty/1.7.0.1
+      Date:
+      - Tue, 20 Jan 2015 23:53:36 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '166'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "{\n\t\"code\" : 52,\n\t\"message\" : \"Invalid or malformed resource
+        identifier: accountId\",\n\t\"moreInfo\" : \"http:\\/\\/developer.oanda.com\\/docs\\/v1\\/troubleshooting\\/#errors\"\n}"
+    http_version: 
+  recorded_at: Tue, 20 Jan 2015 23:53:36 GMT
+recorded_with: VCR 2.9.3
