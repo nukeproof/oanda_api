@@ -11,3 +11,5 @@ group :development do
   gem "github-markup"
   gem "rubocop", require: false
 end
+
+gem 'simplecov', :require => false, :group => :test
