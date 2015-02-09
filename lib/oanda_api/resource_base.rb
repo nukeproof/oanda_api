@@ -1,4 +1,5 @@
 module OandaAPI
+  require 'json'
   # Base class for all Resources.
   #
   # @!attribute [rw] location
@@ -15,8 +16,14 @@ module OandaAPI
     #   {http://developer.oanda.com/rest-live/development-guide/ Oanda Developer Guide}
     #   for documentation about resource attributes.
     def initialize(attributes = {})
-      initialize_attributes Utils.rubyize_keys(attributes.dup)
+      initialize_attributes Utils.rubyize_keys(attributes)
       @location = attributes.location if attributes.respond_to? :location
+    end
+
+    # Serializes an instance as JSON
+    # @return [String] a stringified JSON representation of an instance
+    def to_json
+      JSON.generate @_attributes.merge(custom_attributes)
     end
 
     private
@@ -27,9 +34,16 @@ module OandaAPI
     # @param [Hash] attributes collection of resource attributes.
     # @return [void]
     def initialize_attributes(attributes)
+      @_attributes = attributes
       attributes.each do |key, value|
         send("#{key}=", value) if respond_to? key
       end
+    end
+
+    # Provides additional attributes used in serialization.
+    # @return [Hash] returns a hash of customized attributes for serialization
+    def custom_attributes
+      {}.tap{|hash| hash[:location] = location if location}
     end
   end
 end
