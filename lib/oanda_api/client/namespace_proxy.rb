@@ -29,7 +29,8 @@ module OandaAPI
       #   key condition is included, it is extracted and added as a namespace
       #   segment. See {#extract_key_and_conditions}.
       def initialize(client, namespace_segment, conditions)
-        fail ArgumentError, "expecting an OandaAPI::Client instance" unless client && client.is_a?(OandaAPI::Client)
+        fail ArgumentError, "expecting an OandaAPI::Client instance" unless 
+          client && client.is_a?(OandaAPI::Client) || client.is_a?(OandaAPI::Streaming::Client)
         fail ArgumentError, "expecting a namespace value" if namespace_segment.to_s.empty?
 
         @client = client
@@ -88,6 +89,10 @@ module OandaAPI
       # Executes an API request and returns a resource object, or returns a
       # clone of +self+ for method chaining.
       #
+      # @yield [OandaAPI::ResourceBase] if the method is +:stream+.
+      #
+      # @return [void] if the method is +:stream+.
+      #
       # @return [OandaAPI::Client::NamespaceProxy] if the method is used
       #   for chaining.
       #
@@ -96,10 +101,10 @@ module OandaAPI
       #
       # @return [OandaAPI::ResourceCollection] if the method is +:get+ and the
       #   API returns a collection of resources.
-      def method_missing(sym, *args)
+      def method_missing(sym, *args, &block)
         # Check for terminating method
-        if [:create, :close, :delete, :get, :update].include?(sym)
-          @client.execute_request sym, namespace, conditions
+        if [:create, :close, :delete, :get, :update, :stream].include?(sym)
+          @client.execute_request sym, namespace, conditions, &block
         else
           ns = self.clone
           ns.namespace_segments << Utils.pluralize(sym)

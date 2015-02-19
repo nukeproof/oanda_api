@@ -4,6 +4,9 @@ gemspec
 
 group :development do
   gem "pry"
+  gem 'pry-stack_explorer'
+  gem 'pry-byebug'
+
   gem "guard"
   gem "guard-rspec"
   gem "fuubar"
