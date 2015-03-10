@@ -1,18 +1,16 @@
 require 'spec_helper'
-
 describe "OandaAPI::ResourceBase" do
+  class MyClass < OandaAPI::ResourceBase
+    attr_accessor :webbed_feet
+  end
 
-    class MyClass < OandaAPI::ResourceBase
-      attr_accessor :webbed_feet
+  class MyCustomizedClass < OandaAPI::ResourceBase
+    attr_accessor :webbed_feet
+
+    def custom_attributes
+      super.merge(webbed_feet: "customized #{webbed_feet}")
     end
-
-    class MyCustomizedClass < OandaAPI::ResourceBase
-      attr_accessor :webbed_feet
-
-      def custom_attributes
-        super.merge(webbed_feet: "customized #{webbed_feet}")
-      end
-    end
+  end
 
   describe "#initialize" do
     it "initializes writer methods with matching attributes" do
@@ -46,5 +44,4 @@ describe "OandaAPI::ResourceBase" do
       expect(h).to include("webbed_feet" => "customized webbed feet")
     end
   end
-
 end

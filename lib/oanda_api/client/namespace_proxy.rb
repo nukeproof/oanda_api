@@ -29,7 +29,7 @@ module OandaAPI
       #   key condition is included, it is extracted and added as a namespace
       #   segment. See {#extract_key_and_conditions}.
       def initialize(client, namespace_segment, conditions)
-        fail ArgumentError, "expecting an OandaAPI::Client instance" unless 
+        fail ArgumentError, "expecting an OandaAPI::Client instance" unless
           client && client.is_a?(OandaAPI::Client) || client.is_a?(OandaAPI::Streaming::Client)
         fail ArgumentError, "expecting a namespace value" if namespace_segment.to_s.empty?
 

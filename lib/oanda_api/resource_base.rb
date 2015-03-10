@@ -43,7 +43,7 @@ module OandaAPI
     # Provides additional attributes used in serialization.
     # @return [Hash] returns a hash of customized attributes for serialization
     def custom_attributes
-      {}.tap{|hash| hash[:location] = location if location}
+      {}.tap { |hash| hash[:location] = location if location }
     end
   end
 end

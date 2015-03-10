@@ -22,8 +22,8 @@ describe "OandaAPI::Streaming::Client" do
       expect(client.headers).to eq(client.auth)
     end
 
-    it "sets default_params to {}" do
-      expect(client.default_params).to eq({})
+    it "defaults emit_heartbeats to false" do
+      expect(client.emit_heartbeats?).to be false
     end
   end
 
@@ -66,10 +66,12 @@ describe "OandaAPI::Streaming::Client" do
     end
   end
 
-  describe "default_params" do
-    it "has a reader and writer" do
-      client.default_params = { key: "value" }
-      expect(client.default_params).to eq(key: "value")
+  describe "#emit_heartbeats=" do
+    it "sets the emits heartbeats attribute" do
+      [true, false].each do |value|
+        client.emit_heartbeats = value
+        expect(client.emit_heartbeats?).to be value
+      end
     end
   end
 
@@ -77,6 +79,54 @@ describe "OandaAPI::Streaming::Client" do
     it "has a reader and writer" do
       client.headers = { key: "value" }
       expect(client.headers).to eq(key: "value")
+    end
+  end
+
+  describe "#running?" do
+    it "returns true if a streaming request is running" do
+      events_json = <<-END
+      {"heartbeat":{"time":"2014-05-26T13:58:40Z"}}\r\n
+      {"transaction":{"id":10001}}\r\n
+      {"transaction":{"id":10002}}
+      END
+      stub_request(:get, "https://stream-fxpractice.oanda.com/v1/events").to_return(body: events_json, status: 200)
+
+      client = OandaAPI::Streaming::Client.new(:practice, "token")
+      expect(client.running?).to be false
+      client.events.stream do |_event, signaller|
+        expect(client.running?).to be true
+        signaller.stop!
+      end
+    end
+  end
+
+  describe "#stop!" do
+    events_json = <<-END
+      {"transaction":{"id": 1}}\r\n
+      {"transaction":{"id": 2}}
+    END
+
+    context "without using #stop!" do
+      it "emits all objects in the stream" do
+        stub_request(:get, "https://stream-fxpractice.oanda.com/v1/events").to_return(body: events_json, status: 200)
+        client = OandaAPI::Streaming::Client.new(:practice, "token")
+        event_ids = []
+        client.events.stream { |event| event_ids << event.id }
+        expect(event_ids).to contain_exactly(1, 2)
+      end
+    end
+
+    context "when using #stop!" do
+      it "terminates emitting objects in the stream" do
+        stub_request(:get, "https://stream-fxpractice.oanda.com/v1/events").to_return(body: events_json, status: 200)
+        client = OandaAPI::Streaming::Client.new(:practice, "token")
+        event_ids = []
+        client.events.stream do |event, signaller|
+          event_ids << event.id
+          signaller.stop!
+        end
+        expect(event_ids).to contain_exactly(1)
+      end
     end
   end
 end

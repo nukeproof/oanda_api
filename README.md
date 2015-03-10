@@ -34,7 +34,7 @@ Some Examples
 ```ruby
 require 'oanda_api'
 
-client = OandaAPI::Client::TokenClient.new(:practice, ENV["practice_account_token"])
+client = OandaAPI::Client::TokenClient.new(:practice, ENV.fetch("OANDA_PRACTICE_TOKEN"))
 
 prices = client.prices(instruments: %w(EUR_USD USD_JPY)).get
 
@@ -50,7 +50,7 @@ end
 ```ruby
 require 'oanda_api'
 
-client = OandaAPI::Client::TokenClient.new(:practice, ENV["practice_account_token"])
+client = OandaAPI::Client::TokenClient.new(:practice, ENV.fetch("OANDA_PRACTICE_TOKEN"))
 
 candles = client.candles( instrument: "EUR_USD",
                          granularity: "M1",
@@ -78,7 +78,7 @@ end
 ```ruby
 require 'oanda_api'
 
-client = OandaAPI::Client::TokenClient.new(:practice, ENV["practice_account_token"])
+client = OandaAPI::Client::TokenClient.new(:practice, ENV.fetch("OANDA_PRACTICE_TOKEN"))
 
 order = client.account(12345)
               .order(instrument: "USD_JPY", 
@@ -96,7 +96,7 @@ order.trade_opened.id  # => 175491416
 ```ruby
 require 'oanda_api'
 
-client = OandaAPI::Client::TokenClient.new(:practice, ENV["practice_account_token"])
+client = OandaAPI::Client::TokenClient.new(:practice, ENV.fetch("OANDA_PRACTICE_TOKEN"))
 
 account = client.account(12345)             # => OandaAPI::NamespaceProxy
 position = account.position("USD_JPY").get  # => OandaAPI::Resource::Position
@@ -118,6 +118,24 @@ transaction.time        # => 2014-12-19 03:29:48 UTC
 transaction.type        # => "MARKET_ORDER_CREATE"
 ```
 
+##Streaming
+OandaAPI also supports the [Oanda realtime streaming API](http://developer.oanda.com/rest-live/streaming/).
+
+For example to stream live prices,
+
+```ruby
+client = OandaAPI::Streaming::Client.new(:practice, ENV.fetch("OANDA_PRACTICE_TOKEN")) 
+prices = client.prices(account_id: 1234, instruments: %w[AUD_CAD AUD_CHF])
+prices.stream do |price|
+  # Note: The code in this block should handle the price
+  #       as efficently as possible, otherwise the connection could timeout.
+  #       For example, you could publish the tick on a queue to be handled
+  #       by some other thread or process.
+  price  # => OandaAPI::Resource::Price
+end 
+```
+
+
 Documentation
 -------------
 
@@ -125,15 +143,15 @@ Please see the [Oanda Developer Wiki](http://developer.oanda.com/rest-live/intro
 for detailed documentation and API usage notes.
 
 
-| Ruby                       |  Oanda REST API      | 
+| Ruby                       |  Oanda REST API      |
 |:---------------------------|:---------------------|
-| client.accounts.get        | GET /v1/accounts     | 
+| client.accounts.get        | GET /v1/accounts     |
 | client.account(123).get    | GET /v1/accounts/123 |
 | client.account.create      | POST /v1/accounts    |
 | client.instruments.get     | GET /v1/instruments  |
 | client.prices(instruments: ["EUR_USD","USD_JPY"]).get | GET /v1/prices/?instruments=EUR_USD%2CUSD_JPY |
-| client.account(123).orders.get | GET /v1/accounts/123/orders
-| client.account(123).order(123).get | GET /v1/accounts/123/orders/123
+| client.account(123).orders.get | GET /v1/accounts/123/orders |
+| client.account(123).order(123).get | GET /v1/accounts/123/orders/123 |
 | client.account(123).order( *options* ).create | POST /v1/accounts/123/orders |
 | client.account(123).order(id:123, *options* ).update | PATCH /v1/accounts/123/orders/123 |
 | client.account(123).order(123).close | DELETE /v1/accounts/123/orders/123 |

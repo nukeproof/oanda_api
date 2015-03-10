@@ -32,7 +32,7 @@ module OandaAPI
       @attributes = Utils.rubyize_keys attributes
       @collection = @attributes.delete(resource_descriptor.collection_name) || []
       @collection.map! { |resource| resource_descriptor.resource_klass.new resource }
-      @location   = attributes.location if attributes.respond_to? :location
+      @location = attributes.location if attributes.respond_to? :location
     end
 
     # @yield [OandaAPI::ResourceBase]
@@ -51,11 +51,10 @@ module OandaAPI
     # the collection-scoped methods +granularity+ and +instrument+.
     def method_missing(sym, *args)
       case
-      when @attributes.keys.include?(sym) 
+      when @attributes.keys.include?(sym)
         @attributes[sym]
-      when
-        @collection.respond_to?(sym)
-          @collection.send sym
+      when @collection.respond_to?(sym)
+        @collection.send sym
       else
         super
       end

@@ -26,7 +26,7 @@ describe "OandaAPI::ResourceCollection" do
       describe "when the collection element is empty" do
         let(:resource_collection) { OandaAPI::ResourceCollection.new({ candles: [] }, resource_descriptor) }
         it "returns a ResourceCollection" do
-           expect(resource_collection).to be_an(OandaAPI::ResourceCollection)
+          expect(resource_collection).to be_an(OandaAPI::ResourceCollection)
         end
         it "is an empty collection" do
           expect(resource_collection.empty?).to be true
