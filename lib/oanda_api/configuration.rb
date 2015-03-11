@@ -11,7 +11,7 @@ module OandaAPI
     USE_COMPRESSION         = false
     USE_REQUEST_THROTTLING  = false
 
-    # The format in which dates will be returned by the API (+:rfc3339+ or +:unix+).
+    # The format in which dates will be returned by the API (`:rfc3339` or `:unix`).
     # See the Oanda Development Guide for more details about {http://developer.oanda.com/rest-live/development-guide/#date_Time_Format DateTime formats}.
     # @return [Symbol]
     def datetime_format
@@ -27,7 +27,7 @@ module OandaAPI
     end
 
     # The maximum number of requests per second allowed to be made through the
-    # API. Only enforced if {#use_request_throttling?} is +true+.
+    # API. Only enforced if {#use_request_throttling?} is `true`.
     #
     # @return [Numeric]
     def max_requests_per_second
@@ -44,7 +44,7 @@ module OandaAPI
     end
 
     # The minimum amount of time in seconds that must elapse between consecutive requests to the API.
-    # Determined by {#max_requests_per_second}. Only enforced if {#use_request_throttling?} is +true+.
+    # Determined by {#max_requests_per_second}. Only enforced if {#use_request_throttling?} is `true`.
     # @return [Float]
     def min_request_interval
       @min_request_interval ||= (1.0 / max_requests_per_second)

@@ -8,7 +8,7 @@ module OandaAPI
   # Provides everything needed for accessing the API.
   #
   # - Uses persistant http connections.
-  # - Uses +OpenSSL::SSL::VERIFY_PEER+ to always validate SSL certificates.
+  # - Uses `OpenSSL::SSL::VERIFY_PEER` to always validate SSL certificates.
   # - Uses compression if enabled (see {Configuration#use_compression}).
   # - Uses request rate limiting if enabled (see {Configuration#use_request_throttling}).
   module Client
@@ -92,7 +92,7 @@ module OandaAPI
     # Maps An API _action_ to a corresponding http verb.
     #
     # @param [Symbol] method an API action. Supported actions are:
-    #  +:create+, +:close+, +:delete+, +:get+, +:update+.
+    #  `:create`, `:close`, `:delete`, `:get`, `:update`.
     #
     # @return [Symbol] an http verb.
     def self.map_method_to_http_verb(method)
@@ -167,7 +167,7 @@ module OandaAPI
 
     # @private
     # Enables method-chaining.
-    # @return [Namespace]
+    # @return [NamespaceProxy]
     def method_missing(sym, *args)
       NamespaceProxy.new self, sym, args.first
     end

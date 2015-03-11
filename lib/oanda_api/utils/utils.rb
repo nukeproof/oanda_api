@@ -45,7 +45,7 @@ module OandaAPI
     # Yields all keys of a hash, and safely applies whatever transform
     # the block provides. Supports nested hashes.
     #
-    # @param [Object] value can be a +Hash+, an +Array+ or scalar object type.
+    # @param [Object] value can be a `Hash`, an `Array` or scalar object type.
     #
     # @param [Block] block transforms the yielded key.
     #
@@ -68,7 +68,7 @@ module OandaAPI
     # transform the block provides to the values.
     # Supports nested hashes and arrays.
     #
-    # @param [Object] value can be a +Hash+, an +Array+ or scalar object type.
+    # @param [Object] value can be a `Hash`, an `Array` or scalar object type.
     #
     # @param [Object] key
     #

@@ -15,7 +15,7 @@ module OandaAPI
     #
     #
     # @!attribute [r] domain
-    #   @return [Symbol] identifies the Oanda subdomain (+:sandbox+) which the
+    #   @return [Symbol] identifies the Oanda subdomain (`:sandbox`) which the
     #     client accesses.
     #
     # @!attribute [r] username

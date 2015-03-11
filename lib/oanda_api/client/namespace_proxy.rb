@@ -24,7 +24,7 @@ module OandaAPI
       #   ordered list of segments, joined, creates a path to a resource URI.
       #
       # @param [Hash] conditions an optional list of parameters that typically
-      #   specifies conditions and filters for a resource request. A a _"key"_
+      #   specifies conditions and filters for a resource request. A _"key"_
       #   or _"id"_ is a condition that identifies a particular resource. If a
       #   key condition is included, it is extracted and added as a namespace
       #   segment. See {#extract_key_and_conditions}.
@@ -39,7 +39,7 @@ module OandaAPI
         extract_key_and_conditions conditions
       end
 
-      # Returns a deep clone of +self+.
+      # Returns a deep clone of `self`.
       # @return [NamespaceProxy]
       def clone
         ns = self.dup
@@ -87,19 +87,19 @@ module OandaAPI
       end
 
       # Executes an API request and returns a resource object, or returns a
-      # clone of +self+ for method chaining.
+      # clone of `self` for method chaining.
       #
-      # @yield [OandaAPI::ResourceBase] if the method is +:stream+.
+      # @yield [OandaAPI::ResourceBase] if the method is `:stream`.
       #
-      # @return [void] if the method is +:stream+.
+      # @return [void] if the method is `:stream`.
       #
       # @return [OandaAPI::Client::NamespaceProxy] if the method is used
       #   for chaining.
       #
       # @return [OandaAPI::ResourceBase] if the method is one of the supported
-      #   _terminating_ methods (+:create+, +:close+, +:delete+, +:get+, +:update+).
+      #   _terminating_ methods (`:create`, `:close`, `:delete`, `:get`, `:update`).
       #
-      # @return [OandaAPI::ResourceCollection] if the method is +:get+ and the
+      # @return [OandaAPI::ResourceCollection] if the method is `:get` and the
       #   API returns a collection of resources.
       def method_missing(sym, *args, &block)
         # Check for terminating method

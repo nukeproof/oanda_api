@@ -4,5 +4,4 @@ VCR.configure do |c|
   c.hook_into :webmock
   c.configure_rspec_metadata!
   c.default_cassette_options = { record: :new_episodes }
-  c.filter_sensitive_data("<OANDA_AUTH_TOKEN>") { ENV.fetch "OANDA_PRACTICE_TOKEN" }
 end

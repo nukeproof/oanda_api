@@ -12,7 +12,7 @@ client = OandaAPI::Client::TokenClient.new(:practice, "practice_account_token")
 account = client.account(12345).get 
 ```
 
-returns an OandaAPI::Resource::Account, with method accessors for all of the [Account](http://developer.oanda.com/rest-live/accounts/) attributes defined by the Oanda API.
+returns an `OandaAPI::Resource::Account`, with method accessors for all of the [Account](http://developer.oanda.com/rest-live/accounts/) attributes defined by the Oanda API.
 
 
 ## Features

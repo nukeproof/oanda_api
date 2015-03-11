@@ -8,8 +8,7 @@ module OandaAPI
     # {http://developer.oanda.com/rest-live/authentication/ obtaining a personal access token from Oanda}.
     #
     # @example Example usage
-    #   token  = ENV["oanda_practice_account_token"]
-    #   client = OandaAPI::Client::TokenClient.new :practice, token
+    #   client = OandaAPI::Client::TokenClient.new :practice, ENV.fetch("OANDA_PRACTICE_TOKEN")
     #
     #   # Get information for an account.
     #   # See http://developer.oanda.com/rest-live/accounts/
@@ -25,7 +24,7 @@ module OandaAPI
     #   @return [String] Oanda personal access token.
     #
     # @!attribute [rw] domain
-    #   @return [Symbol] identifies the Oanda subdomain (+:practice+ or +:live+)
+    #   @return [Symbol] identifies the Oanda subdomain (`:practice` or `:live`)
     #     accessed by the client.
     #
     # @!attribute [rw] default_params

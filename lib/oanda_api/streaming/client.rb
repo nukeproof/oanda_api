@@ -6,15 +6,16 @@ module OandaAPI
       practice: "https://stream-fxpractice.oanda.com/[API_VERSION]"
     }
 
-    # @example Example usage
+    # @example Example Usage
     #   client = OandaAPI::Streaming::Client.new :practice, ENV.fetch("ONADA_PRACTICE_TOKEN")
     #
-    #   Note: This code will block because streaming is an infinite loop.
+    #   # IMPORTANT
+    #   # This code will block indefinitely because streaming executes as an infinite loop.
     #   prices = client.prices(account_id: 1234, instruments: %w[AUD_CAD AUD_CHF])
     #   prices.stream do |price|
     #
-    #     # Note: The code in this block should handle the price
-    #     # as efficently as possible, otherwise the connection could timeout.
+    #     # The code in this block should handle the price as efficently
+    #     # as possible, otherwise the connection could timeout.
     #     # For example, you could publish the tick on a queue to be handled
     #     # by some other thread or process.
     #     price  # => OandaAPI::Resource::Price
@@ -24,10 +25,9 @@ module OandaAPI
     #     transaction # => OandaAPI::Resource::Transaction
     #   end
     #
-    #   Stopping the stream.
-    #   You may add a second argument to the block that yields the client itself.
-    #   # Stop after collecting 10 prices
-    #
+    #   # -- Stopping the stream --
+    #   # You may add a second argument to the block to yield the client itself.
+    #   # You can use the client's `#stop!` method to terminate streaming.
     #   @prices = []
     #   prices = client.prices(account_id: 1234, instruments: %w[AUD_CAD AUD_CHF])
     #   prices.stream do |price, client|
@@ -39,10 +39,10 @@ module OandaAPI
     #   @return [String] Oanda personal access token.
     #
     # @!attribute [r] streaming_request
-    #   @return [Streaming::Client::StreamingRequest]
+    #   @return [OandaAPI::Streaming::Request]
     #
     # @!attribute [rw] domain
-    #   @return [Symbol] identifies the Oanda subdomain (+:practice+ or +:live+)
+    #   @return [Symbol] identifies the Oanda subdomain (`:practice` or `:live`)
     #     accessed by the client.
     #
     # @!attribute [rw] headers
@@ -93,46 +93,45 @@ module OandaAPI
         streaming_request.emit_heartbeats = value if streaming_request
       end
 
-      # Returns +true+ if emitted resources include heartbeats. Defaults to false.
+      # Returns `true` if emitted resources include heartbeats. Defaults to false.
       # @return [boolean]
       def emit_heartbeats?
         !!@emit_heartbeats
       end
 
-      # Stops streaming.
+      # Signals the streaming request to disconnect and terminates streaming.
       # @return [void]
       def stop!
         streaming_request.stop! if running?
       end
 
-      # Returns +true+ if the client is currently streaming.
+      # Returns `true` if the client is currently streaming.
       # @return [boolean]
       def running?
         !!(streaming_request && streaming_request.running?)
       end
 
       # @private
-      # Executes an http request.
+      # Executes a streaming http request.
       #
       # @param [Symbol] _method Ignored.
       #
       # @param [String] path the path of an Oanda resource request.
       #
-      # @param [Hash] conditions optional parameters that are converted into query
-      #   parameters.
+      # @param [Hash] conditions optional parameters that are converted into query parameters.
       #
-      # @yield [OandaAPI:ResourceBase]  See {StreamingRequest.stream}
+      # @yield [OandaAPI:ResourceBase, OandaAPI::Streaming::Client]  See {OandaAPI::Streaming::Request.stream}
       #
       # @return [void]
       #
       # @raise [OandaAPI::RequestError] if the API return code is not 2xx.
-      # @raise [OandaAPI::RequestDisconnect] if the API disconnects.
+      # @raise [OandaAPI::StreamingDisconnect] if the API disconnects.
       def execute_request(_method, path, conditions = {}, &block)
         Http::Exceptions.wrap_and_check do
-          @streaming_request = StreamingRequest.new client: self,
-                                                    uri: api_uri(path),
-                                                    query: Utils.stringify_keys(conditions),
-                                                    headers: OandaAPI.configuration.headers.merge(headers)
+          @streaming_request = OandaAPI::Streaming::Request.new client: self,
+                                                                uri: api_uri(path),
+                                                                query: Utils.stringify_keys(conditions),
+                                                                headers: OandaAPI.configuration.headers.merge(headers)
           @streaming_request.stream(&block)
           return nil
         end
@@ -145,134 +144,9 @@ module OandaAPI
 
       # @private
       # Enables method-chaining.
-      # @return [Namespace]
+      # @return [OandaAPI::Client::NamespaceProxy]
       def method_missing(sym, *args)
         OandaAPI::Client::NamespaceProxy.new self, sym, args.first
-      end
-    end
-
-    # An HTTP 1.1 streaming request. Used to create a persistent connection
-    # with the server and continuously download a stream of resource
-    # representations. Resources are emitted as +OandaAPI::ResourceBase+
-    # instances.
-    #
-    # @!attribute [rw] client
-    # @return [OandaAPI::Streaming::Client] a streaming client instance
-    #
-    # @!attribute [rw] emit_heartbeats
-    # @return [boolean]
-    #
-    # @!attribute [r] uri
-    # @return [URI::HTTPS] a URI instance
-    #
-    # @!attribute [r] request
-    # @return [URI::HTTPS] a URI instance
-    class StreamingRequest
-      attr_accessor :client, :emit_heartbeats
-      attr_reader :uri, :request
-
-      # Creates a +StreamingRequest+ instance.
-      # @param [Streaming::Client] client a streaming client instance that can be used to
-      #   send signals to an instance of this StreamingRequest.
-      # @param [String] uri an absolute URI to the service endpoint.
-      # @param [Hash] query a list of query parameters, unencoded. The list
-      #   is converted into a query string. See {OandaAPI::Client#query_string_normalizer}.
-      # @param [Hash] headers a list of header values that will be sent with the request.
-      def initialize(client: nil, uri:, query: {}, headers: {})
-        self.client = client.nil? ? self : client
-        @uri = URI uri
-        @uri.query = OandaAPI::Client.default_options[:query_string_normalizer].call(query)
-        @http = Net::HTTP.new @uri.host, 443
-        @http.use_ssl = true
-        @http.verify_mode = OpenSSL::SSL::VERIFY_PEER
-        @request = Net::HTTP::Get.new @uri
-        headers.each_pair { |pair| @request.add_field(*pair) }
-      end
-
-      # Sets the client attribute
-      # @param [OandaAPI::Streaming::Client] value
-      # @return [void]
-      # @raise [ArgumentError] if value is not an OandaAPI::Streaming::Client instance.
-      def client=(value)
-        fail ArgumentError, "Expecting an OandaAPI::Streaming::Client" unless (value.is_a?(OandaAPI::Streaming::Client) || value.is_a?(OandaAPI::Streaming::StreamingRequest))
-        @client = value
-      end
-
-      # @return [boolean] true if heatbeats are emitted
-      def emit_heartbeats?
-        !!@emit_heartbeats
-      end
-
-      # Signals the streaming request to disconnect.
-      # @return [void]
-      def stop!
-        @stop_requested = true
-      end
-
-      # Returns +true+ if the request has been signalled to terminate. See {#stop}.
-      # @return [boolean]
-      def stop_requested?
-        !!@stop_requested
-      end
-
-      # @return [true] if the instance is connected and streaming a response
-      def running?
-        !!@running
-      end
-
-      # Emits a stream of +OandaAPI::ResourceBase+ instances.
-      # Note this method runs as an infinite loop and will block indefinitely
-      # until either the connection is halted or a {#stop} signal is recieved.
-      # @yield [OandaAPI::ResourceBase] resource
-      # @return [void]
-      def stream(&block)
-        @stop_requested = false
-        @running = true
-
-        # @http.set_debug_output $stderr
-
-        @http.request(@request) do |response|
-          response.read_body do |chunk|
-            handle_response(chunk).each do |resource|
-              block.call(resource, @client)
-              return if stop_requested?
-            end
-            return if stop_requested?
-            sleep 0.01
-          end
-          # Here is where we should sleep then wait no more than the idle timeout amount
-        end
-      ensure
-        @running = false
-        @http.finish if @http.started?
-      end
-
-      private
-
-      # @private
-      # Converts a raw json response into +OandaAPI::ResourceBase+ instances.
-      # @return [Array<OandaAPI::ResourceBase>] depending on the endpoint
-      #   that the request is servicing, which is either an array of
-      #   +OandaAPI::Resource::Price+ or +OandaAPI::Resource::Transaction+ instances.
-      #   If #emit_heartbeats? is +true+, then the instance could be an +OandaAPI::Resource::Heartbeat+
-      # @raise [OandaAPI::StreamingDisconnect] if the endpoint was disconnected by server.
-      # @raise [OandaAPI::RequestError] if an unexpected resource is returned.
-      def handle_response(response)
-        response.split("\r\n").map do |json|
-          parsed_response = JSON.parse json
-          case
-          when parsed_response["heartbeat"]
-            OandaAPI::Resource::Heartbeat.new parsed_response["heartbeat"] if emit_heartbeats?
-          when parsed_response["tick"]
-            OandaAPI::Resource::Price.new parsed_response["tick"]
-          when parsed_response["transaction"]
-            OandaAPI::Resource::Transaction.new parsed_response["transaction"]
-          when parsed_response["disconnect"]
-            raise OandaAPI::StreamingDisconnect, parsed_response["disconnect"]["message"]
-          else
-            raise OandaAPI::RequestError, "unknown resource: #{json}"
-          end
-        end.compact
       end
     end
   end

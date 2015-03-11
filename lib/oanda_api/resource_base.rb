@@ -3,9 +3,9 @@ module OandaAPI
   # Base class for all Resources.
   #
   # @!attribute [rw] location
-  #   @return [String] the +location+ header if one is returned in an API
+  #   @return [String] the `location` header if one is returned in an API
   #     response.
-  #   @example Using the +location+ attribute
+  #   @example Using the `location` attribute
   #      client = OandaAPI::Client::TokenClient.new :practice, token
   #      all_transactions = client.account(123).alltransactions.get
   #      all_transactions.location # => https://fxtrade.oanda.com/transactionhistory/d3aed6823c.json.zip

@@ -2,16 +2,16 @@ require 'spec_helper'
 require 'uri'
 require 'webmock/rspec'
 
-describe "OandaAPI::Streaming::StreamingRequest" do
+describe "OandaAPI::Streaming::Request" do
   let(:streaming_request) {
-    OandaAPI::Streaming::StreamingRequest.new(uri: "https://a.url.com",
-                                              query: { account: 1234, instruments: %w[AUD_CAD AUD_CHF] },
-                                              headers: { "some-header" => "header value" })
+    OandaAPI::Streaming::Request.new(uri: "https://a.url.com",
+                                     query: { account: 1234, instruments: %w[AUD_CAD AUD_CHF] },
+                                     headers: { "some-header" => "header value" })
   }
 
   describe "#initialize" do
-    it "creates a StreamingRequest instance" do
-      expect(streaming_request).to be_an(OandaAPI::Streaming::StreamingRequest)
+    it "creates a Streaming::Request instance" do
+      expect(streaming_request).to be_an(OandaAPI::Streaming::Request)
     end
 
     it "initializes the uri attribute" do
@@ -24,10 +24,10 @@ describe "OandaAPI::Streaming::StreamingRequest" do
 
     it "initializes the request's client attribute" do
       client = OandaAPI::Streaming::Client.new :practice, "token"
-      streaming_request = OandaAPI::Streaming::StreamingRequest.new(client: client,
-                                                                    uri: "https://a.url.com",
-                                                                    query: { account: 1234, instruments: %w[AUD_CAD AUD_CHF] },
-                                                                    headers: { "some-header" => "header value" })
+      streaming_request = OandaAPI::Streaming::Request.new(client: client,
+                                                           uri: "https://a.url.com",
+                                                           query: { account: 1234, instruments: %w[AUD_CAD AUD_CHF] },
+                                                           headers: { "some-header" => "header value" })
       expect(streaming_request.client).to eq client
     end
   end

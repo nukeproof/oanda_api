@@ -47,8 +47,8 @@ module OandaAPI
 
     # @private
     # Responds to collection-scoped accessor methods that are specific to the
-    # type of resource collection. For example, a +Candle+ collection includes
-    # the collection-scoped methods +granularity+ and +instrument+.
+    # type of resource collection. For example, a `Candle` collection includes
+    # the collection-scoped methods `#granularity` and `#instrument`.
     def method_missing(sym, *args)
       case
       when @attributes.keys.include?(sym)
@@ -60,7 +60,7 @@ module OandaAPI
       end
     end
 
-    # Returns +true+ for concrete, delegated and dynamic methods.
+    # Returns `true` for concrete, delegated and dynamic methods.
     # @return [Boolean]
     def respond_to?(sym)
       case
