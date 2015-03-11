@@ -27,7 +27,7 @@ module OandaAPI
     #
     #   # -- Stopping the stream --
     #   # You may add a second argument to the block to yield the client itself.
-    #   # You can use the client's `#stop!` method to terminate streaming.
+    #   # You can use it to issue a client.stop! to terminate streaming.
     #   @prices = []
     #   prices = client.prices(account_id: 1234, instruments: %w[AUD_CAD AUD_CHF])
     #   prices.stream do |price, client|

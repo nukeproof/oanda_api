@@ -20,12 +20,12 @@ module OandaAPI
       attr_accessor :client, :emit_heartbeats
       attr_reader :uri, :request
 
-      # Creates an OandaAPI::Streaming::Request instance.
-      # @param [Streaming::Client] client a streaming client instance that can be used to
-      #   send signals to an instance of this Streaming::Request.
+      # Creates an `Streaming::Request` instance.
+      # @param [Streaming::Client] client a streaming client instance which can be used to
+      #   send signals to an instance of this `Streaming::Request` class.
       # @param [String] uri an absolute URI to the service endpoint.
       # @param [Hash] query a list of query parameters, unencoded. The list
-      #   is converted into a query string. See {OandaAPI::Client#query_string_normalizer}.
+      #   is converted into a query string. See `OandaAPI::Client#query_string_normalizer`.
       # @param [Hash] headers a list of header values that will be sent with the request.
       def initialize(client: nil, uri:, query: {}, headers: {})
         self.client = client.nil? ? self : client
@@ -41,7 +41,7 @@ module OandaAPI
       # Sets the client attribute
       # @param [OandaAPI::Streaming::Client] value
       # @return [void]
-      # @raise [ArgumentError] if value is not an OandaAPI::Streaming::Client instance.
+      # @raise [ArgumentError] if value is not an {OandaAPI::Streaming::Client} instance.
       def client=(value)
         fail ArgumentError, "Expecting an OandaAPI::Streaming::Client" unless (value.is_a?(OandaAPI::Streaming::Client) || value.is_a?(OandaAPI::Streaming::Request))
         @client = value
@@ -72,7 +72,7 @@ module OandaAPI
       # Emits a stream of {OandaAPI::ResourceBase} instances, depending
       #  on the endpoint that the request is servicing, either
       #  {OandaAPI::Resource::Price} or {OandaAPI::Resource::Transaction}
-      #  instances are emitted. When #emit_heartbeats? is `true`, then
+      #  instances are emitted. When {#emit_heartbeats?} is `true`, then
       #  resources could also be {OandaAPI::Resource::Heartbeat}.
       #
       #  Note this method runs as an infinite loop and will block indefinitely
@@ -80,7 +80,7 @@ module OandaAPI
       #
       # @yield [OandaAPI::ResourceBase, OandaAPI::Streaming::Client] Each resource found in the response
       #   stream is yielded as they are received. The client instance controlling the
-      #   streaming request is also yielded. It can be used to issue a signaller.#stop! to terminate the resquest.
+      #   streaming request is also yielded. It can be used to issue a `client.stop!` to terminate the resquest.
       # @raise [OandaAPI::StreamingDisconnect] if the endpoint was disconnected by server.
       # @raise [OandaAPI::RequestError] if an unexpected resource is returned.
       # @return [void]
