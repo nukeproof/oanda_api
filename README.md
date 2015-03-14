@@ -1,4 +1,6 @@
 # OandaAPI
+[![Code Climate](https://codeclimate.com/github/nukeproof/oanda_api/badges/gpa.svg)](https://codeclimate.com/github/nukeproof/oanda_api) [![Test Coverage](https://codeclimate.com/github/nukeproof/oanda_api/badges/coverage.svg)](https://codeclimate.com/github/nukeproof/oanda_api)
+
 Access Oanda FX accounts, get market data, trade, build trading strategies using Ruby.
 ## Synopsis 
 OandaAPI is a simple Ruby wrapper for the [Oanda REST API](http://developer.oanda.com/rest-live/introduction/).

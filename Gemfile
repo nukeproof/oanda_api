@@ -15,4 +15,7 @@ group :development do
   gem "rubocop", require: false
 end
 
-gem 'simplecov', :require => false, :group => :test
+group :test do
+  gem "simplecov", :require => false
+  gem "codeclimate-test-reporter", group: :test, require: nil
+end
