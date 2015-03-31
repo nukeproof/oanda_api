@@ -27,6 +27,18 @@ describe "OandaAPI::Utils" do
     end
   end
 
+  describe '.classify' do
+    it 'return capitalized one word text' do
+      expect(OandaAPI::Utils.classify('ruby')).to eq("Ruby")
+    end
+    it 'capitalizes first word and each word after _ sign' do
+      expect(OandaAPI::Utils.classify('this_is_ruby')).to eq("ThisIsRuby")
+    end
+    it 'downcase letters inside the word (except first letter)' do
+      expect(OandaAPI::Utils.classify('RUBY')).to eq("Ruby")
+    end
+  end
+
   describe ".pluralize" do
     it "naively adds an s to the end of strings" do
       expect(OandaAPI::Utils.pluralize("thing")).to eq("things")
