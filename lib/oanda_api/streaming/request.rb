@@ -27,7 +27,7 @@ module OandaAPI
       # @param [Hash] query a list of query parameters, unencoded. The list
       #   is converted into a query string. See `OandaAPI::Client#query_string_normalizer`.
       # @param [Hash] headers a list of header values that will be sent with the request.
-      def initialize(client: nil, uri:, query: {}, headers: {})
+      def initialize(client: nil, uri: nil, query: {}, headers: {})
         self.client = client.nil? ? self : client
         @uri = URI uri
         @uri.query = OandaAPI::Client.default_options[:query_string_normalizer].call(query)
