@@ -22,8 +22,8 @@ module OandaAPI
 
     # Serializes an instance as JSON
     # @return [String] a stringified JSON representation of an instance
-    def to_json
-      JSON.generate @_attributes.merge(custom_attributes)
+    def to_json(*args)
+      JSON.generate @_attributes.merge(custom_attributes), *args
     end
 
     private
