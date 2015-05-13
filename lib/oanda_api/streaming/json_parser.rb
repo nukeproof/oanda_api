@@ -2,6 +2,9 @@ require_relative 'adapter_error'
 
 module OandaAPI
   module Streaming
+    #
+    # Used to deserialize a stream of JSON objects. Will load and use a streaming JSON parser
+    # if one is installed, otherwise defaults to use the JSON gem.
     module JsonParser
       extend self
 
@@ -11,8 +14,8 @@ module OandaAPI
         yajl: "Yajl"
       }
 
-      # Get the current adapter class.
-      # @return [.parse]
+      # Loads (if not already loaded) and returns the current adapter class.
+      # @return [.parse] a class implementing a `.parse` method
       def adapter
         return @adapter if defined?(@adapter) && @adapter
 
@@ -32,17 +35,17 @@ module OandaAPI
       end
 
       # Loads the requested adapter.
-      # @param [nil]
-      # @return a Module or Class for an adapter to parse streaming JSON
+      # @param [nil, String, Symbol, Module, Class] new_adapter identifies an adapter to load.
+      # @return[.parse] a Module or Class that implements a `.parse` method for deserializing a stream of JSON objects.
       def use(new_adapter)
         @adapter = load_adapter(new_adapter)
       end
       alias adapter= use
 
       # Loads the requested adapter.
-      # @param [String, Symbol, nil, false, Class, Module] new_adapter
-      # @return [.parse] a Module or Class for an adapter to parse streaming JSON
-      # @raise [LoadError] if the adapter cannot be loaded.
+      # @param [String, Symbol, nil, false, Class, Module] new_adapter identifies an adapter to load.
+      # @return [.parse] a Module or Class that implements a `.parse` method for deserializing a stream of JSON objects.
+      # @raise [AdapterError] if the adapter cannot be loaded.
       def load_adapter(new_adapter)
         case new_adapter
         when String, Symbol

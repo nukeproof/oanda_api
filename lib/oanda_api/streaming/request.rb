@@ -9,7 +9,7 @@ module OandaAPI
     #   @return [OandaAPI::Streaming::Client] a streaming client instance.
     #
     # @!attribute [rw] emit_heartbeats
-    #   @return [boolean]
+    #   @return [boolean] true if heartbeats are emitted.
     #
     # @!attribute [r] uri
     #   @return [URI::HTTPS] a URI instance.
@@ -20,7 +20,7 @@ module OandaAPI
       attr_accessor :client, :emit_heartbeats
       attr_reader :uri, :request
 
-      # Creates an `Streaming::Request` instance.
+      # Creates a `Streaming::Request` instance.
       # @param [Streaming::Client] client a streaming client instance which can be used to
       #   send signals to an instance of this `Streaming::Request` class.
       # @param [String] uri an absolute URI to the service endpoint.
@@ -64,7 +64,7 @@ module OandaAPI
         !!@stop_requested
       end
 
-      # @return [true] if the instance is connected and streaming a response.
+      # @return [boolean] true if the instance is connected and is streaming a response.
       def running?
         !!@running
       end
@@ -73,7 +73,7 @@ module OandaAPI
       #  on the endpoint that the request is servicing, either
       #  {OandaAPI::Resource::Price} or {OandaAPI::Resource::Transaction}
       #  instances are emitted. When {#emit_heartbeats?} is `true`, then
-      #  resources could also be {OandaAPI::Resource::Heartbeat}.
+      #  {OandaAPI::Resource::Heartbeat} could also be emitted.
       #
       #  Note this method runs as an infinite loop and will block indefinitely
       #  until either the connection is halted or a {#stop!} signal is recieved.

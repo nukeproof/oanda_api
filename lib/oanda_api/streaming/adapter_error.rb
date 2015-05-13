@@ -1,5 +1,7 @@
 module OandaAPI
   module Streaming
+    #
+    # Raised if an invalid adapter is used with {OandaAPI::Streaming::JsonParser}
     class AdapterError < ArgumentError
       attr_reader :cause
 
