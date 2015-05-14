@@ -3,6 +3,7 @@ require 'httparty'
 require 'persistent_httparty'
 require 'http/exceptions'
 require 'time'
+require 'erb'  # Hack to fix issue with httparty 0.13.4 [issue 398](https://github.com/jnunemaker/httparty/issues/398)
 
 require_relative 'oanda_api/configuration'
 require_relative 'oanda_api/client/client'
