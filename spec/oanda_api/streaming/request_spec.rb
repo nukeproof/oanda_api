@@ -178,27 +178,14 @@ describe "OandaAPI::Streaming::Request" do
         {"tick":{"bid": 1}}{"tick":{"bid": 2}}\r\n{"tick":{"bid": 3}}
       END
 
-      context "when using the generic JSON parser" do
-        it "raises a parsing error" do
-          OandaAPI::Streaming::JsonParser.use :generic
-          stub_request(:any, /\.com/).to_return(body: events_json, status: 200)
-
-          expect {
-            streaming_request.stream { |resource, signaller| signaller.stop! }
-          }.to raise_error(JSON::ParserError)
+      it "yields all of the objects" do
+        jruby? ? OandaAPI::Streaming::JsonParser.use(:gson) : OandaAPI::Streaming::JsonParser.use(:yajl)
+        stub_request(:any, /\.com/).to_return(body: events_json, status: 200)
+        ticks = []
+        streaming_request.stream do |resource|
+          ticks << resource.bid
         end
-      end
-
-      context "when using a streaming JSON parser" do
-        it "yields all of the objects" do
-          jruby? ? OandaAPI::Streaming::JsonParser.use(:gson) : OandaAPI::Streaming::JsonParser.use(:yajl)
-          stub_request(:any, /\.com/).to_return(body: events_json, status: 200)
-          bids = []
-          streaming_request.stream do |resource|
-            bids << resource.bid
-          end
-          expect(bids.size).to eq 3
-        end
+        expect(ticks).to contain_exactly(1, 2, 3)
       end
     end
   end

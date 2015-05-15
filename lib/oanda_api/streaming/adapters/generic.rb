@@ -5,12 +5,13 @@ module OandaAPI
     module Adapters
       #
       # Uses the JSON library. This parser does not handle multiple json objects in a json stream
-      #  unless the objects are separated consistently with a delimiter.
+      #  unless the objects are separated with whitespace.
       module Generic
         extend self
 
-        # Delimiter that separates multiple json objects in a stream.
-        DELIMITER = "\r\n"
+        # A delimiter for separating multiple json objects in a stream.
+        DELIMITER = "<oanda_api::delimiter>"
+        MULTI_OBJECT_DELIMITER = "}#{DELIMITER}{"
 
         # Deserializes a stream of JSON objects.
         # @param [String] string serialized json.
@@ -18,7 +19,9 @@ module OandaAPI
         def parse(string)
           string.strip!
           return [] if string.empty?
-          string.split(DELIMITER).map { |json| JSON.parse json, symbolize_names: true }
+          string.gsub(/}\s*{/, MULTI_OBJECT_DELIMITER).split(DELIMITER).map do |json|
+            JSON.parse json, symbolize_names: true
+          end
         end
       end
     end
