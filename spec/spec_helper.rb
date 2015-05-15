@@ -20,6 +20,15 @@ def jruby?
   defined?(RUBY_ENGINE) && (RUBY_ENGINE =~ /jruby/i)
 end
 
+def gem_installed?(const)
+  begin
+    require const.to_s.downcase unless Object.const_defined? const
+    true
+  rescue ::LoadError => e
+    false
+  end
+end
+
 # Makes the adapter requirements break (i.e. simulates that a gem required
 #  for an adapter is not installed).
 def break_requirements

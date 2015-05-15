@@ -19,23 +19,23 @@ describe "OandaAPI::Streaming::JsonParser" do
     end
   end
 
-  it "defaults to the best available JSON parser" do
-
-    # Clear memoized variable that may have already set by previous tests
+  it "defaults to the best available JSON parser for jruby", :if => gem_installed?(:Gson) do
+    # Clear memoized variable that may have been set by previous tests
     OandaAPI::Streaming::JsonParser.send(:remove_instance_variable, :@adapter) if OandaAPI::Streaming::JsonParser.instance_variable_defined?(:@adapter)
+    expect(OandaAPI::Streaming::JsonParser.adapter.to_s).to eq("OandaAPI::Streaming::Adapters::Gson")
+  end
 
-    if jruby?
-      expect(OandaAPI::Streaming::JsonParser.adapter.to_s).to eq("OandaAPI::Streaming::Adapters::Gson")
-    else
-      expect(OandaAPI::Streaming::JsonParser.adapter.to_s).to eq("OandaAPI::Streaming::Adapters::Yajl")
-    end
+  it "defaults to the best available JSON parser for non-jruby", :if => gem_installed?(:Yajl) do
+    # Clear memoized variable that may have been set by previous tests
+    OandaAPI::Streaming::JsonParser.send(:remove_instance_variable, :@adapter) if OandaAPI::Streaming::JsonParser.instance_variable_defined?(:@adapter)
+    expect(OandaAPI::Streaming::JsonParser.adapter.to_s).to eq("OandaAPI::Streaming::Adapters::Yajl")
   end
 
   describe "explicitly overriding the adapter" do
     after(:each) do
       OandaAPI::Streaming::JsonParser.adapter = nil
     end
-    
+
     it 'is settable via a symbol' do
       OandaAPI::Streaming::JsonParser.use :generic
       expect(OandaAPI::Streaming::JsonParser.adapter).to eq(OandaAPI::Streaming::Adapters::Generic)

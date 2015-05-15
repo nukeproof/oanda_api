@@ -179,7 +179,15 @@ describe "OandaAPI::Streaming::Request" do
       END
 
       it "yields all of the objects" do
-        jruby? ? OandaAPI::Streaming::JsonParser.use(:gson) : OandaAPI::Streaming::JsonParser.use(:yajl)
+        case
+        when gem_installed?(:Yajl)
+          OandaAPI::Streaming::JsonParser.use(:yajl)
+        when gem_installed?(:Gson)
+          OandaAPI::Streaming::JsonParser.use(:gson)
+        else
+          OandaAPI::Streaming::JsonParser.use(:generic)
+        end
+
         stub_request(:any, /\.com/).to_return(body: events_json, status: 200)
         ticks = []
         streaming_request.stream do |resource|
