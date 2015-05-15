@@ -25,5 +25,5 @@ As with version 0.9.0, `OandaAPI::Streaming::Client` will use the JSON gem parse
 
 ## 0.9.2
 
- * Specify version of HTTParty as 0.13.3 until HTTParty issue #398 is resolved.
+ * Specify version of HTTParty as 0.13.3 until HTTParty issue [#398](https://github.com/jnunemaker/httparty/issues/398) is resolved.
  * Now support any whitespace as delimiting multiple JSON objects in streaming API with `OandaAPI::Streaming::Adapters::Generic`.
