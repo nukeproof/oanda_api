@@ -25,8 +25,8 @@ Gem::Specification.new do |s|
   s.add_dependency "persistent_httparty",       "~> 0.1"
   s.add_dependency "http-exceptions",           "~> 0.0"
 
-  s.add_development_dependency "rspec",         "~> 3.1"
+  s.add_development_dependency "rspec",         "~> 3.2"
   s.add_development_dependency "vcr",           "~> 2.9"
-  s.add_development_dependency "webmock",       "~> 1.20"
+  s.add_development_dependency "webmock",       "~> 1.21"
   s.add_development_dependency "yard",          "~> 0.8"
 end
