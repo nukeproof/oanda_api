@@ -5,6 +5,8 @@ module OandaAPI
     #
     # Used to deserialize a stream of JSON objects. Will load and use a streaming JSON parser
     # if one is installed, otherwise defaults to use the JSON gem.
+    #
+    # Much of this module's code was borrowed from [multi_json](https://github.com/intridea/multi_json).
     module JsonParser
       extend self
 
