@@ -33,13 +33,7 @@ module OandaAPI
       def initialize(path, method)
         @path = path
         path.match(/\/(?<resource_name>[a-z]*)\/?(?<resource_id>\w*?)$/) do |names|
-          mapped_resource = RESOURCES_MAPPER[names[:resource_name].to_sym]
-          resource_name   = (mapped_resource||{})[:resource_name] || Utils.singularize(names[:resource_name])
-          resource_id     = names[:resource_id]
-          self.resource_klass = resource_name
-          @is_collection      = (mapped_resource||{})[:is_collection]
-          @is_collection      = method == :get && resource_id.empty?  if @is_collection.nil?
-          @collection_name    = Utils.pluralize(resource_name).to_sym if is_collection?
+          initialize_from_resource_name(names[:resource_name], method, resource_id: names[:resource_id])
         end
       end
 
@@ -58,6 +52,15 @@ module OandaAPI
         klass_symbol = OandaAPI::Utils.classify(resource_name).to_sym
         fail ArgumentError, "Invalid resource" unless OandaAPI::Resource.constants.include?(klass_symbol)
         @resource_klass = OandaAPI::Resource.const_get klass_symbol
+      end
+
+      def initialize_from_resource_name(resource_name, method, resource_id: nil)
+        mapped_resource = RESOURCES_MAPPER[resource_name.to_sym]
+        resource_name   = (mapped_resource||{})[:resource_name] || Utils.singularize(resource_name)
+        self.resource_klass = resource_name
+        @is_collection      = (mapped_resource||{})[:is_collection]
+        @is_collection      = method == :get && resource_id.empty?  if @is_collection.nil?
+        @collection_name    = Utils.pluralize(resource_name).to_sym if is_collection?
       end
     end
   end
