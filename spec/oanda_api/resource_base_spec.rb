@@ -43,5 +43,11 @@ describe "OandaAPI::ResourceBase" do
       h = JSON.parse obj.to_json
       expect(h).to include("webbed_feet" => "customized webbed feet")
     end
+
+    it "serializes when nested" do
+      obj = MyCustomizedClass.new webbedFeet: "webbed feet"
+      a = JSON.parse [obj].to_json
+      expect(a.first).to include("webbed_feet" => "customized webbed feet")
+    end
   end
 end

@@ -9,7 +9,7 @@ module OandaAPI
     #   @return [OandaAPI::Streaming::Client] a streaming client instance.
     #
     # @!attribute [rw] emit_heartbeats
-    #   @return [boolean]
+    #   @return [boolean] true if heartbeats are emitted.
     #
     # @!attribute [r] uri
     #   @return [URI::HTTPS] a URI instance.
@@ -20,14 +20,14 @@ module OandaAPI
       attr_accessor :client, :emit_heartbeats
       attr_reader :uri, :request
 
-      # Creates an `Streaming::Request` instance.
+      # Creates a `Streaming::Request` instance.
       # @param [Streaming::Client] client a streaming client instance which can be used to
       #   send signals to an instance of this `Streaming::Request` class.
       # @param [String] uri an absolute URI to the service endpoint.
       # @param [Hash] query a list of query parameters, unencoded. The list
       #   is converted into a query string. See `OandaAPI::Client#query_string_normalizer`.
       # @param [Hash] headers a list of header values that will be sent with the request.
-      def initialize(client: nil, uri:, query: {}, headers: {})
+      def initialize(client: nil, uri: nil, query: {}, headers: {})
         self.client = client.nil? ? self : client
         @uri = URI uri
         @uri.query = OandaAPI::Client.default_options[:query_string_normalizer].call(query)
@@ -43,7 +43,7 @@ module OandaAPI
       # @return [void]
       # @raise [ArgumentError] if value is not an {OandaAPI::Streaming::Client} instance.
       def client=(value)
-        fail ArgumentError, "Expecting an OandaAPI::Streaming::Client" unless (value.is_a?(OandaAPI::Streaming::Client) || value.is_a?(OandaAPI::Streaming::Request))
+        fail ArgumentError, "Expecting an OandaAPI::Streaming::Client" unless value.is_a?(OandaAPI::Streaming::Client) || value.is_a?(OandaAPI::Streaming::Request)
         @client = value
       end
 
@@ -64,7 +64,7 @@ module OandaAPI
         !!@stop_requested
       end
 
-      # @return [true] if the instance is connected and streaming a response.
+      # @return [boolean] true if the instance is connected and is streaming a response.
       def running?
         !!@running
       end
@@ -73,7 +73,7 @@ module OandaAPI
       #  on the endpoint that the request is servicing, either
       #  {OandaAPI::Resource::Price} or {OandaAPI::Resource::Transaction}
       #  instances are emitted. When {#emit_heartbeats?} is `true`, then
-      #  resources could also be {OandaAPI::Resource::Heartbeat}.
+      #  {OandaAPI::Resource::Heartbeat} could also be emitted.
       #
       #  Note this method runs as an infinite loop and will block indefinitely
       #  until either the connection is halted or a {#stop!} signal is recieved.
@@ -113,22 +113,27 @@ module OandaAPI
       #   When #emit_heartbeats? is `true`, then the instance could be an {OandaAPI::Resource::Heartbeat}.
       # @raise [OandaAPI::StreamingDisconnect] if the endpoint was disconnected by server.
       # @raise [OandaAPI::RequestError] if an unexpected resource is returned.
-      def handle_response(response)
-        response.split("\r\n").map do |json|
-          parsed_response = JSON.parse json
+      def handle_response(string)
+        parse(string).map do |parsed_response|
           case
-          when parsed_response["heartbeat"]
-            OandaAPI::Resource::Heartbeat.new parsed_response["heartbeat"] if emit_heartbeats?
-          when parsed_response["tick"]
-            OandaAPI::Resource::Price.new parsed_response["tick"]
-          when parsed_response["transaction"]
-            OandaAPI::Resource::Transaction.new parsed_response["transaction"]
-          when parsed_response["disconnect"]
-            raise OandaAPI::StreamingDisconnect, parsed_response["disconnect"]["message"]
+          when parsed_response[:heartbeat]
+            OandaAPI::Resource::Heartbeat.new parsed_response[:heartbeat] if emit_heartbeats?
+          when parsed_response[:tick]
+            OandaAPI::Resource::Price.new parsed_response[:tick]
+          when parsed_response[:transaction]
+            OandaAPI::Resource::Transaction.new parsed_response[:transaction]
+          when parsed_response[:disconnect]
+            fail OandaAPI::StreamingDisconnect, parsed_response[:disconnect][:message]
           else
-            raise OandaAPI::RequestError, "unknown resource: #{json}"
+            fail OandaAPI::RequestError, "unknown resource: #{parsed_response}"
           end
         end.compact
+      end
+
+      # @private
+      # Uses the best json parser available for optimal performance and stream parsing ability.
+      def parse(string)
+        OandaAPI::Streaming::JsonParser.adapter.parse string
       end
     end
   end

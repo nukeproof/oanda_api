@@ -1,5 +1,7 @@
 # OandaAPI
-[![Code Climate](https://codeclimate.com/github/nukeproof/oanda_api/badges/gpa.svg)](https://codeclimate.com/github/nukeproof/oanda_api) [![Test Coverage](https://codeclimate.com/github/nukeproof/oanda_api/badges/coverage.svg)](https://codeclimate.com/github/nukeproof/oanda_api)
+[![Gem Version](https://badge.fury.io/rb/oanda_api.svg)](https://rubygems.org/gems/oanda_api)
+[![Code Climate](https://codeclimate.com/github/nukeproof/oanda_api/badges/gpa.svg)](https://codeclimate.com/github/nukeproof/oanda_api)
+[![Test Coverage](https://codeclimate.com/github/nukeproof/oanda_api/badges/coverage.svg)](https://codeclimate.com/github/nukeproof/oanda_api)
 
 Access Oanda FX accounts, get market data, trade, build trading strategies using Ruby.
 ## Synopsis 
@@ -130,7 +132,7 @@ client = OandaAPI::Streaming::Client.new(:practice, ENV.fetch("OANDA_PRACTICE_TO
 prices = client.prices(account_id: 1234, instruments: %w[AUD_CAD AUD_CHF])
 prices.stream do |price|
   # Note: The code in this block should handle the price
-  #       as efficently as possible, otherwise the connection could timeout.
+  #       as efficiently as possible, otherwise the connection could timeout.
   #       For example, you could publish the tick on a queue to be handled
   #       by some other thread or process.
   price  # => OandaAPI::Resource::Price

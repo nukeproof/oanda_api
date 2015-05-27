@@ -1,5 +1,6 @@
 require 'httparty'
 require 'http/exceptions'
+require_relative 'json_parser'
 
 module OandaAPI
   # List of valid subdomains clients can access.
@@ -16,6 +17,9 @@ module OandaAPI
     persistent_connection_adapter idle_timeout: 10,
                                   keep_alive: 30,
                                   pool_size: 2
+
+    # Use a custom JSON parser
+    parser OandaAPI::Client::JsonParser
 
     # Resource URI templates
     BASE_URI = {
