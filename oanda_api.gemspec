@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.require_paths = ["lib"]
 
-  s.add_dependency "httparty",                  "0.13.3"
+  s.add_dependency "httparty",                  "~> 0.13", ">= 0.13.5"
   s.add_dependency "persistent_httparty",       "~> 0.1"
   s.add_dependency "http-exceptions",           "~> 0.0"
 
