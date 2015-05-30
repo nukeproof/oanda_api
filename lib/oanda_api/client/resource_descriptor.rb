@@ -54,6 +54,12 @@ module OandaAPI
         @resource_klass = OandaAPI::Resource.const_get klass_symbol
       end
 
+      # Will set instance attributes based on resource_name, method and resource_id.
+      #
+      # @param [String] resource_name name of the resource (from the path).
+      # @param [Symbol] method an http verb (see {OandaAPI::Client.map_method_to_http_verb}).
+      # @param [Symbol] resource_id optional id of the resource.
+      # @return [void]
       def initialize_from_resource_name(resource_name, method, resource_id: nil)
         mapped_resource = RESOURCES_MAPPER[resource_name.to_sym]
         resource_name   = (mapped_resource||{})[:resource_name] || Utils.singularize(resource_name)
