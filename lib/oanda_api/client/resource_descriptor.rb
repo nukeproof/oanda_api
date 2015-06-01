@@ -21,7 +21,7 @@ module OandaAPI
       #   "is_collection" (if true: will force treating response as a collection of resources,
       #   if false: will force treating response as a single resource).
       RESOURCES_MAPPER = {
-          alltransactions: { resource_name: 'transaction_history', is_collection: false }
+          alltransactions: { resource_name: "transaction_history", is_collection: false }
       }
 
       # Analyzes the resource request and determines the type of resource
@@ -33,7 +33,7 @@ module OandaAPI
       def initialize(path, method)
         @path = path
         path.match(/\/(?<resource_name>[a-z]*)\/?(?<resource_id>\w*?)$/) do |names|
-          initialize_from_resource_name(names[:resource_name], method, resource_id: names[:resource_id])
+          initialize_from_resource_name(names[:resource_name], method, names[:resource_id])
         end
       end
 
@@ -58,15 +58,15 @@ module OandaAPI
       #
       # @param [String] resource_name name of the resource (from the path).
       # @param [Symbol] method an http verb (see {OandaAPI::Client.map_method_to_http_verb}).
-      # @param [Symbol] resource_id optional id of the resource.
+      # @param [Symbol] resource_id id of the resource.
       # @return [void]
-      def initialize_from_resource_name(resource_name, method, resource_id: nil)
-        mapped_resource = RESOURCES_MAPPER[resource_name.to_sym]
-        resource_name   = (mapped_resource||{})[:resource_name] || Utils.singularize(resource_name)
-        self.resource_klass = resource_name
+      def initialize_from_resource_name(resource_name, method, resource_id)
+        mapped_resource = RESOURCES_MAPPER.fetch(resource_name.to_sym,
+                                                 { resource_name: Utils.singularize(resource_name) })
+        self.resource_klass = mapped_resource.fetch :resource_name
         @is_collection      = (mapped_resource||{})[:is_collection]
         @is_collection      = method == :get && resource_id.empty?  if @is_collection.nil?
-        @collection_name    = Utils.pluralize(resource_name).to_sym if is_collection?
+        @collection_name    = Utils.pluralize(mapped_resource.fetch(:resource_name)).to_sym if is_collection?
       end
     end
   end
