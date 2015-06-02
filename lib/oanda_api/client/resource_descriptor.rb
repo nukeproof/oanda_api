@@ -64,8 +64,7 @@ module OandaAPI
         mapped_resource = RESOURCES_MAPPER.fetch(resource_name.to_sym,
                                                  { resource_name: Utils.singularize(resource_name) })
         self.resource_klass = mapped_resource.fetch :resource_name
-        @is_collection      = (mapped_resource||{})[:is_collection]
-        @is_collection      = method == :get && resource_id.empty?  if @is_collection.nil?
+        @is_collection      = mapped_resource.fetch :is_collection, method == :get && resource_id.empty?
         @collection_name    = Utils.pluralize(mapped_resource.fetch(:resource_name)).to_sym if is_collection?
       end
     end
