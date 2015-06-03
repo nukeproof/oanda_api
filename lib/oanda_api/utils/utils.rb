@@ -10,6 +10,13 @@ module OandaAPI
       s.to_s.gsub(/(?:_)([a-z\d]*)/i) { "#{$1.capitalize}" }.sub(/^(.)/) { $1.downcase }
     end
 
+    # Converts a string from snake_case to upper camel case (class name like "MyClass").
+    # @param [String] s
+    # @return [String]
+    def self.classify(s)
+      s.split('_').collect(&:capitalize).join
+    end
+
     # Naively plops an "s" at the end of a string.
     # If the string is "" or nil, returns "".
     # @param [String] s

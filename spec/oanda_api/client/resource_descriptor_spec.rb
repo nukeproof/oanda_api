@@ -6,6 +6,18 @@ describe "OandaAPI::Client::ResourceDescriptor" do
     it "sets path" do
       expect(resource_descriptor.path).to eq("/accounts")
     end
+
+    context 'when path resource is equal alltransactions' do
+      let(:resource_descriptor) { OandaAPI::Client::ResourceDescriptor.new "/account/123/alltransactions", :get }
+
+      it 'is sets TransactionHistory as resource_klass' do
+        expect(resource_descriptor.resource_klass).to eq(OandaAPI::Resource::TransactionHistory)
+      end
+
+      it 'is sets @is_collection to false' do
+        expect(resource_descriptor.is_collection?).to be false
+      end
+    end
   end
 
   context "when the path ends with a known resource" do
