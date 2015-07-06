@@ -10,12 +10,6 @@ module OandaAPI
     module JsonParser
       extend self
 
-      # Map parser adapters to the gem library they require.
-      REQUIREMENT_MAP = {
-        gson: "Gson",
-        yajl: "Yajl"
-      }
-
       # Loads (if not already loaded) and returns the current adapter class.
       # @return [.parse] a class implementing a `.parse` method
       def adapter
@@ -88,10 +82,11 @@ module OandaAPI
         begin
           return sym if Kernel.const_get sym.to_s.capitalize
         rescue ::NameError
+          nil
         end
 
         begin
-          require REQUIREMENT_MAP.fetch sym
+          require sym.to_s
           return sym
         rescue ::LoadError
           warning
