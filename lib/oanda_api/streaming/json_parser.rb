@@ -10,6 +10,11 @@ module OandaAPI
     module JsonParser
       extend self
 
+      REQUIREMENT_MAP = {
+        gson: "gson",
+        yajl: "yajl"
+      }
+
       # Loads (if not already loaded) and returns the current adapter class.
       # @return [.parse] a class implementing a `.parse` method
       def adapter
@@ -86,7 +91,7 @@ module OandaAPI
         end
 
         begin
-          require sym.to_s
+          require REQUIREMENT_MAP.get sym
           return sym
         rescue ::LoadError
           warning
