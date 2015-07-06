@@ -10,6 +10,7 @@ module OandaAPI
     module JsonParser
       extend self
 
+      # Map parser adapters to the gem library they require.
       REQUIREMENT_MAP = {
         gson: "gson",
         yajl: "yajl"
@@ -91,7 +92,7 @@ module OandaAPI
         end
 
         begin
-          require REQUIREMENT_MAP.get sym
+          require REQUIREMENT_MAP.fetch sym
           return sym
         rescue ::LoadError
           warning
