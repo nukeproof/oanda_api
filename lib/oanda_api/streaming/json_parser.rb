@@ -12,8 +12,8 @@ module OandaAPI
 
       # Map parser adapters to the gem library they require.
       REQUIREMENT_MAP = {
-        gson: "Gson",
-        yajl: "Yajl"
+        gson: "gson",
+        yajl: "yajl"
       }
 
       # Loads (if not already loaded) and returns the current adapter class.
@@ -88,6 +88,7 @@ module OandaAPI
         begin
           return sym if Kernel.const_get sym.to_s.capitalize
         rescue ::NameError
+          nil
         end
 
         begin
