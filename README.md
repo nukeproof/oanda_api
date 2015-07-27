@@ -152,7 +152,7 @@ for detailed documentation and API usage notes.
 | client.accounts.get        | GET /v1/accounts     |
 | client.account(123).get    | GET /v1/accounts/123 |
 | client.account.create      | POST /v1/accounts    |
-| client.instruments.get     | GET /v1/instruments  |
+| client.instruments(account_id: 123).get     | GET /v1/instruments?accountId=123  |
 | client.prices(instruments: ["EUR_USD","USD_JPY"]).get | GET /v1/prices/?instruments=EUR_USD%2CUSD_JPY |
 | client.account(123).orders.get | GET /v1/accounts/123/orders |
 | client.account(123).order(123).get | GET /v1/accounts/123/orders/123 |
