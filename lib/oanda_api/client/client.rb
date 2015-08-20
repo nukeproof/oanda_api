@@ -16,7 +16,7 @@ module OandaAPI
     include HTTParty
     persistent_connection_adapter idle_timeout: 10,
                                   keep_alive: 30,
-                                  pool_size: 2
+                                  pool_size: 10
 
     # Use a custom JSON parser
     parser OandaAPI::Client::JsonParser
