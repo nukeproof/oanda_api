@@ -129,27 +129,12 @@ module OandaAPI
     # if {OandaAPI::Configuration#use_request_throttling?} is enabled.
     #
     # @return [void]
-#    def self.throttle_request_rate
-#      return unless OandaAPI.configuration.use_request_throttling?
-#
-#      now = Time.now
-#      Thread.current[:oanda_api_last_request_at] ||= now
-#
-#      min_interval = OandaAPI.configuration.min_request_interval
-#      thread_count = Thread.list.select{|t| t[:oanda_api_last_request_at]}.count
-#
-#      min_threaded_interval = min_interval * thread_count
-#      delta = now - Thread.current[:oanda_api_last_request_at]
-#
-#      _throttle(now, min_threaded_interval) if delta < min_threaded_interval
-#      Thread.current[:oanda_api_last_request_at] = Time.now
-#    end
     def self.throttle_request_rate
       now = Time.now
       delta = now - (last_request_at || now)
       _throttle(now) if delta < OandaAPI.configuration.min_request_interval &&
                                 OandaAPI.configuration.use_request_throttling?
-      last_request_at = Time.now
+      self.last_request_at = Time.now
     end
 
     # @private
@@ -160,7 +145,6 @@ module OandaAPI
     #
     # @return [nil] if a request has never been throttled.
     def self.last_throttled_at
-      #Thread.current[:oanda_api_throttled_at]
       @throttled_at
     end
 
@@ -175,7 +159,6 @@ module OandaAPI
     #
     # @return [void]
     def self._throttle(time)
-      #Thread.current[:oanda_api_throttled_at] = time
       @mutex.synchronize { @throttled_at = time }
       sleep OandaAPI.configuration.min_request_interval
     end

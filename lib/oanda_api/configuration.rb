@@ -49,7 +49,8 @@ module OandaAPI
     # @return [Float]
     def min_request_interval
       connections = Thread.list.select{|thr| thr[:last_request_at]}.count
-      @min_request_interval ||= (connections.to_f / max_requests_per_second)
+      connections += 1 if connections == 0
+      @min_request_interval = (connections.to_f / max_requests_per_second)
     end
 
     # The number of seconds the client waits for a new HTTP connection to be established before
