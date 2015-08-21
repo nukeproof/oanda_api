@@ -144,7 +144,7 @@ module OandaAPI
 #      _throttle(now, min_threaded_interval) if delta < min_threaded_interval
 #      Thread.current[:oanda_api_last_request_at] = Time.now
 #    end
-    def self.self.throttle_request_rate
+    def self.throttle_request_rate
       now = Time.now
       delta = now - (last_request_at || now)
       _throttle(now) if delta < OandaAPI.configuration.min_request_interval &&
