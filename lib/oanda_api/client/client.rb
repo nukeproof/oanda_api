@@ -16,7 +16,8 @@ module OandaAPI
     include HTTParty
     persistent_connection_adapter idle_timeout: 10,
                                   keep_alive: 30,
-                                  pool_size: OandaAPI.configuration.connection_pool_size
+                                  pool_size: OandaAPI.configuration.connection_pool_size,
+                                  throttle: OandaAPI.configuration.max_requests_per_second
 
     # Use a custom JSON parser
     parser OandaAPI::Client::JsonParser
@@ -78,7 +79,7 @@ module OandaAPI
       response = Http::Exceptions.wrap_and_check do
         method = Client.map_method_to_http_verb(method)
         params_key = [:post, :patch, :put].include?(method) ? :body : :query
-        Client.throttle_request_rate
+        #Client.throttle_request_rate
         Client.send method,
                     api_uri(path),
                     params_key    => Utils.stringify_keys(conditions.merge(default_params)),
