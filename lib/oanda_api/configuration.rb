@@ -10,7 +10,7 @@ module OandaAPI
     REST_API_VERSION        = "v1"
     USE_COMPRESSION         = false
     USE_REQUEST_THROTTLING  = false
-    CONNECTION_POOL_SIZE    = 10
+    CONNECTION_POOL_SIZE    = 1
 
     # The format in which dates will be returned by the API (`:rfc3339` or `:unix`).
     # See the Oanda Development Guide for more details about {http://developer.oanda.com/rest-live/development-guide/#date_Time_Format DateTime formats}.
@@ -142,7 +142,7 @@ module OandaAPI
 
     # Define the maximum size of the persistent connection pool
     def connection_pool_size=(value)
-      @connection_pool_size = !!value
+      @connection_pool_size = value
     end
 
     # @private
