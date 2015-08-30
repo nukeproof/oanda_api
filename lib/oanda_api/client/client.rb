@@ -14,10 +14,6 @@ module OandaAPI
   # - Uses request rate limiting if enabled (see {Configuration#use_request_throttling}).
   module Client
     include HTTParty
-    persistent_connection_adapter idle_timeout: 10,
-                                  keep_alive: 30,
-                                  pool_size: OandaAPI.configuration.connection_pool_size,
-                                  throttle: OandaAPI.configuration.max_requests_per_second
 
     # Use a custom JSON parser
     parser OandaAPI::Client::JsonParser
@@ -91,6 +87,23 @@ module OandaAPI
       handle_response response, ResourceDescriptor.new(path, method)
       rescue Http::Exceptions::HttpException => e
         raise OandaAPI::RequestError, e.message
+    end
+
+    #
+    # Binds persistent connection adapter as HTTParty connection adapter
+    #
+    # @return [void]
+    def bind_connection_adapter
+      adapter_config = {
+        name:         self.class.name,
+        idle_timeout: 10, #OandaAPI.configuration.connection_timeout,
+        keep_alive:   30, #OandaAPI.configuration.connection_keep_alive,
+        warn_timeout: 2,  #OandaAPI.configuration.connection_pool_warn_timeout,
+        pool_size:    OandaAPI.configuration.connection_pool_size,
+        throttle:     OandaAPI.configuration.max_requests_per_second
+      }
+
+      Client.persistent_connection_adapter adapter_config
     end
 
     # @private
