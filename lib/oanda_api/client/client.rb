@@ -159,7 +159,7 @@ module OandaAPI
     #
     # @return [void]
     def self._throttle(time)
-      @throttle_mutex.synchronize { throttled_at = time }
+      @throttle_mutex.synchronize { @throttled_at = time }
       sleep OandaAPI.configuration.min_request_interval
     end
 
