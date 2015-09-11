@@ -60,6 +60,15 @@ def simulate_no_adapters
   end
 end
 
+# Allows examples to change configuration settings, and have the settings returned to their pre-example state.
+def reset_configuration(*keys)
+  configs = {}
+  keys.each { |key| configs[key] = OandaAPI.configuration.send(key) }
+  yield
+ensure
+  configs.each { |key, value| OandaAPI.configuration.send("#{key}=", value) }
+end
+
 def undefine_constants(*consts)
   values = {}
   consts.each do |const|

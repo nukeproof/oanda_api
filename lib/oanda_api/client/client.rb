@@ -14,9 +14,13 @@ module OandaAPI
   # - Uses request rate limiting if enabled (see {Configuration#use_request_throttling}).
   module Client
     include HTTParty
-    persistent_connection_adapter idle_timeout: 10,
+    persistent_connection_adapter name: "oanda_api",
+                                  idle_timeout: 10,
                                   keep_alive: 30,
                                   pool_size: 2
+
+    # Used to synchronize throttling metrics
+    @throttle_mutex = Mutex.new
 
     # Use a custom JSON parser
     parser OandaAPI::Client::JsonParser
@@ -112,6 +116,14 @@ module OandaAPI
       end
     end
 
+    def self.last_request_at
+      @throttle_mutex.synchronize { @last_request_at }
+    end
+
+    def self.last_request_at=(value)
+      @throttle_mutex.synchronize { @last_request_at = value }
+    end
+
     # @private
     # Limits the execution rate of consecutive requests. Specified by
     # {OandaAPI::Configuration#max_requests_per_second}. Only enforced
@@ -120,11 +132,10 @@ module OandaAPI
     # @return [void]
     def self.throttle_request_rate
       now = Time.now
-      Thread.current[:oanda_api_last_request_at] ||= now
-      delta = now - Thread.current[:oanda_api_last_request_at]
+      delta = now - (last_request_at || now)
       _throttle(now) if delta < OandaAPI.configuration.min_request_interval &&
                         OandaAPI.configuration.use_request_throttling?
-      Thread.current[:oanda_api_last_request_at] = Time.now
+      last_request_at = Time.now
     end
 
     # @private
@@ -135,7 +146,7 @@ module OandaAPI
     #
     # @return [nil] if a request has never been throttled.
     def self.last_throttled_at
-      Thread.current[:oanda_api_throttled_at]
+      @throttle_mutex.synchronize { @throttled_at }
     end
 
     private
@@ -148,7 +159,7 @@ module OandaAPI
     #
     # @return [void]
     def self._throttle(time)
-      Thread.current[:oanda_api_throttled_at] = time
+      @throttle_mutex.synchronize { @throttled_at = time }
       sleep OandaAPI.configuration.min_request_interval
     end
 

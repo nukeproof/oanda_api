@@ -1,0 +1,114 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api-sandbox.oanda.com/v1/prices?instruments=EUR_USD&username=dwaymotim
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Accept-Datetime-Format:
+      - RFC3339
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - 30
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty/1.7.0.1
+      Date:
+      - Fri, 11 Sep 2015 21:15:45 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '139'
+      Connection:
+      - keep-alive
+      Etag:
+      - '"2e14fb3070bd124e44c7a146923c9e0cb08d7969"'
+    body:
+      encoding: UTF-8
+      string: "{\n\t\"prices\" : [\n\t\t{\n\t\t\t\"instrument\" : \"EUR_USD\",\n\t\t\t\"time\"
+        : \"2015-09-11T21:15:23.859054Z\",\n\t\t\t\"bid\" : 1.24095,\n\t\t\t\"ask\"
+        : 1.24109\n\t\t}\n\t]\n}"
+    http_version: 
+  recorded_at: Fri, 11 Sep 2015 21:15:45 GMT
+- request:
+    method: get
+    uri: http://api-sandbox.oanda.com/v1/prices?instruments=EUR_USD&username=dwaymotim
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Accept-Datetime-Format:
+      - RFC3339
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - 30
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty/1.7.0.1
+      Date:
+      - Fri, 11 Sep 2015 21:15:46 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '139'
+      Connection:
+      - keep-alive
+      Etag:
+      - '"2e14fb3070bd124e44c7a146923c9e0cb08d7969"'
+    body:
+      encoding: UTF-8
+      string: "{\n\t\"prices\" : [\n\t\t{\n\t\t\t\"instrument\" : \"EUR_USD\",\n\t\t\t\"time\"
+        : \"2015-09-11T21:15:23.859054Z\",\n\t\t\t\"bid\" : 1.24095,\n\t\t\t\"ask\"
+        : 1.24109\n\t\t}\n\t]\n}"
+    http_version: 
+  recorded_at: Fri, 11 Sep 2015 21:15:46 GMT
+- request:
+    method: get
+    uri: http://api-sandbox.oanda.com/v1/prices?instruments=EUR_USD&username=dwaymotim
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Accept-Datetime-Format:
+      - RFC3339
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - 30
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty/1.7.0.1
+      Date:
+      - Fri, 11 Sep 2015 21:15:46 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '139'
+      Connection:
+      - keep-alive
+      Etag:
+      - '"2e14fb3070bd124e44c7a146923c9e0cb08d7969"'
+    body:
+      encoding: UTF-8
+      string: "{\n\t\"prices\" : [\n\t\t{\n\t\t\t\"instrument\" : \"EUR_USD\",\n\t\t\t\"time\"
+        : \"2015-09-11T21:15:23.859054Z\",\n\t\t\t\"bid\" : 1.24095,\n\t\t\t\"ask\"
+        : 1.24109\n\t\t}\n\t]\n}"
+    http_version: 
+  recorded_at: Fri, 11 Sep 2015 21:15:46 GMT
+recorded_with: VCR 2.9.3
