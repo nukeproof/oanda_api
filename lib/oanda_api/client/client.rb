@@ -14,10 +14,6 @@ module OandaAPI
   # - Uses request rate limiting if enabled (see {Configuration#use_request_throttling}).
   module Client
     include HTTParty
-    persistent_connection_adapter name: "oanda_api",
-                                  idle_timeout: 10,
-                                  keep_alive: 30,
-                                  pool_size: 2
 
     # Used to synchronize throttling metrics
     @throttle_mutex = Mutex.new
@@ -58,6 +54,22 @@ module OandaAPI
     def api_uri(path)
       uri = "#{BASE_URI[domain]}#{path}"
       uri.sub "[API_VERSION]", OandaAPI.configuration.rest_api_version
+    end
+
+    #
+    # Binds persistent connection adapter as HTTParty connection adapter
+    #
+    # @return [void]
+    def load_persistent_connection_adapter
+      adapter_config = {
+        name:         "oanda_api",
+        idle_timeout: 10, #OandaAPI.configuration.connection_idle_timeout,
+        keep_alive:   30, #OandaAPI.configuration.connection_keep_alive,
+        warn_timeout: 2,  #OandaAPI.configuration.connection_pool_warn_timeout,
+        pool_size:    OandaAPI.configuration.connection_pool_size,
+      }
+
+      Client.persistent_connection_adapter adapter_config
     end
 
     # @private
@@ -133,8 +145,8 @@ module OandaAPI
     def self.throttle_request_rate
       now = Time.now
       delta = now - (last_request_at || now)
-      _throttle(now) if delta < OandaAPI.configuration.min_request_interval &&
-                        OandaAPI.configuration.use_request_throttling?
+      _throttle(delta, now) if delta < OandaAPI.configuration.min_request_interval &&
+                            OandaAPI.configuration.use_request_throttling?
       last_request_at = Time.now
     end
 
@@ -158,9 +170,11 @@ module OandaAPI
     # @param [Time] time The time that the throttle was requested.
     #
     # @return [void]
-    def self._throttle(time)
-      @throttle_mutex.synchronize { @throttled_at = time }
-      sleep OandaAPI.configuration.min_request_interval
+    def self._throttle(delta, time)
+      @throttle_mutex.synchronize do
+        @throttled_at = time
+        sleep OandaAPI.configuration.min_request_interval - delta
+      end
     end
 
     # @private
