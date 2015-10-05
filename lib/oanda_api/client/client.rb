@@ -46,6 +46,16 @@ module OandaAPI
       end.flatten.join("&")
     }
 
+    # Common initializations
+    # @param [Hash] options Specifies overrides to default settings.
+    #  Overrides for the persistent connection adapter are specified
+    #  by including an :connection_adapter_options: {} hash.
+    # @return [OandaAPI::Client]   
+    def initialize(options={})
+      super()
+      load_persistent_connection_adapter options[:connection_adapter_options] || {}
+    end
+
     # Returns an absolute URI for a resource request.
     #
     # @param [String] path the path portion of the URI.
@@ -56,18 +66,19 @@ module OandaAPI
       uri.sub "[API_VERSION]", OandaAPI.configuration.rest_api_version
     end
 
-    #
-    # Binds persistent connection adapter as HTTParty connection adapter
+    # Binds a persistent connection adapter. See documentation for the
+    #  persistent_httparty gem for configuration details.
+    # @param [Hash] options Specifies overrides for the connection adapter.
     #
     # @return [void]
-    def load_persistent_connection_adapter
+    def load_persistent_connection_adapter(options={})
       adapter_config = {
         name:         "oanda_api",
-        idle_timeout: 10, #OandaAPI.configuration.connection_idle_timeout,
-        keep_alive:   30, #OandaAPI.configuration.connection_keep_alive,
-        warn_timeout: 2,  #OandaAPI.configuration.connection_pool_warn_timeout,
+        idle_timeout: 10,
+        keep_alive:   30,
+        warn_timeout: 2,
         pool_size:    OandaAPI.configuration.connection_pool_size,
-      }
+      }.merge options
 
       Client.persistent_connection_adapter adapter_config
     end
@@ -146,7 +157,7 @@ module OandaAPI
       now = Time.now
       delta = now - (last_request_at || now)
       _throttle(delta, now) if delta < OandaAPI.configuration.min_request_interval &&
-                            OandaAPI.configuration.use_request_throttling?
+                                       OandaAPI.configuration.use_request_throttling?
       last_request_at = Time.now
     end
 
@@ -167,6 +178,7 @@ module OandaAPI
     # Sleeps for the minimal amount of time required to honour the
     # {OandaAPI::Configuration#max_requests_per_second} limit.
     #
+    # @param [Float] delta The duration in seconds since the last request.
     # @param [Time] time The time that the throttle was requested.
     #
     # @return [void]

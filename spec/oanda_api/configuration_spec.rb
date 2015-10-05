@@ -3,6 +3,29 @@ require 'spec_helper'
 describe "OandaAPI::Configuration" do
   let(:config) { OandaAPI::Configuration.new }
 
+  describe "#connection_pool_size" do
+    it "returns the default maximum connection pool size" do
+      expect(config.connection_pool_size).to eq OandaAPI::Configuration::CONNECTION_POOL_SIZE
+    end
+  end
+
+  describe "#connection_pool_size=" do
+    it "overrides the default maximum connection pool size" do
+      config.connection_pool_size = 10
+      expect(config.connection_pool_size).to eq 10
+    end
+
+    it "must be numeric" do
+      expect { config.connection_pool_size = "X" }.to raise_error(ArgumentError)
+    end
+
+    it "must be > 0" do
+      [-10, 0].each do |val|
+        expect { config.connection_pool_size = val }.to raise_error(ArgumentError)
+      end
+    end
+  end
+
   describe "#datetime_format" do
     it "returns the default datetime format" do
       expect(config.datetime_format).to eq OandaAPI::Configuration::DATETIME_FORMAT

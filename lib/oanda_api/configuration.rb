@@ -12,6 +12,19 @@ module OandaAPI
     USE_REQUEST_THROTTLING  = false
     CONNECTION_POOL_SIZE    = 2
 
+    # Maximum size of the persistent connection pool.
+    # @return [Numeric]
+    def connection_pool_size
+      @connection_pool_size ||= CONNECTION_POOL_SIZE
+    end
+
+    # Define the maximum size of the persistent connection pool.
+    # @return [Numeric]
+    def connection_pool_size=(value)
+      fail ArgumentError, "must be a number > 0" unless value.is_a?(Numeric) && value > 0
+      @connection_pool_size = value
+    end
+
     # The format in which dates will be returned by the API (`:rfc3339` or `:unix`).
     # See the Oanda Development Guide for more details about {http://developer.oanda.com/rest-live/development-guide/#date_Time_Format DateTime formats}.
     # @return [Symbol]
@@ -133,17 +146,6 @@ module OandaAPI
     # @return [void]
     def use_request_throttling=(value)
       @use_request_throttling = !!value
-    end
-
-    # Maximum size of the persistent connection pool
-    def connection_pool_size
-      @connection_pool_size = CONNECTION_POOL_SIZE if @connection_pool_size.nil?
-      @connection_pool_size
-    end
-
-    # Define the maximum size of the persistent connection pool
-    def connection_pool_size=(value)
-      @connection_pool_size = value
     end
 
     # @private

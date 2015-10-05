@@ -42,13 +42,12 @@ module OandaAPI
 
       # @param [Symbol] domain see {#domain}
       # @param [String] auth_token see {#auth_token}
-      def initialize(domain, auth_token)
-        super()
+      def initialize(domain, auth_token, options={})
+        super options
         @auth_token = auth_token
         @default_params = {}
         self.domain = domain
         @headers = auth
-        load_persistent_connection_adapter
       end
 
       # Parameters used for authentication.

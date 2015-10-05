@@ -35,14 +35,12 @@ module OandaAPI
       attr_accessor :default_params, :headers
 
       # @param [String] username used for authentication.
-      def initialize(username)
-        super()
+      def initialize(username, options={})
+        super options
         @domain = :sandbox
         @username = username
         @default_params = auth
         @headers = {}
-
-        load_persistent_connection_adapter
       end
 
       # Parameters used for authentication.
