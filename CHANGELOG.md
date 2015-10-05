@@ -19,7 +19,7 @@ and if you access a single instance of the API from multiple threads, then the r
       config.connection_pool_size = 5
   end
    ```
-
+Thanks [Eric](https://github.com/lifeBCE).
 
 ## 0.9.3
 
