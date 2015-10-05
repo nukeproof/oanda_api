@@ -41,6 +41,8 @@ module OandaAPI
         @username = username
         @default_params = auth
         @headers = {}
+
+        load_persistent_connection_adapter
       end
 
       # Parameters used for authentication.

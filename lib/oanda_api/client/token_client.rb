@@ -48,6 +48,7 @@ module OandaAPI
         @default_params = {}
         self.domain = domain
         @headers = auth
+        load_persistent_connection_adapter
       end
 
       # Parameters used for authentication.
