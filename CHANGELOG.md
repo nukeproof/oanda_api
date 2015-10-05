@@ -1,5 +1,26 @@
 # Change Log
 
+## 0.9.4
+
+* Added multi-threaded support for request throttling. Now if you've configured the API to use request throttling:
+
+  ```ruby
+  OandaAPI.configure do |config|
+      config.use_request_throttling = true
+      config.max_requests_per_second = 15
+  end
+  ```
+and if you access a single instance of the API from multiple threads, then the request rate will be throttled correctly.
+
+* Added a new configuration to customize the number of connections the API holds in the connection pool. Useful if your application requires multiple connections to the API, for example multiple threads issuing requests through the API. The default connection pool size is 2.
+
+   ```ruby
+   OandaAPI.configure do |config|
+      config.connection_pool_size = 5
+  end
+   ```
+
+
 ## 0.9.3
 
 * Fixed support for retrieving [full account history](http://developer.oanda.com/rest-live/transaction-history/#getFullAccountHistory). Thanks [bewon](https://github.com/bewon).
