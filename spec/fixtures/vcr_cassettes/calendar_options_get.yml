@@ -1,0 +1,74 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api-sandbox.oanda.com/labs/v1/calendar?instrument=EUR_CAD&period=2592000&username=dwaymotim
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Accept-Datetime-Format:
+      - RFC3339
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - 30
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty/1.7.0.1
+      Date:
+      - Tue, 01 Mar 2016 05:06:50 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '4291'
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      - Accept-Encoding
+      - Content-Type
+      Version:
+      - '0.2'
+      X-Catalyst:
+      - '5.90042'
+      Set-Cookie:
+      - opc_id=6800531C-DF6B-11E5-9FDA-282E00000000; path=/; Expires=Fri, 27-Feb-2026
+        05:06:50 GMT
+      - opc_id=6800589E-DF6B-11E5-9FDA-282E00000000; path=/; Expires=Fri, 27-Feb-2026
+        05:06:50 GMT
+      Access-Control-Allow-Origin:
+      - "*"
+    body:
+      encoding: UTF-8
+      string: '[{"market":"-8","actual":"-20","region":"europe","currency":"EUR","forecast":"-7","previous":"-16","unit":"k","timestamp":1454403300,"title":"Unemployment
+        Change","impact":2},{"market":"6.3","actual":"6.2","region":"europe","currency":"EUR","forecast":"6.3","previous":"6.3","unit":"%","timestamp":1454403300,"title":"Unemployment
+        Rate (sa)"},{"market":"10.5","actual":"10.4","region":"europe","currency":"EUR","forecast":"10.5","previous":"10.5","unit":"%","timestamp":1454407200,"title":"Unemployment","impact":2},{"market":"-0.5","actual":"-0.7","region":"europe","currency":"EUR","forecast":"-0.8","previous":"1.5","unit":"%
+        m/m","timestamp":1454655600,"title":"Factory orders (sa)","impact":2},{"market":"185","actual":"165.9","region":"americas","currency":"CAD","previous":"173.0","unit":"k","timestamp":1454678100,"title":"Housing
+        starts","impact":2},{"market":"6","actual":"-5.7","region":"americas","currency":"CAD","forecast":"-15","previous":"22.8","unit":"k","timestamp":1454679000,"title":"Net
+        Change in Employment","impact":2},{"market":"7.1","actual":"7.2","region":"americas","currency":"CAD","forecast":"7.2","previous":"7.1","unit":"%","timestamp":1454679000,"title":"Unemployment","impact":2},{"actual":"11.3","previous":"-19.9","currency":"CAD","unit":"%
+        m/m","timestamp":1454938200,"region":"americas","title":"Building permits","impact":2},{"market":"0.5","actual":"-1.2","region":"europe","currency":"EUR","forecast":"0.6","previous":"-0.1","unit":"%
+        m/m","timestamp":1455001200,"title":"Industrial Production","impact":2},{"actual":"13.6","region":"europe","currency":"EUR","forecast":"17","previous":"22.7","unit":"index","timestamp":1455616800,"title":"ZEW
+        (Economic Sentiment)","impact":3},{"market":"0","actual":"1","region":"europe","currency":"EUR","forecast":"8","previous":"10.2","unit":"index","timestamp":1455616800,"title":"ZEW
+        (Economic Sentiment)","impact":3},{"market":"0.8","actual":"1.2","region":"americas","currency":"CAD","forecast":"2","previous":"1.2","unit":"%
+        m/m","timestamp":1455629400,"title":"Manufacturing sales"},{"market":"0","actual":"0.2","region":"americas","currency":"CAD","forecast":"0.2","previous":"-0.5","unit":"%
+        m/m","timestamp":1455888600,"title":"CPI","impact":3},{"market":"0.2","actual":"0.3","region":"americas","currency":"CAD","forecast":"0.3","previous":"-0.4","unit":"%
+        m/m","timestamp":1455888600,"title":"CPI - BoC core rate","impact":3},{"market":"-0.7","actual":"-1.6","region":"americas","currency":"CAD","forecast":"-0.7","previous":"1.0","unit":"%
+        m/m","timestamp":1455888600,"title":"Retail Sales (ex Auto)","impact":3},{"market":"-0.9","actual":"-2.2","region":"americas","currency":"CAD","forecast":"-1.5","previous":"1.7","unit":"%
+        m/m","timestamp":1455888600,"title":"Retail Sales","impact":3},{"market":"106.8","actual":"105.7","region":"europe","currency":"EUR","forecast":"106","previous":"107.3","unit":"index","timestamp":1456218000,"title":"IFO
+        Business Climate","impact":3},{"market":"9.3","actual":"9.5","region":"europe","currency":"EUR","forecast":"9","previous":"9.4","unit":"index","timestamp":1456383600,"title":"GFK
+        Consumer Sentiment","impact":2},{"market":"0.4","actual":"0.3","region":"europe","currency":"EUR","forecast":"0.4","previous":"0.4","unit":"%
+        y/y","timestamp":1456394400,"title":"HICP","impact":3},{"market":"1","actual":"1.0","region":"europe","currency":"EUR","forecast":"1","previous":"1","unit":"%
+        y/y","timestamp":1456394400,"title":"HICP - Core","impact":3},{"currency":"EUR","unit":"","timestamp":1456511400,"region":"europe","title":"ECB''s
+        Praet Speaks at Monetary Policy Forum in New York","impact":2},{"market":"0.3","actual":"0.7","region":"europe","currency":"EUR","previous":"0.6","unit":"%
+        m/m","timestamp":1456729200,"title":"Retail Sales","impact":2},{"market":"0","actual":"-0.2","region":"europe","currency":"EUR","forecast":"0.1","previous":"0.3","unit":"%
+        y/y","timestamp":1456740000,"title":"Flash HICP","impact":3},{"market":"0.9","actual":"0.7","region":"europe","currency":"EUR","forecast":"0.9","previous":"1.0","unit":"%
+        y/y","timestamp":1456740000,"title":"Flash HICP - Core","impact":3},{"market":"-15.55","actual":"-15.38","previous":"-15.31","currency":"CAD","unit":"CAD
+        bn","timestamp":1456752600,"region":"americas","title":"Current Account"}]'
+    http_version:
+  recorded_at: Tue, 01 Mar 2016 05:06:50 GMT
+recorded_with: VCR 2.9.3

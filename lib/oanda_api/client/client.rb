@@ -23,10 +23,13 @@ module OandaAPI
 
     # Resource URI templates
     BASE_URI = {
-      live:     "https://api-fxtrade.oanda.com/[API_VERSION]",
-      practice: "https://api-fxpractice.oanda.com/[API_VERSION]",
-      sandbox:  "http://api-sandbox.oanda.com/[API_VERSION]"
+      live:     "https://api-fxtrade.oanda.com",
+      practice: "https://api-fxpractice.oanda.com",
+      sandbox:  "http://api-sandbox.oanda.com"
     }
+
+    # lbs resource
+    LABS_RESOURCE = ["/calendar"]
 
     # @private
     # Camelizes keys and transforms array values into comma-delimited strings.
@@ -50,7 +53,7 @@ module OandaAPI
     # @param [Hash] options Specifies overrides to default settings.
     #  Overrides for the persistent connection adapter are specified
     #  by including an :connection_adapter_options: {} hash.
-    # @return [OandaAPI::Client]   
+    # @return [OandaAPI::Client]
     def initialize(options={})
       super()
       load_persistent_connection_adapter options[:connection_adapter_options] || {}
@@ -62,8 +65,16 @@ module OandaAPI
     #
     # @return [String] a URI.
     def api_uri(path)
-      uri = "#{BASE_URI[domain]}#{path}"
-      uri.sub "[API_VERSION]", OandaAPI.configuration.rest_api_version
+      api_version = OandaAPI.configuration.rest_api_version
+      if labs_resource?(path)
+        "#{BASE_URI[domain]}/labs/#{api_version}#{path}"
+      else
+        "#{BASE_URI[domain]}/#{api_version}#{path}"
+      end
+    end
+
+    def labs_resource?(path)
+      LABS_RESOURCE.find {|resource| path.start_with? resource }
     end
 
     # Binds a persistent connection adapter. See documentation for the
