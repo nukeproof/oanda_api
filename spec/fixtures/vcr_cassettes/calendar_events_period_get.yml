@@ -1,0 +1,54 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api-fxpractice.oanda.com/labs/v1/calendar?period=86400
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Accept-Datetime-Format:
+      - RFC3339
+      Authorization:
+      - Bearer <OANDA_TESTING_API_TOKEN>
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - 30
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty/1.7.0.1
+      Date:
+      - Tue, 15 Mar 2016 02:04:37 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '141'
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      - Accept-Encoding
+      - Content-Type
+      Version:
+      - '0.2'
+      X-Catalyst:
+      - '5.90042'
+      Set-Cookie:
+      - opc_id=457AC54C-EA52-11E5-A7B3-D5EF00E185C7; path=/; Expires=Fri, 13-Mar-2026
+        02:04:37 GMT
+      - opc_id=457ACA42-EA52-11E5-8CFC-C9DDAC69487D; path=/; Expires=Fri, 13-Mar-2026
+        02:04:37 GMT
+      Access-Control-Allow-Origin:
+      - "*"
+    body:
+      encoding: UTF-8
+      string: '[{"actual":"-0.1","previous":"0.5","currency":"AUD","unit":"% m/m","timestamp":1458001800,"region":"asia","title":"New
+        motor vehicle sales"}]'
+    http_version: 
+  recorded_at: Tue, 15 Mar 2016 02:04:37 GMT
+recorded_with: VCR 3.0.1

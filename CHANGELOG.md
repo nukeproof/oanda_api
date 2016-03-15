@@ -3,7 +3,34 @@
 
 ## Head
 
-* Deprecated `OandaAPI::Client::UsernameClient`. The `http://api-sandbox.oanda.com/` endpoint that this client used is no longer supported by Oanda. Instead, you can use `OandaAPI::Client::TokenClient` with a practice account.
+* 2016-03-14  Added support for the Oanda Forex Labs Economic Calendar API:
+  
+  Thanks for [unageanu](https://github.com/unageanu)!
+
+```ruby
+  require 'oanda_api'
+  # If you want to use sugar like: 1.day, 1.hour, 1.week, etc.
+  require 'active_support/core_ext/numeric/time'
+  
+  token = ENV.fetch("OANDA_PRACTICE_TOKEN")
+  client = OandaAPI::Client::TokenClient.new :practice, token
+  client.calendar_events(period: 1.day).get.each do |event|
+    p event.class     # => OandaAPI::Resource::CalendarEvent
+    p event.title     # => "Industrial Production"
+    p event.currency  # => "EUR"
+    p event.region    # => "europe"
+    p event.forecast  # => "-0.3"
+    p event.previous  # => "-0.3"
+    p event.actual    # => "3.3"
+    p event.impact    # => "2"
+    p event.unit      # => "% m/m"
+    p event.timestamp # => 1457420400
+    p event.time      # => 2016-03-08 07:00:00 UTC
+  end
+```
+
+* 2016-03-14 Deprecated `OandaAPI::Client::UsernameClient`. The `http://api-sandbox.oanda.com/` endpoint that this client used is no longer supported by Oanda. Instead, you can use `OandaAPI::Client::TokenClient` with a practice account.
+
 
 ## 0.9.4
 
@@ -24,12 +51,12 @@ and if you access a single instance of the API from multiple threads, then the r
       config.connection_pool_size = 5
   end
    ```
-Thanks [LifeBCE](https://github.com/lifeBCE).
+Thanks [LifeBCE](https://github.com/lifeBCE)!
 
 ## 0.9.3
 
-* Fixed support for retrieving [full account history](http://developer.oanda.com/rest-live/transaction-history/#getFullAccountHistory). Thanks [bewon](https://github.com/bewon).
-* Fixed issue [#6](https://github.com/nukeproof/oanda_api/issues/6) to make streaming JSON parsers available correctly under *nix. Thanks [LifeBCE](https://github.com/lifeBCE).
+* Fixed support for retrieving [full account history](http://developer.oanda.com/rest-live/transaction-history/#getFullAccountHistory). Thanks [bewon](https://github.com/bewon)!
+* Fixed issue [#6](https://github.com/nukeproof/oanda_api/issues/6) to make streaming JSON parsers available correctly under *nix. Thanks [LifeBCE](https://github.com/lifeBCE)!
 
 ## 0.9.2
 

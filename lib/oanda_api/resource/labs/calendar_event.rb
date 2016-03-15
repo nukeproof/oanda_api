@@ -15,6 +15,10 @@ module OandaAPI
                       :timestamp,
                       :title,
                       :unit
+
+        def time
+          Time.at(timestamp).utc if timestamp
+        end
       end
     end
   end
