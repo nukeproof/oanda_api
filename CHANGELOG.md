@@ -1,36 +1,34 @@
 # Change Log
 
-
 ## Head
 
 * 2016-03-14  Added support for the Oanda Forex Labs Economic Calendar API:
-  
-  Thanks for [unageanu](https://github.com/unageanu)!
+
+  Thanks [unageanu](https://github.com/unageanu)!
 
 ```ruby
   require 'oanda_api'
   # If you want to use sugar like: 1.day, 1.hour, 1.week, etc.
   require 'active_support/core_ext/numeric/time'
-  
-  token = ENV.fetch("OANDA_PRACTICE_TOKEN")
-  client = OandaAPI::Client::TokenClient.new :practice, token
+
+  client = OandaAPI::Client::TokenClient.new(:practice, ENV.fetch("OANDA_PRACTICE_TOKEN"))
+
   client.calendar_events(period: 1.day).get.each do |event|
-    p event.class     # => OandaAPI::Resource::CalendarEvent
-    p event.title     # => "Industrial Production"
-    p event.currency  # => "EUR"
-    p event.region    # => "europe"
-    p event.forecast  # => "-0.3"
-    p event.previous  # => "-0.3"
-    p event.actual    # => "3.3"
-    p event.impact    # => "2"
-    p event.unit      # => "% m/m"
-    p event.timestamp # => 1457420400
-    p event.time      # => 2016-03-08 07:00:00 UTC
+    event.class     # => OandaAPI::Resource::CalendarEvent
+    event.title     # => "Industrial Production"
+    event.currency  # => "EUR"
+    event.region    # => "europe"
+    event.forecast  # => "-0.3"
+    event.previous  # => "-0.3"
+    event.actual    # => "3.3"
+    event.impact    # => "2"
+    event.unit      # => "% m/m"
+    event.timestamp # => 1457420400
+    event.time      # => 2016-03-08 07:00:00 UTC
   end
 ```
 
 * 2016-03-14 Deprecated `OandaAPI::Client::UsernameClient`. The `http://api-sandbox.oanda.com/` endpoint that this client used is no longer supported by Oanda. Instead, you can use `OandaAPI::Client::TokenClient` with a practice account.
-
 
 ## 0.9.4
 
@@ -63,7 +61,6 @@ Thanks [LifeBCE](https://github.com/lifeBCE)!
  * Specify version of HTTParty as 0.13.3 until HTTParty issue [#398](https://github.com/jnunemaker/httparty/issues/398) is resolved.
  * Now support any whitespace as delimiting multiple JSON objects in streaming API with `OandaAPI::Streaming::Adapters::Generic`.
 
-
 ## 0.9.1
 
  * Fixed JSON serialization for nested ResourceBase instances.
@@ -73,7 +70,6 @@ Thanks [LifeBCE](https://github.com/lifeBCE)!
 
 ###What's New?
 As with version 0.9.0, `OandaAPI::Streaming::Client` will use the JSON gem parser if it is the only JSON parser installed. However, the JSON gem does not support parsing streams of objects very robustly (i.e. it expects complete documents, or the stream to delimit multiple objects consistently). If you are using the streaming API, and install either the [yajl-ruby](https://github.com/brianmario/yajl-ruby) gem (for MRI and Rubinius ruby) or the [gson](https://github.com/avsej/gson.rb) gem (for jruby), then `OandaAPI::Streaming::Client` will use either of those streaming JSON gems for a gain in reliability.
-
 
 ## 0.9.0
 

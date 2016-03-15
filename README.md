@@ -131,9 +131,7 @@ require 'oanda_api'
 require 'active_support/core_ext/numeric/time'
 
 client = OandaAPI::Client::TokenClient.new(:practice, ENV.fetch("OANDA_PRACTICE_TOKEN"))
-  
-token = ENV.fetch("OANDA_PRACTICE_TOKEN")
-client = OandaAPI::Client::TokenClient.new :practice, token
+
 client.calendar(period: 1.day).get.each do |event|
   event.class     # => OandaAPI::Resource::CalendarEvent
   event.title     # => "Industrial Production"
@@ -259,6 +257,7 @@ When you're ready to code:
 3. Add tests where applicable and run the existing tests with `rspec` to make sure they all pass.
 4. Add new documentation where appropriate using [YARD](http://yardoc.org/) formatting.
 5. Create a new pull request and submit it to me.
+
 
 License
 -------

@@ -111,7 +111,7 @@ module OandaAPI
           ns.extract_key_and_conditions args.first
           ns
         end
-      end      
+      end
     end
   end
 end
