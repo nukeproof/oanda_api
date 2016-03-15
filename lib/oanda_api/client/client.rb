@@ -79,6 +79,7 @@ module OandaAPI
         keep_alive:   30,
         warn_timeout: 2,
         pool_size:    OandaAPI.configuration.connection_pool_size,
+        verify_mode:  OpenSSL::SSL::VERIFY_PEER
       }.merge options
 
       Client.persistent_connection_adapter adapter_config
