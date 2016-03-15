@@ -1,5 +1,10 @@
 # Change Log
 
+
+## Head
+
+* Deprecated `OandaAPI::Client::UsernameClient`. The `http://api-sandbox.oanda.com/` endpoint that this client used is no longer supported by Oanda. Instead, you can use `OandaAPI::Client::TokenClient` with a practice account.
+
 ## 0.9.4
 
 * Added multi-threaded support for request throttling. Now if you've configured the API to use request throttling:
@@ -19,12 +24,12 @@ and if you access a single instance of the API from multiple threads, then the r
       config.connection_pool_size = 5
   end
    ```
-Thanks [Eric](https://github.com/lifeBCE).
+Thanks [LifeBCE](https://github.com/lifeBCE).
 
 ## 0.9.3
 
 * Fixed support for retrieving [full account history](http://developer.oanda.com/rest-live/transaction-history/#getFullAccountHistory). Thanks [bewon](https://github.com/bewon).
-* Fixed issue [#6](https://github.com/nukeproof/oanda_api/issues/6) to make streaming JSON parsers available correctly under *nix. Thanks [Eric](https://github.com/lifeBCE).
+* Fixed issue [#6](https://github.com/nukeproof/oanda_api/issues/6) to make streaming JSON parsers available correctly under *nix. Thanks [LifeBCE](https://github.com/lifeBCE).
 
 ## 0.9.2
 
@@ -50,4 +55,4 @@ As with version 0.9.0, `OandaAPI::Streaming::Client` will use the JSON gem parse
  * Fixed Yardoc formatting.
 
 ###What's New?
-OandaAPI now supports Oanda's streaming API for consuming realtime ticks and account transactions. See the example in the README and have a look at the specs for `OandaAPI::Streaming::Client`. 
+OandaAPI now supports Oanda's streaming API for consuming realtime ticks and account transactions. See the example in the README and have a look at the specs for `OandaAPI::Streaming::Client`.

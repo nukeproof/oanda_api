@@ -1,0 +1,90 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api-fxpractice.oanda.com/v1/accounts/1871900/orders
+    body:
+      encoding: UTF-8
+      string: instrument=USD_JPY&side=buy&type=market&units=10000
+    headers:
+      X-Accept-Datetime-Format:
+      - RFC3339
+      Authorization:
+      - Bearer <OANDA_TESTING_API_TOKEN>
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - 30
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty/1.7.0.1
+      Date:
+      - Mon, 14 Mar 2016 23:09:40 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '275'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "{\n\t\"instrument\" : \"USD_JPY\",\n\t\"time\" : \"2016-03-14T23:09:40.000000Z\",\n\t\"price\"
+        : 113.806,\n\t\"tradeOpened\" : {\n\t\t\"id\" : 10173953431,\n\t\t\"units\"
+        : 10000,\n\t\t\"side\" : \"buy\",\n\t\t\"takeProfit\" : 0,\n\t\t\"stopLoss\"
+        : 0,\n\t\t\"trailingStop\" : 0\n\t},\n\t\"tradesClosed\" : [],\n\t\"tradeReduced\"
+        : {}\n}"
+    http_version: 
+  recorded_at: Mon, 14 Mar 2016 23:09:41 GMT
+- request:
+    method: get
+    uri: https://api-fxpractice.oanda.com/v1/accounts/1871900/trades?instrument=USD_JPY
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Accept-Datetime-Format:
+      - RFC3339
+      Authorization:
+      - Bearer <OANDA_TESTING_API_TOKEN>
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - 30
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty/1.7.0.1
+      Date:
+      - Mon, 14 Mar 2016 23:09:40 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '523'
+      Connection:
+      - keep-alive
+      Access-Control-Expose-Headers:
+      - X-Result-Count
+      Etag:
+      - '"0462b8987f342c3a0b23a9ec3c87fc150320f401"'
+      X-Result-Count:
+      - '2'
+    body:
+      encoding: UTF-8
+      string: "{\n\t\"trades\" : [\n\t\t{\n\t\t\t\"id\" : 10173953431,\n\t\t\t\"units\"
+        : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"instrument\" : \"USD_JPY\",\n\t\t\t\"time\"
+        : \"2016-03-14T23:09:40.000000Z\",\n\t\t\t\"price\" : 113.806,\n\t\t\t\"takeProfit\"
+        : 0,\n\t\t\t\"stopLoss\" : 0,\n\t\t\t\"trailingStop\" : 0,\n\t\t\t\"trailingAmount\"
+        : 0\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10173953425,\n\t\t\t\"units\" : 10000,\n\t\t\t\"side\"
+        : \"buy\",\n\t\t\t\"instrument\" : \"USD_JPY\",\n\t\t\t\"time\" : \"2016-03-14T23:09:40.000000Z\",\n\t\t\t\"price\"
+        : 113.806,\n\t\t\t\"takeProfit\" : 0,\n\t\t\t\"stopLoss\" : 0,\n\t\t\t\"trailingStop\"
+        : 0,\n\t\t\t\"trailingAmount\" : 0\n\t\t}\n\t]\n}"
+    http_version: 
+  recorded_at: Mon, 14 Mar 2016 23:09:41 GMT
+recorded_with: VCR 2.9.3

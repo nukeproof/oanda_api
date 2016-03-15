@@ -3,18 +3,20 @@ require 'support/client_helper'
 
 describe "OandaAPI::Resource" do
   let(:client) { ClientHelper.client }
+  let(:account) { ClientHelper.account }
 
   describe "Instrument" do
     it "gets all instruments", :vcr do
       VCR.use_cassette("instruments.get") do
-        instruments = client.instruments.get
+        instruments = client.instruments(account_id: ClientHelper.account_id).get
         expect(instruments.first).to be_an OandaAPI::Resource::Instrument
       end
     end
 
     it "gets a filtered list of instruments", :vcr do
       VCR.use_cassette("instruments(options).get") do
-        instruments = client.instruments(instruments: %w(EUR_USD EUR_CAD),
+        instruments = client.instruments( account_id: ClientHelper.account_id,
+                                         instruments: %w(EUR_USD EUR_CAD),
                                               fields: %w(pip precision))
                             .get
         expect(instruments.first).to be_an OandaAPI::Resource::Instrument

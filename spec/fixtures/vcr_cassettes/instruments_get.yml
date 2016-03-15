@@ -2,13 +2,15 @@
 http_interactions:
 - request:
     method: get
-    uri: http://api-sandbox.oanda.com/v1/instruments?username=dwaymotim
+    uri: https://api-fxpractice.oanda.com/v1/instruments?accountId=1871900
     body:
       encoding: US-ASCII
       string: ''
     headers:
       X-Accept-Datetime-Format:
       - RFC3339
+      Authorization:
+      - Bearer <OANDA_TESTING_API_TOKEN>
       Connection:
       - keep-alive
       Keep-Alive:
@@ -21,17 +23,17 @@ http_interactions:
       Server:
       - openresty/1.7.0.1
       Date:
-      - Tue, 20 Jan 2015 17:22:30 GMT
+      - Mon, 14 Mar 2016 23:01:12 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '14632'
+      - '14383'
       Connection:
       - keep-alive
       Etag:
-      - '"cf07689148cdec8ec3404c630d3c8e55c3c6090d"'
+      - '"21cbe123ce099d570ae83273e2ce2743987ca052"'
       Expires:
-      - Wed, 21 January 2015 17:22:30 GMT
+      - Tue, 15 Mar 2016 23:01:12 GMT
     body:
       encoding: UTF-8
       string: "{\n\t\"instruments\" : [\n\t\t{\n\t\t\t\"instrument\" : \"AU200_AUD\",\n\t\t\t\"displayName\"
@@ -63,9 +65,9 @@ http_interactions:
         : \"CHF\\/ZAR\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
         : \"CORN_USD\",\n\t\t\t\"displayName\" : \"Corn\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\"
         : 150000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"DE10YB_EUR\",\n\t\t\t\"displayName\"
-        : \"Germany 10Y Bund\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\"
-        : 6000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"DE30_EUR\",\n\t\t\t\"displayName\"
-        : \"Germany 30\",\n\t\t\t\"pip\" : \"1.0\",\n\t\t\t\"maxTradeUnits\" : 100\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
+        : \"Bund\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\" : 6000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
+        : \"DE30_EUR\",\n\t\t\t\"displayName\" : \"Germany 30\",\n\t\t\t\"pip\" :
+        \"1.0\",\n\t\t\t\"maxTradeUnits\" : 250\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
         : \"EU50_EUR\",\n\t\t\t\"displayName\" : \"Europe 50\",\n\t\t\t\"pip\" : \"1.0\",\n\t\t\t\"maxTradeUnits\"
         : 300\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"EUR_AUD\",\n\t\t\t\"displayName\"
         : \"EUR\\/AUD\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
@@ -129,6 +131,8 @@ http_interactions:
         : \"NZD_SGD\",\n\t\t\t\"displayName\" : \"NZD\\/SGD\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
         : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"NZD_USD\",\n\t\t\t\"displayName\"
         : \"NZD\\/USD\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
+        : \"SG30_SGD\",\n\t\t\t\"displayName\" : \"Singapore 30\",\n\t\t\t\"pip\"
+        : \"0.1\",\n\t\t\t\"maxTradeUnits\" : 300\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
         : \"SGD_CHF\",\n\t\t\t\"displayName\" : \"SGD\\/CHF\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
         : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"SGD_HKD\",\n\t\t\t\"displayName\"
         : \"SGD\\/HKD\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
@@ -159,30 +163,27 @@ http_interactions:
         : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"USD_CHF\",\n\t\t\t\"displayName\"
         : \"USD\\/CHF\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
         : \"USD_CNH\",\n\t\t\t\"displayName\" : \"USD\\/CNH\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
-        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"USD_CNY\",\n\t\t\t\"displayName\"
-        : \"USD\\/CNY\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"USD_CZK\",\n\t\t\t\"displayName\" : \"USD\\/CZK\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
-        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"USD_DKK\",\n\t\t\t\"displayName\"
-        : \"USD\\/DKK\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"USD_HKD\",\n\t\t\t\"displayName\" : \"USD\\/HKD\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
-        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"USD_HUF\",\n\t\t\t\"displayName\"
-        : \"USD\\/HUF\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"USD_INR\",\n\t\t\t\"displayName\" : \"USD\\/INR\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\"
-        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"USD_JPY\",\n\t\t\t\"displayName\"
-        : \"USD\\/JPY\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"USD_MXN\",\n\t\t\t\"displayName\" : \"USD\\/MXN\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
-        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"USD_NOK\",\n\t\t\t\"displayName\"
-        : \"USD\\/NOK\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"USD_PLN\",\n\t\t\t\"displayName\" : \"USD\\/PLN\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
-        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"USD_SAR\",\n\t\t\t\"displayName\"
-        : \"USD\\/SAR\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"USD_SEK\",\n\t\t\t\"displayName\" : \"USD\\/SEK\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
-        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"USD_SGD\",\n\t\t\t\"displayName\"
-        : \"USD\\/SGD\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"USD_THB\",\n\t\t\t\"displayName\" : \"USD\\/THB\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\"
-        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"USD_TRY\",\n\t\t\t\"displayName\"
-        : \"USD\\/TRY\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"USD_TWD\",\n\t\t\t\"displayName\" : \"USD\\/TWD\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
+        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"USD_CZK\",\n\t\t\t\"displayName\"
+        : \"USD\\/CZK\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
+        : \"USD_DKK\",\n\t\t\t\"displayName\" : \"USD\\/DKK\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
+        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"USD_HKD\",\n\t\t\t\"displayName\"
+        : \"USD\\/HKD\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
+        : \"USD_HUF\",\n\t\t\t\"displayName\" : \"USD\\/HUF\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\"
+        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"USD_INR\",\n\t\t\t\"displayName\"
+        : \"USD\\/INR\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
+        : \"USD_JPY\",\n\t\t\t\"displayName\" : \"USD\\/JPY\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\"
+        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"USD_MXN\",\n\t\t\t\"displayName\"
+        : \"USD\\/MXN\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
+        : \"USD_NOK\",\n\t\t\t\"displayName\" : \"USD\\/NOK\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
+        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"USD_PLN\",\n\t\t\t\"displayName\"
+        : \"USD\\/PLN\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
+        : \"USD_SAR\",\n\t\t\t\"displayName\" : \"USD\\/SAR\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
+        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"USD_SEK\",\n\t\t\t\"displayName\"
+        : \"USD\\/SEK\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
+        : \"USD_SGD\",\n\t\t\t\"displayName\" : \"USD\\/SGD\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
+        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"USD_THB\",\n\t\t\t\"displayName\"
+        : \"USD\\/THB\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
+        : \"USD_TRY\",\n\t\t\t\"displayName\" : \"USD\\/TRY\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
         : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"USD_ZAR\",\n\t\t\t\"displayName\"
         : \"USD\\/ZAR\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
         : \"WHEAT_USD\",\n\t\t\t\"displayName\" : \"Wheat\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\"
@@ -226,276 +227,9 @@ http_interactions:
         : \"Gold\\/Silver\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\" :
         5000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"XCU_USD\",\n\t\t\t\"displayName\"
         : \"Copper\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 250000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"XPD_USD\",\n\t\t\t\"displayName\" : \"Palladium\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\"
-        : 500\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"XPT_USD\",\n\t\t\t\"displayName\"
-        : \"Platinum\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\" : 500\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"ZAR_JPY\",\n\t\t\t\"displayName\" : \"ZAR\\/JPY\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\"
-        : 10000000\n\t\t}\n\t]\n}"
+        : \"XPT_USD\",\n\t\t\t\"displayName\" : \"Platinum\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\"
+        : 500\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"ZAR_JPY\",\n\t\t\t\"displayName\"
+        : \"ZAR\\/JPY\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t}\n\t]\n}"
     http_version: 
-  recorded_at: Tue, 20 Jan 2015 17:22:33 GMT
-- request:
-    method: get
-    uri: http://api-sandbox.oanda.com/v1/instruments/?username=paudougles
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      X-Accept-Datetime-Format:
-      - RFC3339
-      Connection:
-      - keep-alive
-      Keep-Alive:
-      - 30
-  response:
-    status:
-      code: 404
-      message: NOT_FOUND
-    headers:
-      Server:
-      - openresty/1.7.0.1
-      Date:
-      - Tue, 20 Jan 2015 23:27:06 GMT
-      Content-Length:
-      - '175'
-      Connection:
-      - keep-alive
-    body:
-      encoding: UTF-8
-      string: "{\n\t\"code\" : 38,\n\t\"message\" : \"No matching handler for request
-        with uri \\/v1\\/instruments\\/\",\n\t\"moreInfo\" : \"http:\\/\\/developer.oanda.com\\/docs\\/v1\\/troubleshooting\\/#errors\"\n}"
-    http_version: 
-  recorded_at: Tue, 20 Jan 2015 23:27:05 GMT
-- request:
-    method: get
-    uri: http://api-sandbox.oanda.com/v1/instruments?username
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      X-Accept-Datetime-Format:
-      - RFC3339
-      Connection:
-      - keep-alive
-      Keep-Alive:
-      - 30
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - openresty/1.7.0.1
-      Date:
-      - Fri, 23 Jan 2015 17:37:53 GMT
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '14632'
-      Connection:
-      - keep-alive
-      Etag:
-      - '"cf07689148cdec8ec3404c630d3c8e55c3c6090d"'
-      Expires:
-      - Sat, 24 January 2015 17:37:53 GMT
-    body:
-      encoding: UTF-8
-      string: "{\n\t\"instruments\" : [\n\t\t{\n\t\t\t\"instrument\" : \"AU200_AUD\",\n\t\t\t\"displayName\"
-        : \"Australia 200\",\n\t\t\t\"pip\" : \"1.0\",\n\t\t\t\"maxTradeUnits\" :
-        200\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"AUD_CAD\",\n\t\t\t\"displayName\"
-        : \"AUD\\/CAD\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"AUD_CHF\",\n\t\t\t\"displayName\" : \"AUD\\/CHF\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
-        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"AUD_HKD\",\n\t\t\t\"displayName\"
-        : \"AUD\\/HKD\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"AUD_JPY\",\n\t\t\t\"displayName\" : \"AUD\\/JPY\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\"
-        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"AUD_NZD\",\n\t\t\t\"displayName\"
-        : \"AUD\\/NZD\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"AUD_SGD\",\n\t\t\t\"displayName\" : \"AUD\\/SGD\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
-        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"AUD_USD\",\n\t\t\t\"displayName\"
-        : \"AUD\\/USD\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"BCO_USD\",\n\t\t\t\"displayName\" : \"Brent Crude Oil\",\n\t\t\t\"pip\"
-        : \"0.01\",\n\t\t\t\"maxTradeUnits\" : 10000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"CAD_CHF\",\n\t\t\t\"displayName\" : \"CAD\\/CHF\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
-        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"CAD_HKD\",\n\t\t\t\"displayName\"
-        : \"CAD\\/HKD\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"CAD_JPY\",\n\t\t\t\"displayName\" : \"CAD\\/JPY\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\"
-        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"CAD_SGD\",\n\t\t\t\"displayName\"
-        : \"CAD\\/SGD\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"CH20_CHF\",\n\t\t\t\"displayName\" : \"Swiss 20\",\n\t\t\t\"pip\" : \"1.0\",\n\t\t\t\"maxTradeUnits\"
-        : 100\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"CHF_HKD\",\n\t\t\t\"displayName\"
-        : \"CHF\\/HKD\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"CHF_JPY\",\n\t\t\t\"displayName\" : \"CHF\\/JPY\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\"
-        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"CHF_ZAR\",\n\t\t\t\"displayName\"
-        : \"CHF\\/ZAR\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"CORN_USD\",\n\t\t\t\"displayName\" : \"Corn\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\"
-        : 150000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"DE10YB_EUR\",\n\t\t\t\"displayName\"
-        : \"Germany 10Y Bund\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\"
-        : 6000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"DE30_EUR\",\n\t\t\t\"displayName\"
-        : \"Germany 30\",\n\t\t\t\"pip\" : \"1.0\",\n\t\t\t\"maxTradeUnits\" : 100\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"EU50_EUR\",\n\t\t\t\"displayName\" : \"Europe 50\",\n\t\t\t\"pip\" : \"1.0\",\n\t\t\t\"maxTradeUnits\"
-        : 300\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"EUR_AUD\",\n\t\t\t\"displayName\"
-        : \"EUR\\/AUD\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"EUR_CAD\",\n\t\t\t\"displayName\" : \"EUR\\/CAD\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
-        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"EUR_CHF\",\n\t\t\t\"displayName\"
-        : \"EUR\\/CHF\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"EUR_CZK\",\n\t\t\t\"displayName\" : \"EUR\\/CZK\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
-        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"EUR_DKK\",\n\t\t\t\"displayName\"
-        : \"EUR\\/DKK\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"EUR_GBP\",\n\t\t\t\"displayName\" : \"EUR\\/GBP\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
-        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"EUR_HKD\",\n\t\t\t\"displayName\"
-        : \"EUR\\/HKD\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"EUR_HUF\",\n\t\t\t\"displayName\" : \"EUR\\/HUF\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\"
-        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"EUR_JPY\",\n\t\t\t\"displayName\"
-        : \"EUR\\/JPY\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"EUR_NOK\",\n\t\t\t\"displayName\" : \"EUR\\/NOK\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
-        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"EUR_NZD\",\n\t\t\t\"displayName\"
-        : \"EUR\\/NZD\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"EUR_PLN\",\n\t\t\t\"displayName\" : \"EUR\\/PLN\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
-        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"EUR_SEK\",\n\t\t\t\"displayName\"
-        : \"EUR\\/SEK\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"EUR_SGD\",\n\t\t\t\"displayName\" : \"EUR\\/SGD\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
-        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"EUR_TRY\",\n\t\t\t\"displayName\"
-        : \"EUR\\/TRY\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"EUR_USD\",\n\t\t\t\"displayName\" : \"EUR\\/USD\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
-        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"EUR_ZAR\",\n\t\t\t\"displayName\"
-        : \"EUR\\/ZAR\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"FR40_EUR\",\n\t\t\t\"displayName\" : \"France 40\",\n\t\t\t\"pip\" : \"1.0\",\n\t\t\t\"maxTradeUnits\"
-        : 200\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"GBP_AUD\",\n\t\t\t\"displayName\"
-        : \"GBP\\/AUD\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"GBP_CAD\",\n\t\t\t\"displayName\" : \"GBP\\/CAD\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
-        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"GBP_CHF\",\n\t\t\t\"displayName\"
-        : \"GBP\\/CHF\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"GBP_HKD\",\n\t\t\t\"displayName\" : \"GBP\\/HKD\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
-        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"GBP_JPY\",\n\t\t\t\"displayName\"
-        : \"GBP\\/JPY\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"GBP_NZD\",\n\t\t\t\"displayName\" : \"GBP\\/NZD\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
-        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"GBP_PLN\",\n\t\t\t\"displayName\"
-        : \"GBP\\/PLN\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"GBP_SGD\",\n\t\t\t\"displayName\" : \"GBP\\/SGD\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
-        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"GBP_USD\",\n\t\t\t\"displayName\"
-        : \"GBP\\/USD\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"GBP_ZAR\",\n\t\t\t\"displayName\" : \"GBP\\/ZAR\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
-        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"HK33_HKD\",\n\t\t\t\"displayName\"
-        : \"Hong Kong 33\",\n\t\t\t\"pip\" : \"1.0\",\n\t\t\t\"maxTradeUnits\" : 400\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"HKD_JPY\",\n\t\t\t\"displayName\" : \"HKD\\/JPY\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
-        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"JP225_USD\",\n\t\t\t\"displayName\"
-        : \"Japan 225\",\n\t\t\t\"pip\" : \"1.0\",\n\t\t\t\"maxTradeUnits\" : 100\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"NAS100_USD\",\n\t\t\t\"displayName\" : \"US Nas 100\",\n\t\t\t\"pip\"
-        : \"1.0\",\n\t\t\t\"maxTradeUnits\" : 400\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"NATGAS_USD\",\n\t\t\t\"displayName\" : \"Natural Gas\",\n\t\t\t\"pip\"
-        : \"0.01\",\n\t\t\t\"maxTradeUnits\" : 250000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"NL25_EUR\",\n\t\t\t\"displayName\" : \"Netherlands 25\",\n\t\t\t\"pip\"
-        : \"0.01\",\n\t\t\t\"maxTradeUnits\" : 2000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"NZD_CAD\",\n\t\t\t\"displayName\" : \"NZD\\/CAD\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
-        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"NZD_CHF\",\n\t\t\t\"displayName\"
-        : \"NZD\\/CHF\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"NZD_HKD\",\n\t\t\t\"displayName\" : \"NZD\\/HKD\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
-        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"NZD_JPY\",\n\t\t\t\"displayName\"
-        : \"NZD\\/JPY\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"NZD_SGD\",\n\t\t\t\"displayName\" : \"NZD\\/SGD\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
-        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"NZD_USD\",\n\t\t\t\"displayName\"
-        : \"NZD\\/USD\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"SGD_CHF\",\n\t\t\t\"displayName\" : \"SGD\\/CHF\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
-        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"SGD_HKD\",\n\t\t\t\"displayName\"
-        : \"SGD\\/HKD\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"SGD_JPY\",\n\t\t\t\"displayName\" : \"SGD\\/JPY\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\"
-        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"SOYBN_USD\",\n\t\t\t\"displayName\"
-        : \"Soybeans\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\" : 60000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"SPX500_USD\",\n\t\t\t\"displayName\" : \"US SPX 500\",\n\t\t\t\"pip\"
-        : \"1.0\",\n\t\t\t\"maxTradeUnits\" : 800\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"SUGAR_USD\",\n\t\t\t\"displayName\" : \"Sugar\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
-        : 4000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"TRY_JPY\",\n\t\t\t\"displayName\"
-        : \"TRY\\/JPY\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"UK100_GBP\",\n\t\t\t\"displayName\" : \"UK 100\",\n\t\t\t\"pip\" : \"1.0\",\n\t\t\t\"maxTradeUnits\"
-        : 100\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"UK10YB_GBP\",\n\t\t\t\"displayName\"
-        : \"UK 10Y Gilt\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\" : 6000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"US2000_USD\",\n\t\t\t\"displayName\" : \"US Russ 2000\",\n\t\t\t\"pip\"
-        : \"0.01\",\n\t\t\t\"maxTradeUnits\" : 1000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"US30_USD\",\n\t\t\t\"displayName\" : \"US Wall St 30\",\n\t\t\t\"pip\"
-        : \"1.0\",\n\t\t\t\"maxTradeUnits\" : 100\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"USB02Y_USD\",\n\t\t\t\"displayName\" : \"US 2Y T-Note\",\n\t\t\t\"pip\"
-        : \"0.01\",\n\t\t\t\"maxTradeUnits\" : 6000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"USB05Y_USD\",\n\t\t\t\"displayName\" : \"US 5Y T-Note\",\n\t\t\t\"pip\"
-        : \"0.01\",\n\t\t\t\"maxTradeUnits\" : 6000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"USB10Y_USD\",\n\t\t\t\"displayName\" : \"US 10Y T-Note\",\n\t\t\t\"pip\"
-        : \"0.01\",\n\t\t\t\"maxTradeUnits\" : 6000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"USB30Y_USD\",\n\t\t\t\"displayName\" : \"US T-Bond\",\n\t\t\t\"pip\" :
-        \"0.01\",\n\t\t\t\"maxTradeUnits\" : 6000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"USD_CAD\",\n\t\t\t\"displayName\" : \"USD\\/CAD\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
-        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"USD_CHF\",\n\t\t\t\"displayName\"
-        : \"USD\\/CHF\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"USD_CNH\",\n\t\t\t\"displayName\" : \"USD\\/CNH\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
-        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"USD_CNY\",\n\t\t\t\"displayName\"
-        : \"USD\\/CNY\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"USD_CZK\",\n\t\t\t\"displayName\" : \"USD\\/CZK\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
-        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"USD_DKK\",\n\t\t\t\"displayName\"
-        : \"USD\\/DKK\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"USD_HKD\",\n\t\t\t\"displayName\" : \"USD\\/HKD\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
-        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"USD_HUF\",\n\t\t\t\"displayName\"
-        : \"USD\\/HUF\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"USD_INR\",\n\t\t\t\"displayName\" : \"USD\\/INR\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\"
-        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"USD_JPY\",\n\t\t\t\"displayName\"
-        : \"USD\\/JPY\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"USD_MXN\",\n\t\t\t\"displayName\" : \"USD\\/MXN\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
-        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"USD_NOK\",\n\t\t\t\"displayName\"
-        : \"USD\\/NOK\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"USD_PLN\",\n\t\t\t\"displayName\" : \"USD\\/PLN\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
-        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"USD_SAR\",\n\t\t\t\"displayName\"
-        : \"USD\\/SAR\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"USD_SEK\",\n\t\t\t\"displayName\" : \"USD\\/SEK\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
-        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"USD_SGD\",\n\t\t\t\"displayName\"
-        : \"USD\\/SGD\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"USD_THB\",\n\t\t\t\"displayName\" : \"USD\\/THB\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\"
-        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"USD_TRY\",\n\t\t\t\"displayName\"
-        : \"USD\\/TRY\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"USD_TWD\",\n\t\t\t\"displayName\" : \"USD\\/TWD\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
-        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"USD_ZAR\",\n\t\t\t\"displayName\"
-        : \"USD\\/ZAR\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"WHEAT_USD\",\n\t\t\t\"displayName\" : \"Wheat\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\"
-        : 150000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"WTICO_USD\",\n\t\t\t\"displayName\"
-        : \"West Texas Oil\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\"
-        : 10000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"XAG_AUD\",\n\t\t\t\"displayName\"
-        : \"Silver\\/AUD\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
-        : 100000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"XAG_CAD\",\n\t\t\t\"displayName\"
-        : \"Silver\\/CAD\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
-        : 100000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"XAG_CHF\",\n\t\t\t\"displayName\"
-        : \"Silver\\/CHF\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
-        : 100000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"XAG_EUR\",\n\t\t\t\"displayName\"
-        : \"Silver\\/EUR\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
-        : 100000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"XAG_GBP\",\n\t\t\t\"displayName\"
-        : \"Silver\\/GBP\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
-        : 100000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"XAG_HKD\",\n\t\t\t\"displayName\"
-        : \"Silver\\/HKD\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
-        : 100000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"XAG_JPY\",\n\t\t\t\"displayName\"
-        : \"Silver\\/JPY\",\n\t\t\t\"pip\" : \"1.0\",\n\t\t\t\"maxTradeUnits\" : 100000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"XAG_NZD\",\n\t\t\t\"displayName\" : \"Silver\\/NZD\",\n\t\t\t\"pip\" :
-        \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 100000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"XAG_SGD\",\n\t\t\t\"displayName\" : \"Silver\\/SGD\",\n\t\t\t\"pip\" :
-        \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 100000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"XAG_USD\",\n\t\t\t\"displayName\" : \"Silver\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
-        : 100000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"XAU_AUD\",\n\t\t\t\"displayName\"
-        : \"Gold\\/AUD\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\" : 5000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"XAU_CAD\",\n\t\t\t\"displayName\" : \"Gold\\/CAD\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\"
-        : 5000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"XAU_CHF\",\n\t\t\t\"displayName\"
-        : \"Gold\\/CHF\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\" : 5000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"XAU_EUR\",\n\t\t\t\"displayName\" : \"Gold\\/EUR\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\"
-        : 5000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"XAU_GBP\",\n\t\t\t\"displayName\"
-        : \"Gold\\/GBP\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\" : 5000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"XAU_HKD\",\n\t\t\t\"displayName\" : \"Gold\\/HKD\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\"
-        : 5000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"XAU_JPY\",\n\t\t\t\"displayName\"
-        : \"Gold\\/JPY\",\n\t\t\t\"pip\" : \"10\",\n\t\t\t\"maxTradeUnits\" : 5000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"XAU_NZD\",\n\t\t\t\"displayName\" : \"Gold\\/NZD\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\"
-        : 5000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"XAU_SGD\",\n\t\t\t\"displayName\"
-        : \"Gold\\/SGD\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\" : 5000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"XAU_USD\",\n\t\t\t\"displayName\" : \"Gold\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\"
-        : 5000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"XAU_XAG\",\n\t\t\t\"displayName\"
-        : \"Gold\\/Silver\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\" :
-        5000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"XCU_USD\",\n\t\t\t\"displayName\"
-        : \"Copper\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 250000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"XPD_USD\",\n\t\t\t\"displayName\" : \"Palladium\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\"
-        : 500\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"XPT_USD\",\n\t\t\t\"displayName\"
-        : \"Platinum\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\" : 500\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"ZAR_JPY\",\n\t\t\t\"displayName\" : \"ZAR\\/JPY\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\"
-        : 10000000\n\t\t}\n\t]\n}"
-    http_version: 
-  recorded_at: Fri, 23 Jan 2015 17:37:53 GMT
+  recorded_at: Mon, 14 Mar 2016 23:01:13 GMT
 recorded_with: VCR 2.9.3

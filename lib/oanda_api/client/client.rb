@@ -50,7 +50,7 @@ module OandaAPI
     # @param [Hash] options Specifies overrides to default settings.
     #  Overrides for the persistent connection adapter are specified
     #  by including an :connection_adapter_options: {} hash.
-    # @return [OandaAPI::Client]   
+    # @return [OandaAPI::Client]
     def initialize(options={})
       super()
       load_persistent_connection_adapter options[:connection_adapter_options] || {}

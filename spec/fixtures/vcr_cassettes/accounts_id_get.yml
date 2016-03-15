@@ -2,13 +2,15 @@
 http_interactions:
 - request:
     method: get
-    uri: http://api-sandbox.oanda.com/v1/accounts?username=dwaymotim
+    uri: https://api-fxpractice.oanda.com/v1/accounts
     body:
       encoding: US-ASCII
       string: ''
     headers:
       X-Accept-Datetime-Format:
       - RFC3339
+      Authorization:
+      - Bearer <OANDA_TESTING_API_TOKEN>
       Connection:
       - keep-alive
       Keep-Alive:
@@ -21,31 +23,36 @@ http_interactions:
       Server:
       - openresty/1.7.0.1
       Date:
-      - Tue, 20 Jan 2015 17:22:27 GMT
+      - Mon, 14 Mar 2016 16:28:07 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '139'
+      - '366'
       Connection:
       - keep-alive
       Etag:
-      - '"2c8bda3c0aced2c86025961c4e2da0452332ea36"'
+      - '"efb224b14d5e6c03ab1a19a9983274e09d124b20"'
     body:
       encoding: UTF-8
-      string: "{\n\t\"accounts\" : [\n\t\t{\n\t\t\t\"accountId\" : 5342358,\n\t\t\t\"accountName\"
+      string: "{\n\t\"accounts\" : [\n\t\t{\n\t\t\t\"accountId\" : 1871900,\n\t\t\t\"accountName\"
         : \"Primary\",\n\t\t\t\"accountCurrency\" : \"USD\",\n\t\t\t\"marginRate\"
-        : 0.05\n\t\t}\n\t]\n}"
+        : 0.05\n\t\t},\n\t\t{\n\t\t\t\"accountId\" : 1401515,\n\t\t\t\"accountName\"
+        : \"USD\",\n\t\t\t\"accountCurrency\" : \"USD\",\n\t\t\t\"marginRate\" : 0.1\n\t\t},\n\t\t{\n\t\t\t\"accountId\"
+        : 5094848,\n\t\t\t\"accountName\" : \"WTI\",\n\t\t\t\"accountCurrency\" :
+        \"CAD\",\n\t\t\t\"marginRate\" : 0.05\n\t\t}\n\t]\n}"
     http_version: 
-  recorded_at: Tue, 20 Jan 2015 17:22:29 GMT
+  recorded_at: Mon, 14 Mar 2016 16:28:07 GMT
 - request:
     method: get
-    uri: http://api-sandbox.oanda.com/v1/accounts/5342358?username=dwaymotim
+    uri: https://api-fxpractice.oanda.com/v1/accounts/1871900
     body:
       encoding: US-ASCII
       string: ''
     headers:
       X-Accept-Datetime-Format:
       - RFC3339
+      Authorization:
+      - Bearer <OANDA_TESTING_API_TOKEN>
       Connection:
       - keep-alive
       Keep-Alive:
@@ -58,130 +65,21 @@ http_interactions:
       Server:
       - openresty/1.7.0.1
       Date:
-      - Tue, 20 Jan 2015 17:22:27 GMT
+      - Mon, 14 Mar 2016 16:28:08 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '247'
+      - '276'
       Connection:
       - keep-alive
       Etag:
-      - '"52b4908f3477c81c8c80224512bc0715f21deaf4"'
+      - '"158b907f059d85274d407e88979dc2a616a3e0c9"'
     body:
       encoding: UTF-8
-      string: "{\n\t\"accountId\" : 5342358,\n\t\"accountName\" : \"Primary\",\n\t\"balance\"
-        : 100000,\n\t\"unrealizedPl\" : 0,\n\t\"realizedPl\" : 0,\n\t\"marginUsed\"
-        : 0,\n\t\"marginAvail\" : 100000,\n\t\"openTrades\" : 0,\n\t\"openOrders\"
+      string: "{\n\t\"accountId\" : 1871900,\n\t\"accountName\" : \"Primary\",\n\t\"balance\"
+        : 100375.6663,\n\t\"unrealizedPl\" : -18.712,\n\t\"realizedPl\" : 332.7989,\n\t\"marginUsed\"
+        : 8111.17,\n\t\"marginAvail\" : 92245.7843,\n\t\"openTrades\" : 16,\n\t\"openOrders\"
         : 0,\n\t\"marginRate\" : 0.05,\n\t\"accountCurrency\" : \"USD\"\n}"
     http_version: 
-  recorded_at: Tue, 20 Jan 2015 17:22:29 GMT
-- request:
-    method: get
-    uri: http://api-sandbox.oanda.com/v1/accounts/?username=paudougles
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      X-Accept-Datetime-Format:
-      - RFC3339
-      Connection:
-      - keep-alive
-      Keep-Alive:
-      - 30
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - openresty/1.7.0.1
-      Date:
-      - Tue, 20 Jan 2015 23:27:04 GMT
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '139'
-      Connection:
-      - keep-alive
-      Etag:
-      - '"61cce213956060b4ccb6fd9f47235b4c03e74095"'
-    body:
-      encoding: UTF-8
-      string: "{\n\t\"accounts\" : [\n\t\t{\n\t\t\t\"accountId\" : 1724176,\n\t\t\t\"accountName\"
-        : \"Primary\",\n\t\t\t\"accountCurrency\" : \"USD\",\n\t\t\t\"marginRate\"
-        : 0.05\n\t\t}\n\t]\n}"
-    http_version: 
-  recorded_at: Tue, 20 Jan 2015 23:27:03 GMT
-- request:
-    method: get
-    uri: http://api-sandbox.oanda.com/v1/accounts/1724176?username=paudougles
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      X-Accept-Datetime-Format:
-      - RFC3339
-      Connection:
-      - keep-alive
-      Keep-Alive:
-      - 30
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - openresty/1.7.0.1
-      Date:
-      - Tue, 20 Jan 2015 23:27:04 GMT
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '247'
-      Connection:
-      - keep-alive
-      Etag:
-      - '"83c3b001199921bd888ca07ddf04539617fe4a63"'
-    body:
-      encoding: UTF-8
-      string: "{\n\t\"accountId\" : 1724176,\n\t\"accountName\" : \"Primary\",\n\t\"balance\"
-        : 100000,\n\t\"unrealizedPl\" : 0,\n\t\"realizedPl\" : 0,\n\t\"marginUsed\"
-        : 0,\n\t\"marginAvail\" : 100000,\n\t\"openTrades\" : 0,\n\t\"openOrders\"
-        : 0,\n\t\"marginRate\" : 0.05,\n\t\"accountCurrency\" : \"USD\"\n}"
-    http_version: 
-  recorded_at: Tue, 20 Jan 2015 23:27:04 GMT
-- request:
-    method: get
-    uri: http://api-sandbox.oanda.com/v1/accounts?username
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      X-Accept-Datetime-Format:
-      - RFC3339
-      Connection:
-      - keep-alive
-      Keep-Alive:
-      - 30
-  response:
-    status:
-      code: 404
-      message: NOT_FOUND
-    headers:
-      Server:
-      - openresty/1.7.0.1
-      Date:
-      - Fri, 23 Jan 2015 17:37:52 GMT
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '144'
-      Connection:
-      - keep-alive
-    body:
-      encoding: UTF-8
-      string: "{\n\t\"code\" : 55,\n\t\"message\" : \"Username specified is invalid\",\n\t\"moreInfo\"
-        : \"http:\\/\\/developer.oanda.com\\/docs\\/v1\\/troubleshooting\\/#errors\"\n}"
-    http_version: 
-  recorded_at: Fri, 23 Jan 2015 17:37:53 GMT
-recorded_with: VCR 2.9.3
+  recorded_at: Mon, 14 Mar 2016 16:28:08 GMT
+recorded_with: VCR 3.0.1

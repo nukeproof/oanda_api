@@ -151,7 +151,6 @@ for detailed documentation and API usage notes.
 |:---------------------------|:---------------------|
 | client.accounts.get        | GET /v1/accounts     |
 | client.account(123).get    | GET /v1/accounts/123 |
-| client.account.create      | POST /v1/accounts    |
 | client.instruments(account_id: 123).get     | GET /v1/instruments?accountId=123  |
 | client.prices(instruments: ["EUR_USD","USD_JPY"]).get | GET /v1/prices/?instruments=EUR_USD%2CUSD_JPY |
 | client.account(123).orders.get | GET /v1/accounts/123/orders |
@@ -200,7 +199,7 @@ See the RubyDoc [documentation](http://www.rubydoc.info/gems/oanda_api) for Oand
 ```ruby
 OandaAPI.configure do |config|
   config.use_compression = true
-  config.use_request_rate_throttling = true
+  config.use_request_throttling = true
   config.max_requests_per_second = 10
 end
 ```
@@ -212,7 +211,7 @@ OandaAPI works with Ruby 2.0 and higher.
 
 Tested on:
 
-* MRI 2.1, 2.2
+* MRI 2.1, 2.2, 2.3
 * JRuby 1.7, 9.0.0.0.pre
 * Rubinius 2.4, 2.5
 

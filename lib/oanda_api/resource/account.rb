@@ -13,10 +13,8 @@ module OandaAPI
                     :margin_used,
                     :open_orders,
                     :open_trades,
-                    :password,
                     :realized_pl,
-                    :unrealized_pl,
-                    :username
+                    :unrealized_pl
 
       alias_method :id,  :account_id
       alias_method :id=, :account_id=
@@ -31,6 +29,26 @@ module OandaAPI
         @open_orders = []
         @open_trades = []
         super
+      end
+
+      def password=(v)
+        deprecated :password
+      end
+      
+      def password
+        deprecated :password
+      end
+
+      def username=(v)
+        deprecated :username
+      end
+
+      def username
+        deprecated :username
+      end
+
+      def deprecated (method)
+        warn Kernel.caller.first + " [ DEPRECATED ] #{method} has been removed by Oanda"
       end
     end
   end

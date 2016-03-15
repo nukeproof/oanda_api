@@ -1,6 +1,7 @@
 require 'spec_helper'
 require 'uri'
 require 'webmock/rspec'
+require 'support/client_helper'
 
 describe "OandaAPI::Client" do
   describe ".query_string_normalizer" do
@@ -93,7 +94,7 @@ describe "OandaAPI::Client" do
     let(:client) { (Class.new { include OandaAPI::Client }).new }
 
     it "is called by the constructor of an including class" do
-      OandaAPI::Client.default_options[:connection_adapter] = nil          
+      OandaAPI::Client.default_options[:connection_adapter] = nil
       expect(OandaAPI::Client.default_options[:connection_adapter]).to be_nil
       
       klass = Class.new { include OandaAPI::Client }
@@ -104,30 +105,30 @@ describe "OandaAPI::Client" do
       expect(OandaAPI::Client.default_options[:connection_adapter_options][:keep_alive]).to eq 20
     end
 
-    it "loads a persistent connection adapter" do      
-      OandaAPI::Client.default_options[:connection_adapter] = nil          
+    it "loads a persistent connection adapter" do
+      OandaAPI::Client.default_options[:connection_adapter] = nil
       expect(OandaAPI::Client.default_options[:connection_adapter]).to be_nil
       client.load_persistent_connection_adapter keep_alive: 30
       expect(OandaAPI::Client.default_options[:connection_adapter]).to be_a HTTParty::Persistent::ConnectionAdapter
    end
 
-   it "overrides a persistent connection adapter settings" do      
+   it "overrides a persistent connection adapter settings" do
      client.load_persistent_connection_adapter pool_size: OandaAPI.configuration.connection_pool_size + 1
      expect(OandaAPI::Client.default_options[:connection_adapter_options][:pool_size]).to eq OandaAPI.configuration.connection_pool_size + 1      
    end
   end
-  
+
   describe "#execute_request" do
-    let(:client) { OandaAPI::Client::UsernameClient.new "spongebob" }
+    let(:client) { ClientHelper.client }
 
     it "returns a response for a successful request" do
-      stub_request(:get, "http://api-sandbox.oanda.com/v1/accounts?username=spongebob")
+      stub_request(:get, "https://api-fxpractice.oanda.com/v1/accounts")
         .to_return(status: 200, body: "{\"accounts\" : []}", headers: { "content-type" => "application/json" })
       expect(client.execute_request(:get, "/accounts")).to be_an OandaAPI::ResourceCollection
     end
 
     it "raises OandaAPI::RequestError for an invalid request" do
-      stub_request(:get, "http://api-sandbox.oanda.com/v1/accounts/a_bad_request?username=spongebob")
+      stub_request(:get, "https://api-fxpractice.oanda.com/v1/accounts/a_bad_request")
         .to_return(status:  [404, "Something bad happened (but we still love you)."])
       expect { client.execute_request :get, "/accounts/a_bad_request" }.to raise_error(OandaAPI::RequestError)
     end

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "OandaAPI::Client::NamespaceProxy" do
-  let(:client) { OandaAPI::Client::UsernameClient.new("spongebob") }
+  let(:client) { (Class.new { include OandaAPI::Client }).new }
   let(:namespace_proxy) { OandaAPI::Client::NamespaceProxy.new client, "account" }
 
   describe "#initialize" do

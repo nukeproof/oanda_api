@@ -2,13 +2,15 @@
 http_interactions:
 - request:
     method: get
-    uri: http://api-sandbox.oanda.com/v1/instruments?fields=pip,precision&instruments=EUR_USD,EUR_CAD&username=dwaymotim
+    uri: https://api-fxpractice.oanda.com/v1/instruments?accountId=1871900&fields=pip,precision&instruments=EUR_USD,EUR_CAD
     body:
       encoding: US-ASCII
       string: ''
     headers:
       X-Accept-Datetime-Format:
       - RFC3339
+      Authorization:
+      - Bearer <OANDA_TESTING_API_TOKEN>
       Connection:
       - keep-alive
       Keep-Alive:
@@ -21,7 +23,7 @@ http_interactions:
       Server:
       - openresty/1.7.0.1
       Date:
-      - Tue, 20 Jan 2015 17:22:31 GMT
+      - Mon, 14 Mar 2016 23:01:12 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -31,51 +33,12 @@ http_interactions:
       Etag:
       - '"3a3c61c7d6d86ef8c92f59e4020f39d07e2e5b2f"'
       Expires:
-      - Wed, 21 January 2015 17:22:31 GMT
+      - Tue, 15 Mar 2016 23:01:12 GMT
     body:
       encoding: UTF-8
       string: "{\n\t\"instruments\" : [\n\t\t{\n\t\t\t\"instrument\" : \"EUR_USD\",\n\t\t\t\"pip\"
         : \"0.0001\",\n\t\t\t\"precision\" : \"0.00001\"\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
         : \"EUR_CAD\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"precision\" : \"0.00001\"\n\t\t}\n\t]\n}"
     http_version: 
-  recorded_at: Tue, 20 Jan 2015 17:22:33 GMT
-- request:
-    method: get
-    uri: http://api-sandbox.oanda.com/v1/instruments?fields=pip,precision&instruments=EUR_USD,EUR_CAD&username
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      X-Accept-Datetime-Format:
-      - RFC3339
-      Connection:
-      - keep-alive
-      Keep-Alive:
-      - 30
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - openresty/1.7.0.1
-      Date:
-      - Fri, 23 Jan 2015 17:37:54 GMT
-      Content-Type:
-      - application/json
-      Content-Length:
-      - '196'
-      Connection:
-      - keep-alive
-      Etag:
-      - '"3a3c61c7d6d86ef8c92f59e4020f39d07e2e5b2f"'
-      Expires:
-      - Sat, 24 January 2015 17:37:54 GMT
-    body:
-      encoding: UTF-8
-      string: "{\n\t\"instruments\" : [\n\t\t{\n\t\t\t\"instrument\" : \"EUR_USD\",\n\t\t\t\"pip\"
-        : \"0.0001\",\n\t\t\t\"precision\" : \"0.00001\"\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"EUR_CAD\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"precision\" : \"0.00001\"\n\t\t}\n\t]\n}"
-    http_version: 
-  recorded_at: Fri, 23 Jan 2015 17:37:54 GMT
+  recorded_at: Mon, 14 Mar 2016 23:01:13 GMT
 recorded_with: VCR 2.9.3

@@ -1,0 +1,82 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api-fxpractice.oanda.com/v1/accounts/1871900/orders
+    body:
+      encoding: UTF-8
+      string: instrument=USD_JPY&side=buy&type=market&units=10000
+    headers:
+      X-Accept-Datetime-Format:
+      - RFC3339
+      Authorization:
+      - Bearer <OANDA_TESTING_API_TOKEN>
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - 30
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty/1.7.0.1
+      Date:
+      - Mon, 14 Mar 2016 23:06:51 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '275'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "{\n\t\"instrument\" : \"USD_JPY\",\n\t\"time\" : \"2016-03-14T23:06:51.000000Z\",\n\t\"price\"
+        : 113.808,\n\t\"tradeOpened\" : {\n\t\t\"id\" : 10173950011,\n\t\t\"units\"
+        : 10000,\n\t\t\"side\" : \"buy\",\n\t\t\"takeProfit\" : 0,\n\t\t\"stopLoss\"
+        : 0,\n\t\t\"trailingStop\" : 0\n\t},\n\t\"tradesClosed\" : [],\n\t\"tradeReduced\"
+        : {}\n}"
+    http_version: 
+  recorded_at: Mon, 14 Mar 2016 23:06:52 GMT
+- request:
+    method: get
+    uri: https://api-fxpractice.oanda.com/v1/accounts/1871900/positions
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Accept-Datetime-Format:
+      - RFC3339
+      Authorization:
+      - Bearer <OANDA_TESTING_API_TOKEN>
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - 30
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty/1.7.0.1
+      Date:
+      - Mon, 14 Mar 2016 23:06:51 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '225'
+      Connection:
+      - keep-alive
+      Etag:
+      - '"49ac24a6a1860af627db2171ba7e6e8e9157d1a6"'
+    body:
+      encoding: UTF-8
+      string: "{\n\t\"positions\" : [\n\t\t{\n\t\t\t\"instrument\" : \"EUR_USD\",\n\t\t\t\"units\"
+        : 240000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"avgPrice\" : 1.10998\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
+        : \"USD_JPY\",\n\t\t\t\"units\" : 70000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"avgPrice\"
+        : 113.626\n\t\t}\n\t]\n}"
+    http_version: 
+  recorded_at: Mon, 14 Mar 2016 23:06:52 GMT
+recorded_with: VCR 2.9.3

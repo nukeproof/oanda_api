@@ -1,20 +1,53 @@
 require 'support/vcr'
+
 module ClientHelper
-  # Returns a sandbox client
+  # Returns a practice API client
   def self.client
-    VCR.use_cassette("sandbox_client") do
-      client = OandaAPI::Client::UsernameClient.new "_"
-      new_account = client.account.create
-      OandaAPI::Client::UsernameClient.new new_account.username
+    @client ||= OandaAPI::Client::TokenClient.new :practice, test_account_token
+  end
+
+  def self.test_account_token
+    ENV.fetch("OANDA_API_TESTING_TOKEN") do 
+       fail(ArgumentError, <<-END
+            ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            +  Missing Authentication Token for testing.                     +
+            +                                                                +
+            +  A test you are running is attempting to create a new          +
+            +  testing fixture by making an API request to the Oanda         +
+            +  Practice API. Normally this is ONLY required when adding      +
+            +  a new API endpoint. Running existing tests do not require     +
+            +  this.                                                         +
+            +                                                                +
+            +  To create new VCR cassette fixtures for the test suite:       +
+            +   1. You need to have an Oanda Practice account. (See:         +
+            +      https://fxtrade.oanda.com/your_account/fxtrade/register/) +
+            +   2. Define OANDA_API_TESTING_TOKEN as an environment          +
+            +      variable, setting its value to the authentication         +
+            +      token for your Oanda Practice account.                    +
+            +   3. Run the tests. You can examine the VCR test fixures       +
+            +      that were created in /spec/fixtures/vcr_cassettes.        +
+            +      There will not be any reference to your authentication    +
+            +      token in the fixture.                                     +
+            ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            END
+       )
     end
   end
 
-  # Returns the account namespace for the client
-  def self.account
-    VCR.use_cassette("sandbox_client_account") do
-      account_id = ClientHelper.client.accounts.get.first.account_id
-      ClientHelper.client.account(account_id)
+  # A collection of accounts
+  def self.accounts
+    VCR.use_cassette("client_helper_accounts") do
+      ClientHelper.client.accounts.get
     end
+  end
+
+  # Returns an account namespace for the client
+  def self.account
+    client.account(accounts.first.account_id)
+  end
+
+  def self.account_id
+    accounts.first.account_id
   end
 
   # Creates a trade
@@ -41,6 +74,7 @@ module ClientHelper
       else
         fail ArgumentError, "invalid order type: #{type}"
       end
+      
     account.order(opts).create
   end
 
@@ -48,7 +82,7 @@ module ClientHelper
 
   # Returns a lightweight instrument object
   def self.instrument(instrument)
-    VCR.use_cassette("sandbox_instrument_#{instrument}") do
+    VCR.use_cassette("instrument_#{instrument}") do
       price = ClientHelper.client.prices(instruments: instrument).get.first
       o = Struct.new(:instrument, :bid, :ask).new
       o.instrument = instrument

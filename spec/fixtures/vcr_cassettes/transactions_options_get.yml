@@ -1,0 +1,202 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api-fxpractice.oanda.com/v1/accounts/1871900/orders
+    body:
+      encoding: UTF-8
+      string: instrument=USD_JPY&side=buy&type=market&units=10000
+    headers:
+      X-Accept-Datetime-Format:
+      - RFC3339
+      Authorization:
+      - Bearer <OANDA_TESTING_API_TOKEN>
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - 30
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty/1.7.0.1
+      Date:
+      - Mon, 14 Mar 2016 23:11:40 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '275'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "{\n\t\"instrument\" : \"USD_JPY\",\n\t\"time\" : \"2016-03-14T23:11:40.000000Z\",\n\t\"price\"
+        : 113.814,\n\t\"tradeOpened\" : {\n\t\t\"id\" : 10173955906,\n\t\t\"units\"
+        : 10000,\n\t\t\"side\" : \"buy\",\n\t\t\"takeProfit\" : 0,\n\t\t\"stopLoss\"
+        : 0,\n\t\t\"trailingStop\" : 0\n\t},\n\t\"tradesClosed\" : [],\n\t\"tradeReduced\"
+        : {}\n}"
+    http_version: 
+  recorded_at: Mon, 14 Mar 2016 23:11:41 GMT
+- request:
+    method: get
+    uri: https://api-fxpractice.oanda.com/v1/accounts/1871900/transactions?instrument=USD_JPY
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Accept-Datetime-Format:
+      - RFC3339
+      Authorization:
+      - Bearer <OANDA_TESTING_API_TOKEN>
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - 30
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty/1.7.0.1
+      Date:
+      - Mon, 14 Mar 2016 23:11:40 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '8109'
+      Connection:
+      - keep-alive
+      Access-Control-Expose-Headers:
+      - X-Result-Count
+      Etag:
+      - '"12fe9b9a3aaaeb3076689f9ad7965fe125ecc777"'
+      X-Result-Count:
+      - '27'
+    body:
+      encoding: UTF-8
+      string: "{\n\t\"transactions\" : [\n\t\t{\n\t\t\t\"id\" : 10173955906,\n\t\t\t\"accountId\"
+        : 1871900,\n\t\t\t\"time\" : \"2016-03-14T23:11:40.000000Z\",\n\t\t\t\"type\"
+        : \"MARKET_ORDER_CREATE\",\n\t\t\t\"instrument\" : \"USD_JPY\",\n\t\t\t\"units\"
+        : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"price\" : 113.814,\n\t\t\t\"pl\"
+        : 0,\n\t\t\t\"interest\" : 0,\n\t\t\t\"accountBalance\" : 100449.5599,\n\t\t\t\"tradeOpened\"
+        : {\n\t\t\t\t\"id\" : 10173955906,\n\t\t\t\t\"units\" : 10000\n\t\t\t}\n\t\t},\n\t\t{\n\t\t\t\"id\"
+        : 10173954099,\n\t\t\t\"accountId\" : 1871900,\n\t\t\t\"time\" : \"2016-03-14T23:10:16.000000Z\",\n\t\t\t\"type\"
+        : \"TRADE_CLOSE\",\n\t\t\t\"instrument\" : \"USD_JPY\",\n\t\t\t\"units\" :
+        10000,\n\t\t\t\"side\" : \"sell\",\n\t\t\t\"price\" : 113.789,\n\t\t\t\"pl\"
+        : -1.494,\n\t\t\t\"interest\" : 0,\n\t\t\t\"accountBalance\" : 100449.5599,\n\t\t\t\"tradeId\"
+        : 10173953425\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10173954090,\n\t\t\t\"accountId\"
+        : 1871900,\n\t\t\t\"time\" : \"2016-03-14T23:10:15.000000Z\",\n\t\t\t\"type\"
+        : \"MARKET_ORDER_CREATE\",\n\t\t\t\"instrument\" : \"USD_JPY\",\n\t\t\t\"units\"
+        : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"price\" : 113.806,\n\t\t\t\"pl\"
+        : 0,\n\t\t\t\"interest\" : 0,\n\t\t\t\"accountBalance\" : 100451.0539,\n\t\t\t\"tradeOpened\"
+        : {\n\t\t\t\t\"id\" : 10173954090,\n\t\t\t\t\"units\" : 10000\n\t\t\t}\n\t\t},\n\t\t{\n\t\t\t\"id\"
+        : 10173953748,\n\t\t\t\"accountId\" : 1871900,\n\t\t\t\"time\" : \"2016-03-14T23:09:59.000000Z\",\n\t\t\t\"type\"
+        : \"TRADE_UPDATE\",\n\t\t\t\"instrument\" : \"USD_JPY\",\n\t\t\t\"units\"
+        : 10000,\n\t\t\t\"takeProfitPrice\" : 115.806,\n\t\t\t\"tradeId\" : 10173953742\n\t\t},\n\t\t{\n\t\t\t\"id\"
+        : 10173953742,\n\t\t\t\"accountId\" : 1871900,\n\t\t\t\"time\" : \"2016-03-14T23:09:59.000000Z\",\n\t\t\t\"type\"
+        : \"MARKET_ORDER_CREATE\",\n\t\t\t\"instrument\" : \"USD_JPY\",\n\t\t\t\"units\"
+        : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"price\" : 113.806,\n\t\t\t\"pl\"
+        : 0,\n\t\t\t\"interest\" : 0,\n\t\t\t\"accountBalance\" : 100451.0539,\n\t\t\t\"tradeOpened\"
+        : {\n\t\t\t\t\"id\" : 10173953742,\n\t\t\t\t\"units\" : 10000\n\t\t\t}\n\t\t},\n\t\t{\n\t\t\t\"id\"
+        : 10173953735,\n\t\t\t\"accountId\" : 1871900,\n\t\t\t\"time\" : \"2016-03-14T23:09:58.000000Z\",\n\t\t\t\"type\"
+        : \"MARKET_ORDER_CREATE\",\n\t\t\t\"instrument\" : \"USD_JPY\",\n\t\t\t\"units\"
+        : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"price\" : 113.806,\n\t\t\t\"pl\"
+        : 0,\n\t\t\t\"interest\" : 0,\n\t\t\t\"accountBalance\" : 100451.0539,\n\t\t\t\"tradeOpened\"
+        : {\n\t\t\t\t\"id\" : 10173953735,\n\t\t\t\t\"units\" : 10000\n\t\t\t}\n\t\t},\n\t\t{\n\t\t\t\"id\"
+        : 10173953431,\n\t\t\t\"accountId\" : 1871900,\n\t\t\t\"time\" : \"2016-03-14T23:09:40.000000Z\",\n\t\t\t\"type\"
+        : \"MARKET_ORDER_CREATE\",\n\t\t\t\"instrument\" : \"USD_JPY\",\n\t\t\t\"units\"
+        : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"price\" : 113.806,\n\t\t\t\"pl\"
+        : 0,\n\t\t\t\"interest\" : 0,\n\t\t\t\"accountBalance\" : 100451.0539,\n\t\t\t\"tradeOpened\"
+        : {\n\t\t\t\t\"id\" : 10173953431,\n\t\t\t\t\"units\" : 10000\n\t\t\t}\n\t\t},\n\t\t{\n\t\t\t\"id\"
+        : 10173953425,\n\t\t\t\"accountId\" : 1871900,\n\t\t\t\"time\" : \"2016-03-14T23:09:40.000000Z\",\n\t\t\t\"type\"
+        : \"MARKET_ORDER_CREATE\",\n\t\t\t\"instrument\" : \"USD_JPY\",\n\t\t\t\"units\"
+        : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"price\" : 113.806,\n\t\t\t\"pl\"
+        : 0,\n\t\t\t\"interest\" : 0,\n\t\t\t\"accountBalance\" : 100451.0539,\n\t\t\t\"tradeOpened\"
+        : {\n\t\t\t\t\"id\" : 10173953425,\n\t\t\t\t\"units\" : 10000\n\t\t\t}\n\t\t},\n\t\t{\n\t\t\t\"id\"
+        : 10173950343,\n\t\t\t\"accountId\" : 1871900,\n\t\t\t\"time\" : \"2016-03-14T23:07:13.000000Z\",\n\t\t\t\"type\"
+        : \"TRADE_CLOSE\",\n\t\t\t\"instrument\" : \"USD_JPY\",\n\t\t\t\"units\" :
+        10000,\n\t\t\t\"side\" : \"sell\",\n\t\t\t\"price\" : 113.79,\n\t\t\t\"pl\"
+        : -1.5819,\n\t\t\t\"interest\" : 0,\n\t\t\t\"accountBalance\" : 100451.0539,\n\t\t\t\"tradeId\"
+        : 10173950329\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10173950342,\n\t\t\t\"accountId\"
+        : 1871900,\n\t\t\t\"time\" : \"2016-03-14T23:07:13.000000Z\",\n\t\t\t\"type\"
+        : \"TRADE_CLOSE\",\n\t\t\t\"instrument\" : \"USD_JPY\",\n\t\t\t\"units\" :
+        10000,\n\t\t\t\"side\" : \"sell\",\n\t\t\t\"price\" : 113.79,\n\t\t\t\"pl\"
+        : -1.5819,\n\t\t\t\"interest\" : 0,\n\t\t\t\"accountBalance\" : 100452.6358,\n\t\t\t\"tradeId\"
+        : 10173950020\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10173950341,\n\t\t\t\"accountId\"
+        : 1871900,\n\t\t\t\"time\" : \"2016-03-14T23:07:13.000000Z\",\n\t\t\t\"type\"
+        : \"TRADE_CLOSE\",\n\t\t\t\"instrument\" : \"USD_JPY\",\n\t\t\t\"units\" :
+        10000,\n\t\t\t\"side\" : \"sell\",\n\t\t\t\"price\" : 113.79,\n\t\t\t\"pl\"
+        : -1.5819,\n\t\t\t\"interest\" : 0,\n\t\t\t\"accountBalance\" : 100454.2177,\n\t\t\t\"tradeId\"
+        : 10173950011\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10173950340,\n\t\t\t\"accountId\"
+        : 1871900,\n\t\t\t\"time\" : \"2016-03-14T23:07:13.000000Z\",\n\t\t\t\"type\"
+        : \"TRADE_CLOSE\",\n\t\t\t\"instrument\" : \"USD_JPY\",\n\t\t\t\"units\" :
+        10000,\n\t\t\t\"side\" : \"sell\",\n\t\t\t\"price\" : 113.79,\n\t\t\t\"pl\"
+        : 16.519,\n\t\t\t\"interest\" : -0.0089,\n\t\t\t\"accountBalance\" : 100455.7996,\n\t\t\t\"tradeId\"
+        : 10173145109\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10173950339,\n\t\t\t\"accountId\"
+        : 1871900,\n\t\t\t\"time\" : \"2016-03-14T23:07:13.000000Z\",\n\t\t\t\"type\"
+        : \"TRADE_CLOSE\",\n\t\t\t\"instrument\" : \"USD_JPY\",\n\t\t\t\"units\" :
+        10000,\n\t\t\t\"side\" : \"sell\",\n\t\t\t\"price\" : 113.79,\n\t\t\t\"pl\"
+        : 17.1341,\n\t\t\t\"interest\" : -0.0089,\n\t\t\t\"accountBalance\" : 100439.2895,\n\t\t\t\"tradeId\"
+        : 10173144902\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10173950338,\n\t\t\t\"accountId\"
+        : 1871900,\n\t\t\t\"time\" : \"2016-03-14T23:07:13.000000Z\",\n\t\t\t\"type\"
+        : \"TRADE_CLOSE\",\n\t\t\t\"instrument\" : \"USD_JPY\",\n\t\t\t\"units\" :
+        10000,\n\t\t\t\"side\" : \"sell\",\n\t\t\t\"price\" : 113.79,\n\t\t\t\"pl\"
+        : 17.1341,\n\t\t\t\"interest\" : -0.0089,\n\t\t\t\"accountBalance\" : 100422.1643,\n\t\t\t\"tradeId\"
+        : 10173144640\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10173950337,\n\t\t\t\"accountId\"
+        : 1871900,\n\t\t\t\"time\" : \"2016-03-14T23:07:13.000000Z\",\n\t\t\t\"type\"
+        : \"TRADE_CLOSE\",\n\t\t\t\"instrument\" : \"USD_JPY\",\n\t\t\t\"units\" :
+        10000,\n\t\t\t\"side\" : \"sell\",\n\t\t\t\"price\" : 113.79,\n\t\t\t\"pl\"
+        : 16.9584,\n\t\t\t\"interest\" : -0.0089,\n\t\t\t\"accountBalance\" : 100405.0391,\n\t\t\t\"tradeId\"
+        : 10173144402\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10173950336,\n\t\t\t\"accountId\"
+        : 1871900,\n\t\t\t\"time\" : \"2016-03-14T23:07:13.000000Z\",\n\t\t\t\"type\"
+        : \"TRADE_CLOSE\",\n\t\t\t\"instrument\" : \"USD_JPY\",\n\t\t\t\"units\" :
+        10000,\n\t\t\t\"side\" : \"sell\",\n\t\t\t\"price\" : 113.79,\n\t\t\t\"pl\"
+        : 17.4856,\n\t\t\t\"interest\" : -0.0089,\n\t\t\t\"accountBalance\" : 100388.0896,\n\t\t\t\"tradeId\"
+        : 10173144214\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10173950335,\n\t\t\t\"accountId\"
+        : 1871900,\n\t\t\t\"time\" : \"2016-03-14T23:07:13.000000Z\",\n\t\t\t\"type\"
+        : \"TRADE_CLOSE\",\n\t\t\t\"instrument\" : \"USD_JPY\",\n\t\t\t\"units\" :
+        10000,\n\t\t\t\"side\" : \"sell\",\n\t\t\t\"price\" : 113.79,\n\t\t\t\"pl\"
+        : 17.4856,\n\t\t\t\"interest\" : -0.0089,\n\t\t\t\"accountBalance\" : 100370.6129,\n\t\t\t\"tradeId\"
+        : 10173144073\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10173950329,\n\t\t\t\"accountId\"
+        : 1871900,\n\t\t\t\"time\" : \"2016-03-14T23:07:12.000000Z\",\n\t\t\t\"type\"
+        : \"MARKET_ORDER_CREATE\",\n\t\t\t\"instrument\" : \"USD_JPY\",\n\t\t\t\"units\"
+        : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"price\" : 113.808,\n\t\t\t\"pl\"
+        : 0,\n\t\t\t\"interest\" : 0,\n\t\t\t\"accountBalance\" : 100353.1362,\n\t\t\t\"tradeOpened\"
+        : {\n\t\t\t\t\"id\" : 10173950329,\n\t\t\t\t\"units\" : 10000\n\t\t\t}\n\t\t},\n\t\t{\n\t\t\t\"id\"
+        : 10173950020,\n\t\t\t\"accountId\" : 1871900,\n\t\t\t\"time\" : \"2016-03-14T23:06:51.000000Z\",\n\t\t\t\"type\"
+        : \"MARKET_ORDER_CREATE\",\n\t\t\t\"instrument\" : \"USD_JPY\",\n\t\t\t\"units\"
+        : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"price\" : 113.808,\n\t\t\t\"pl\"
+        : 0,\n\t\t\t\"interest\" : 0,\n\t\t\t\"accountBalance\" : 100353.1362,\n\t\t\t\"tradeOpened\"
+        : {\n\t\t\t\t\"id\" : 10173950020,\n\t\t\t\t\"units\" : 10000\n\t\t\t}\n\t\t},\n\t\t{\n\t\t\t\"id\"
+        : 10173950011,\n\t\t\t\"accountId\" : 1871900,\n\t\t\t\"time\" : \"2016-03-14T23:06:51.000000Z\",\n\t\t\t\"type\"
+        : \"MARKET_ORDER_CREATE\",\n\t\t\t\"instrument\" : \"USD_JPY\",\n\t\t\t\"units\"
+        : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"price\" : 113.808,\n\t\t\t\"pl\"
+        : 0,\n\t\t\t\"interest\" : 0,\n\t\t\t\"accountBalance\" : 100353.1362,\n\t\t\t\"tradeOpened\"
+        : {\n\t\t\t\t\"id\" : 10173950011,\n\t\t\t\t\"units\" : 10000\n\t\t\t}\n\t\t},\n\t\t{\n\t\t\t\"id\"
+        : 10173904417,\n\t\t\t\"accountId\" : 1871900,\n\t\t\t\"time\" : \"2016-03-14T22:30:18.000000Z\",\n\t\t\t\"type\"
+        : \"ORDER_CANCEL\",\n\t\t\t\"orderId\" : 10173828251,\n\t\t\t\"reason\" :
+        \"TIME_IN_FORCE_EXPIRED\"\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10173900676,\n\t\t\t\"accountId\"
+        : 1871900,\n\t\t\t\"time\" : \"2016-03-14T22:27:03.000000Z\",\n\t\t\t\"type\"
+        : \"ORDER_CANCEL\",\n\t\t\t\"orderId\" : 10173825142,\n\t\t\t\"reason\" :
+        \"TIME_IN_FORCE_EXPIRED\"\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10173899344,\n\t\t\t\"accountId\"
+        : 1871900,\n\t\t\t\"time\" : \"2016-03-14T22:26:09.000000Z\",\n\t\t\t\"type\"
+        : \"ORDER_CANCEL\",\n\t\t\t\"orderId\" : 10173824146,\n\t\t\t\"reason\" :
+        \"TIME_IN_FORCE_EXPIRED\"\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10173897320,\n\t\t\t\"accountId\"
+        : 1871900,\n\t\t\t\"time\" : \"2016-03-14T22:24:48.000000Z\",\n\t\t\t\"type\"
+        : \"ORDER_CANCEL\",\n\t\t\t\"orderId\" : 10173822590,\n\t\t\t\"reason\" :
+        \"TIME_IN_FORCE_EXPIRED\"\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10173859338,\n\t\t\t\"accountId\"
+        : 1871900,\n\t\t\t\"time\" : \"2016-03-14T21:58:13.000000Z\",\n\t\t\t\"type\"
+        : \"ORDER_CANCEL\",\n\t\t\t\"orderId\" : 10173768333,\n\t\t\t\"reason\" :
+        \"TIME_IN_FORCE_EXPIRED\"\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10173858096,\n\t\t\t\"accountId\"
+        : 1871900,\n\t\t\t\"time\" : \"2016-03-14T21:57:04.000000Z\",\n\t\t\t\"type\"
+        : \"ORDER_CANCEL\",\n\t\t\t\"orderId\" : 10173764680,\n\t\t\t\"reason\" :
+        \"TIME_IN_FORCE_EXPIRED\"\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10173836997,\n\t\t\t\"accountId\"
+        : 1871900,\n\t\t\t\"time\" : \"2016-03-14T21:39:01.000000Z\",\n\t\t\t\"type\"
+        : \"ORDER_CANCEL\",\n\t\t\t\"orderId\" : 10173700793,\n\t\t\t\"reason\" :
+        \"TIME_IN_FORCE_EXPIRED\"\n\t\t}\n\t]\n}"
+    http_version: 
+  recorded_at: Mon, 14 Mar 2016 23:11:41 GMT
+recorded_with: VCR 2.9.3

@@ -1,0 +1,171 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api-fxpractice.oanda.com/v1/accounts/1871900/orders
+    body:
+      encoding: UTF-8
+      string: instrument=USD_JPY&side=buy&type=market&units=10000
+    headers:
+      X-Accept-Datetime-Format:
+      - RFC3339
+      Authorization:
+      - Bearer <OANDA_TESTING_API_TOKEN>
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - 30
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty/1.7.0.1
+      Date:
+      - Mon, 14 Mar 2016 23:09:40 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '275'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "{\n\t\"instrument\" : \"USD_JPY\",\n\t\"time\" : \"2016-03-14T23:09:40.000000Z\",\n\t\"price\"
+        : 113.806,\n\t\"tradeOpened\" : {\n\t\t\"id\" : 10173953425,\n\t\t\"units\"
+        : 10000,\n\t\t\"side\" : \"buy\",\n\t\t\"takeProfit\" : 0,\n\t\t\"stopLoss\"
+        : 0,\n\t\t\"trailingStop\" : 0\n\t},\n\t\"tradesClosed\" : [],\n\t\"tradeReduced\"
+        : {}\n}"
+    http_version: 
+  recorded_at: Mon, 14 Mar 2016 23:09:41 GMT
+- request:
+    method: get
+    uri: https://api-fxpractice.oanda.com/v1/accounts/1871900/trades
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Accept-Datetime-Format:
+      - RFC3339
+      Authorization:
+      - Bearer <OANDA_TESTING_API_TOKEN>
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - 30
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty/1.7.0.1
+      Date:
+      - Mon, 14 Mar 2016 23:09:40 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '6314'
+      Connection:
+      - keep-alive
+      Access-Control-Expose-Headers:
+      - X-Result-Count
+      Etag:
+      - '"3e1222392e27021967c3a04ee0fb14113135e0fa"'
+      X-Result-Count:
+      - '25'
+    body:
+      encoding: UTF-8
+      string: "{\n\t\"trades\" : [\n\t\t{\n\t\t\t\"id\" : 10173953425,\n\t\t\t\"units\"
+        : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"instrument\" : \"USD_JPY\",\n\t\t\t\"time\"
+        : \"2016-03-14T23:09:40.000000Z\",\n\t\t\t\"price\" : 113.806,\n\t\t\t\"takeProfit\"
+        : 0,\n\t\t\t\"stopLoss\" : 0,\n\t\t\t\"trailingStop\" : 0,\n\t\t\t\"trailingAmount\"
+        : 0\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10173828244,\n\t\t\t\"units\" : 10000,\n\t\t\t\"side\"
+        : \"buy\",\n\t\t\t\"instrument\" : \"EUR_USD\",\n\t\t\t\"time\" : \"2016-03-14T21:30:16.000000Z\",\n\t\t\t\"price\"
+        : 1.11036,\n\t\t\t\"takeProfit\" : 0,\n\t\t\t\"stopLoss\" : 0,\n\t\t\t\"trailingStop\"
+        : 0,\n\t\t\t\"trailingAmount\" : 0\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10173825128,\n\t\t\t\"units\"
+        : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"instrument\" : \"EUR_USD\",\n\t\t\t\"time\"
+        : \"2016-03-14T21:27:00.000000Z\",\n\t\t\t\"price\" : 1.11036,\n\t\t\t\"takeProfit\"
+        : 0,\n\t\t\t\"stopLoss\" : 0,\n\t\t\t\"trailingStop\" : 0,\n\t\t\t\"trailingAmount\"
+        : 0\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10173824136,\n\t\t\t\"units\" : 10000,\n\t\t\t\"side\"
+        : \"buy\",\n\t\t\t\"instrument\" : \"EUR_USD\",\n\t\t\t\"time\" : \"2016-03-14T21:26:09.000000Z\",\n\t\t\t\"price\"
+        : 1.11035,\n\t\t\t\"takeProfit\" : 0,\n\t\t\t\"stopLoss\" : 0,\n\t\t\t\"trailingStop\"
+        : 0,\n\t\t\t\"trailingAmount\" : 0\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10173822567,\n\t\t\t\"units\"
+        : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"instrument\" : \"EUR_USD\",\n\t\t\t\"time\"
+        : \"2016-03-14T21:24:47.000000Z\",\n\t\t\t\"price\" : 1.1104,\n\t\t\t\"takeProfit\"
+        : 0,\n\t\t\t\"stopLoss\" : 0,\n\t\t\t\"trailingStop\" : 0,\n\t\t\t\"trailingAmount\"
+        : 0\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10173768275,\n\t\t\t\"units\" : 10000,\n\t\t\t\"side\"
+        : \"buy\",\n\t\t\t\"instrument\" : \"EUR_USD\",\n\t\t\t\"time\" : \"2016-03-14T20:57:57.000000Z\",\n\t\t\t\"price\"
+        : 1.1103,\n\t\t\t\"takeProfit\" : 0,\n\t\t\t\"stopLoss\" : 0,\n\t\t\t\"trailingStop\"
+        : 0,\n\t\t\t\"trailingAmount\" : 0\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10173764645,\n\t\t\t\"units\"
+        : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"instrument\" : \"EUR_USD\",\n\t\t\t\"time\"
+        : \"2016-03-14T20:56:56.000000Z\",\n\t\t\t\"price\" : 1.11032,\n\t\t\t\"takeProfit\"
+        : 0,\n\t\t\t\"stopLoss\" : 0,\n\t\t\t\"trailingStop\" : 0,\n\t\t\t\"trailingAmount\"
+        : 0\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10173700751,\n\t\t\t\"units\" : 10000,\n\t\t\t\"side\"
+        : \"buy\",\n\t\t\t\"instrument\" : \"EUR_USD\",\n\t\t\t\"time\" : \"2016-03-14T20:38:58.000000Z\",\n\t\t\t\"price\"
+        : 1.11053,\n\t\t\t\"takeProfit\" : 0,\n\t\t\t\"stopLoss\" : 0,\n\t\t\t\"trailingStop\"
+        : 0,\n\t\t\t\"trailingAmount\" : 0\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10173616265,\n\t\t\t\"units\"
+        : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"instrument\" : \"EUR_USD\",\n\t\t\t\"time\"
+        : \"2016-03-14T20:13:57.000000Z\",\n\t\t\t\"price\" : 1.11003,\n\t\t\t\"takeProfit\"
+        : 0,\n\t\t\t\"stopLoss\" : 0,\n\t\t\t\"trailingStop\" : 0,\n\t\t\t\"trailingAmount\"
+        : 0\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10173604531,\n\t\t\t\"units\" : 10000,\n\t\t\t\"side\"
+        : \"buy\",\n\t\t\t\"instrument\" : \"EUR_USD\",\n\t\t\t\"time\" : \"2016-03-14T20:10:56.000000Z\",\n\t\t\t\"price\"
+        : 1.11001,\n\t\t\t\"takeProfit\" : 0,\n\t\t\t\"stopLoss\" : 0,\n\t\t\t\"trailingStop\"
+        : 0,\n\t\t\t\"trailingAmount\" : 0\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10173601254,\n\t\t\t\"units\"
+        : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"instrument\" : \"EUR_USD\",\n\t\t\t\"time\"
+        : \"2016-03-14T20:10:12.000000Z\",\n\t\t\t\"price\" : 1.11001,\n\t\t\t\"takeProfit\"
+        : 0,\n\t\t\t\"stopLoss\" : 0,\n\t\t\t\"trailingStop\" : 0,\n\t\t\t\"trailingAmount\"
+        : 0\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10173587446,\n\t\t\t\"units\" : 10000,\n\t\t\t\"side\"
+        : \"buy\",\n\t\t\t\"instrument\" : \"EUR_USD\",\n\t\t\t\"time\" : \"2016-03-14T20:02:10.000000Z\",\n\t\t\t\"price\"
+        : 1.10994,\n\t\t\t\"takeProfit\" : 0,\n\t\t\t\"stopLoss\" : 0,\n\t\t\t\"trailingStop\"
+        : 0,\n\t\t\t\"trailingAmount\" : 0\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10173575480,\n\t\t\t\"units\"
+        : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"instrument\" : \"EUR_USD\",\n\t\t\t\"time\"
+        : \"2016-03-14T19:56:28.000000Z\",\n\t\t\t\"price\" : 1.1097,\n\t\t\t\"takeProfit\"
+        : 0,\n\t\t\t\"stopLoss\" : 0,\n\t\t\t\"trailingStop\" : 0,\n\t\t\t\"trailingAmount\"
+        : 0\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10173562986,\n\t\t\t\"units\" : 10000,\n\t\t\t\"side\"
+        : \"buy\",\n\t\t\t\"instrument\" : \"EUR_USD\",\n\t\t\t\"time\" : \"2016-03-14T19:47:57.000000Z\",\n\t\t\t\"price\"
+        : 1.10961,\n\t\t\t\"takeProfit\" : 0,\n\t\t\t\"stopLoss\" : 0,\n\t\t\t\"trailingStop\"
+        : 0,\n\t\t\t\"trailingAmount\" : 0\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10173517991,\n\t\t\t\"units\"
+        : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"instrument\" : \"EUR_USD\",\n\t\t\t\"time\"
+        : \"2016-03-14T19:17:25.000000Z\",\n\t\t\t\"price\" : 1.10995,\n\t\t\t\"takeProfit\"
+        : 0,\n\t\t\t\"stopLoss\" : 0,\n\t\t\t\"trailingStop\" : 0,\n\t\t\t\"trailingAmount\"
+        : 0\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10173515980,\n\t\t\t\"units\" : 10000,\n\t\t\t\"side\"
+        : \"buy\",\n\t\t\t\"instrument\" : \"EUR_USD\",\n\t\t\t\"time\" : \"2016-03-14T19:16:17.000000Z\",\n\t\t\t\"price\"
+        : 1.10989,\n\t\t\t\"takeProfit\" : 0,\n\t\t\t\"stopLoss\" : 0,\n\t\t\t\"trailingStop\"
+        : 0,\n\t\t\t\"trailingAmount\" : 0\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10173506383,\n\t\t\t\"units\"
+        : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"instrument\" : \"EUR_USD\",\n\t\t\t\"time\"
+        : \"2016-03-14T19:09:36.000000Z\",\n\t\t\t\"price\" : 1.1098,\n\t\t\t\"takeProfit\"
+        : 0,\n\t\t\t\"stopLoss\" : 0,\n\t\t\t\"trailingStop\" : 0,\n\t\t\t\"trailingAmount\"
+        : 0\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10173462314,\n\t\t\t\"units\" : 10000,\n\t\t\t\"side\"
+        : \"buy\",\n\t\t\t\"instrument\" : \"EUR_USD\",\n\t\t\t\"time\" : \"2016-03-14T18:45:23.000000Z\",\n\t\t\t\"price\"
+        : 1.1087,\n\t\t\t\"takeProfit\" : 0,\n\t\t\t\"stopLoss\" : 0,\n\t\t\t\"trailingStop\"
+        : 0,\n\t\t\t\"trailingAmount\" : 0\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10173461655,\n\t\t\t\"units\"
+        : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"instrument\" : \"EUR_USD\",\n\t\t\t\"time\"
+        : \"2016-03-14T18:45:04.000000Z\",\n\t\t\t\"price\" : 1.10867,\n\t\t\t\"takeProfit\"
+        : 0,\n\t\t\t\"stopLoss\" : 0,\n\t\t\t\"trailingStop\" : 0,\n\t\t\t\"trailingAmount\"
+        : 0\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10173457985,\n\t\t\t\"units\" : 10000,\n\t\t\t\"side\"
+        : \"buy\",\n\t\t\t\"instrument\" : \"EUR_USD\",\n\t\t\t\"time\" : \"2016-03-14T18:42:32.000000Z\",\n\t\t\t\"price\"
+        : 1.10849,\n\t\t\t\"takeProfit\" : 0,\n\t\t\t\"stopLoss\" : 0,\n\t\t\t\"trailingStop\"
+        : 0,\n\t\t\t\"trailingAmount\" : 0\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10173448196,\n\t\t\t\"units\"
+        : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"instrument\" : \"EUR_USD\",\n\t\t\t\"time\"
+        : \"2016-03-14T18:36:44.000000Z\",\n\t\t\t\"price\" : 1.10852,\n\t\t\t\"takeProfit\"
+        : 0,\n\t\t\t\"stopLoss\" : 0,\n\t\t\t\"trailingStop\" : 0,\n\t\t\t\"trailingAmount\"
+        : 0\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10173432940,\n\t\t\t\"units\" : 10000,\n\t\t\t\"side\"
+        : \"buy\",\n\t\t\t\"instrument\" : \"EUR_USD\",\n\t\t\t\"time\" : \"2016-03-14T18:29:36.000000Z\",\n\t\t\t\"price\"
+        : 1.10842,\n\t\t\t\"takeProfit\" : 0,\n\t\t\t\"stopLoss\" : 0,\n\t\t\t\"trailingStop\"
+        : 0,\n\t\t\t\"trailingAmount\" : 0\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10173140830,\n\t\t\t\"units\"
+        : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"instrument\" : \"EUR_USD\",\n\t\t\t\"time\"
+        : \"2016-03-14T16:28:11.000000Z\",\n\t\t\t\"price\" : 1.11119,\n\t\t\t\"takeProfit\"
+        : 0,\n\t\t\t\"stopLoss\" : 0,\n\t\t\t\"trailingStop\" : 0,\n\t\t\t\"trailingAmount\"
+        : 0\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10173126524,\n\t\t\t\"units\" : 10000,\n\t\t\t\"side\"
+        : \"buy\",\n\t\t\t\"instrument\" : \"EUR_USD\",\n\t\t\t\"time\" : \"2016-03-14T16:23:33.000000Z\",\n\t\t\t\"price\"
+        : 1.11173,\n\t\t\t\"takeProfit\" : 0,\n\t\t\t\"stopLoss\" : 0,\n\t\t\t\"trailingStop\"
+        : 0,\n\t\t\t\"trailingAmount\" : 0\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10173100628,\n\t\t\t\"units\"
+        : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"instrument\" : \"EUR_USD\",\n\t\t\t\"time\"
+        : \"2016-03-14T16:14:43.000000Z\",\n\t\t\t\"price\" : 1.11223,\n\t\t\t\"takeProfit\"
+        : 0,\n\t\t\t\"stopLoss\" : 0,\n\t\t\t\"trailingStop\" : 0,\n\t\t\t\"trailingAmount\"
+        : 0\n\t\t}\n\t]\n}"
+    http_version: 
+  recorded_at: Mon, 14 Mar 2016 23:09:41 GMT
+recorded_with: VCR 2.9.3

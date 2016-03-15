@@ -1,0 +1,82 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api-fxpractice.oanda.com/v1/accounts/1871900/orders
+    body:
+      encoding: UTF-8
+      string: expiry=2016-03-14T22%3A32%3A35%2B00%3A00&instrument=EUR_USD&price=1.0101499999999999&side=buy&type=limit&units=10000
+    headers:
+      X-Accept-Datetime-Format:
+      - RFC3339
+      Authorization:
+      - Bearer <OANDA_TESTING_API_TOKEN>
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - 30
+  response:
+    status:
+      code: 201
+      message: CREATED
+    headers:
+      Server:
+      - openresty/1.7.0.1
+      Date:
+      - Mon, 14 Mar 2016 21:32:36 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '315'
+      Connection:
+      - keep-alive
+      Location:
+      - https://api-fxpractice.oanda.com/v1/accounts/1871900/orders/10173830777
+    body:
+      encoding: UTF-8
+      string: "{\n\t\"instrument\" : \"EUR_USD\",\n\t\"time\" : \"2016-03-14T21:32:36.000000Z\",\n\t\"price\"
+        : 1.01015,\n\t\"orderOpened\" : {\n\t\t\"id\" : 10173830777,\n\t\t\"units\"
+        : 10000,\n\t\t\"side\" : \"buy\",\n\t\t\"takeProfit\" : 0,\n\t\t\"stopLoss\"
+        : 0,\n\t\t\"expiry\" : \"2016-03-14T22:32:35.000000Z\",\n\t\t\"upperBound\"
+        : 0,\n\t\t\"lowerBound\" : 0,\n\t\t\"trailingStop\" : 0\n\t}\n}"
+    http_version: 
+  recorded_at: Mon, 14 Mar 2016 21:32:36 GMT
+- request:
+    method: patch
+    uri: https://api-fxpractice.oanda.com/v1/accounts/1871900/orders/10173830777
+    body:
+      encoding: UTF-8
+      string: units=9000
+    headers:
+      X-Accept-Datetime-Format:
+      - RFC3339
+      Authorization:
+      - Bearer <OANDA_TESTING_API_TOKEN>
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - 30
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty/1.7.0.1
+      Date:
+      - Mon, 14 Mar 2016 21:32:36 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '302'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "{\n\t\"id\" : 10173830777,\n\t\"instrument\" : \"EUR_USD\",\n\t\"units\"
+        : 9000,\n\t\"side\" : \"buy\",\n\t\"type\" : \"limit\",\n\t\"time\" : \"2016-03-14T21:32:36.000000Z\",\n\t\"price\"
+        : 1.01015,\n\t\"takeProfit\" : 0,\n\t\"stopLoss\" : 0,\n\t\"expiry\" : \"2016-03-14T22:32:35.000000Z\",\n\t\"upperBound\"
+        : 0,\n\t\"lowerBound\" : 0,\n\t\"trailingStop\" : 0\n}"
+    http_version: 
+  recorded_at: Mon, 14 Mar 2016 21:32:36 GMT
+recorded_with: VCR 2.9.3
