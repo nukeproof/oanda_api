@@ -127,25 +127,26 @@ transaction.type        # => "MARKET_ORDER_CREATE"
 ```ruby
 require 'oanda_api'
 
-client = OandaAPI::Client::TokenClient.new(:practice, ENV.fetch("OANDA_PRACTICE_TOKEN"))
 # If you want to use sugar like: 1.day, 1.hour, 1.week, etc.
-  require 'active_support/core_ext/numeric/time'
+require 'active_support/core_ext/numeric/time'
+
+client = OandaAPI::Client::TokenClient.new(:practice, ENV.fetch("OANDA_PRACTICE_TOKEN"))
   
-  token = ENV.fetch("OANDA_PRACTICE_TOKEN")
-  client = OandaAPI::Client::TokenClient.new :practice, token
-  client.calendar(period: 1.day).get.each do |event|
-    event.class     # => OandaAPI::Resource::CalendarEvent
-    event.title     # => "Industrial Production"
-    event.currency  # => "EUR"
-    event.region    # => "europe"
-    event.forecast  # => "-0.3"
-    event.previous  # => "-0.3"
-    event.actual    # => "3.3"
-    event.impact    # => "2"
-    event.unit      # => "% m/m"
-    event.timestamp # => 1457420400
-    event.time      # => 2016-03-08 07:00:00 UTC
-  end
+token = ENV.fetch("OANDA_PRACTICE_TOKEN")
+client = OandaAPI::Client::TokenClient.new :practice, token
+client.calendar(period: 1.day).get.each do |event|
+  event.class     # => OandaAPI::Resource::CalendarEvent
+  event.title     # => "Industrial Production"
+  event.currency  # => "EUR"
+  event.region    # => "europe"
+  event.forecast  # => "-0.3"
+  event.previous  # => "-0.3"
+  event.actual    # => "3.3"
+  event.impact    # => "2"
+  event.unit      # => "% m/m"
+  event.timestamp # => 1457420400
+  event.time      # => 2016-03-08 07:00:00 UTC
+end
 ```
 
 ##Streaming
