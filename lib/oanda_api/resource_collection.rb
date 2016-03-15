@@ -29,7 +29,9 @@ module OandaAPI
     def initialize(attributes, resource_descriptor)
       attributes = {} if attributes.nil? || attributes.respond_to?(:empty) && attributes.empty?
       if attributes.kind_of?(Array)
-        attributes = {"#{resource_descriptor.collection_name}": attributes}
+        h = {}
+        h["#{resource_descriptor.collection_name}".to_sym] = attributes
+        attributes = h
       end
 
       fail ArgumentError, "Expecting a Hash" unless attributes.respond_to? :each_pair
