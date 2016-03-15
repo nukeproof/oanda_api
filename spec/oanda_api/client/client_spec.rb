@@ -88,19 +88,27 @@ describe "OandaAPI::Client" do
         expect(uri.absolute?).to be true
       end
     end
+
+    it " path segment start with 'labs' when path parameter is 'calendar' " do
+      OandaAPI::DOMAINS.each do |domain|
+        client.domain = domain
+        uri = URI.parse client.api_uri("/calendar")
+        expect(uri.path).to match(/\/labs\/v[\d\.]+\/calendar/)
+      end
+    end
   end
-  
+
   describe "#load_persistent_connection_adapter" do
     let(:client) { (Class.new { include OandaAPI::Client }).new }
 
     it "is called by the constructor of an including class" do
       OandaAPI::Client.default_options[:connection_adapter] = nil
       expect(OandaAPI::Client.default_options[:connection_adapter]).to be_nil
-      
+
       klass = Class.new { include OandaAPI::Client }
       instance = klass.new
       expect(OandaAPI::Client.default_options[:connection_adapter]).to be_a HTTParty::Persistent::ConnectionAdapter
-      
+
       instance = klass.new( {connection_adapter_options: {keep_alive: 20}} )
       expect(OandaAPI::Client.default_options[:connection_adapter_options][:keep_alive]).to eq 20
     end
@@ -114,7 +122,7 @@ describe "OandaAPI::Client" do
 
    it "overrides a persistent connection adapter settings" do
      client.load_persistent_connection_adapter pool_size: OandaAPI.configuration.connection_pool_size + 1
-     expect(OandaAPI::Client.default_options[:connection_adapter_options][:pool_size]).to eq OandaAPI.configuration.connection_pool_size + 1      
+     expect(OandaAPI::Client.default_options[:connection_adapter_options][:pool_size]).to eq OandaAPI.configuration.connection_pool_size + 1
    end
   end
 

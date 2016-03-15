@@ -1,5 +1,11 @@
+require 'set'
+
 module OandaAPI
   module Client
+
+    # words that should not be pluralize
+    NOT_PLURALIZE_WORD = Set.new [:calendar]
+
     # A client proxy and method-chaining enabler.
     #
     # @example Example usage
@@ -35,7 +41,7 @@ module OandaAPI
 
         @client = client
         @conditions = {}
-        @namespace_segments = [Utils.pluralize(namespace_segment)]
+        @namespace_segments = [pluralize(namespace_segment)]
         extract_key_and_conditions conditions
       end
 
@@ -107,11 +113,20 @@ module OandaAPI
           @client.execute_request sym, namespace, conditions, &block
         else
           ns = self.clone
-          ns.namespace_segments << Utils.pluralize(sym)
+          ns.namespace_segments << pluralize(sym)
           ns.extract_key_and_conditions args.first
           ns
         end
       end
+
+      def pluralize(namespace_segment)
+        if NOT_PLURALIZE_WORD.include?(namespace_segment)
+          namespace_segment
+        else
+          Utils.pluralize(namespace_segment)
+        end
+      end
+
     end
   end
 end
