@@ -59,6 +59,19 @@ describe "OandaAPI::Configuration" do
     end
   end
 
+  describe "#labs_api_version" do
+    it "returns the default Labs api version" do
+      expect(config.labs_api_version).to eq OandaAPI::Configuration::LABS_API_VERSION
+    end
+  end
+
+  describe "#labs_api_version=" do
+    it "overrides the default Labs api version" do
+      config.labs_api_version = "X"
+      expect(config.labs_api_version).to eq "X"
+    end
+  end
+
   describe "#max_requests_per_second" do
     it "returns the default max requests per second" do
       expect(config.max_requests_per_second).to eq OandaAPI::Configuration::MAX_REQUESTS_PER_SECOND

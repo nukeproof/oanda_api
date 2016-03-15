@@ -4,6 +4,7 @@ module OandaAPI
   # Configures client API settings.
   class Configuration
     DATETIME_FORMAT         = :rfc3339
+    LABS_API_VERSION        = "labs/v1"
     MAX_REQUESTS_PER_SECOND = 15
     OPEN_TIMEOUT            = 10
     READ_TIMEOUT            = 10
@@ -38,6 +39,19 @@ module OandaAPI
     def datetime_format=(value)
       fail ArgumentError, "Invalid datetime format" unless OandaAPI::DATETIME_FORMATS.include? value
       @datetime_format = value
+    end
+
+    # The Oanda Labs API version used by the client.
+    # @return [String]
+    def labs_api_version
+      @labs_api_version ||= LABS_API_VERSION
+    end
+
+    # See {#labs_api_version}.
+    # @param [String] value
+    # @return [void]
+    def labs_api_version=(value)
+      @labs_api_version = value
     end
 
     # The maximum number of requests per second allowed to be made through the

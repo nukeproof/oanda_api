@@ -28,6 +28,10 @@ module OandaAPI
     #   about the resource collection and its elements.
     def initialize(attributes, resource_descriptor)
       attributes = {} if attributes.nil? || attributes.respond_to?(:empty) && attributes.empty?
+      if attributes.kind_of?(Array)
+        attributes = {"#{resource_descriptor.collection_name}": attributes}
+      end
+
       fail ArgumentError, "Expecting a Hash" unless attributes.respond_to? :each_pair
       @attributes = Utils.rubyize_keys attributes
       @collection = @attributes.delete(resource_descriptor.collection_name) || []

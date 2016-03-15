@@ -35,7 +35,7 @@ module OandaAPI
 
         @client = client
         @conditions = {}
-        @namespace_segments = [Utils.pluralize(namespace_segment)]
+        @namespace_segments = [ResourceBase.pluralize(namespace_segment)]
         extract_key_and_conditions conditions
       end
 
@@ -107,11 +107,11 @@ module OandaAPI
           @client.execute_request sym, namespace, conditions, &block
         else
           ns = self.clone
-          ns.namespace_segments << Utils.pluralize(sym)
+          ns.namespace_segments << ResourceBase.pluralize(sym)
           ns.extract_key_and_conditions args.first
           ns
         end
-      end
+      end      
     end
   end
 end

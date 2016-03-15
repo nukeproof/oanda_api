@@ -13,15 +13,19 @@ module OandaAPI
     # @!attribute [r] resource_klass
     #   @return [Symbol] class of the resource.
     class ResourceDescriptor
+
       attr_reader :collection_name, :path, :resource_klass
 
       # Mapper for not "typical" resources.
       #   Key is a resource from the API path.
-      #   Value is a hash that can contain "resource_name" from the code and/or
-      #   "is_collection" (if true: will force treating response as a collection of resources,
-      #   if false: will force treating response as a single resource).
+      #   Value is a hash that can contain: 1) "resource_name" which is the OandaAPI ruby resource name and/or
+      #   2) "is_collection" (if true: response treated as a collection,
+      #   false: response treated as a singular resource) and/or
+      #   3) "api_resource_name" the actual API resource name
       RESOURCES_MAPPER = {
-          alltransactions: { resource_name: "transaction_history", is_collection: false }
+          alltransactions: { resource_name: "transaction_history", is_collection: false},
+          calendar:        { resource_name: "calendar_event",      is_collection: true},
+          calendar_events: { resource_name: "calendar_event",      is_collection: true,  api_resource_name: "calendar"}
       }
 
       # Analyzes the resource request and determines the type of resource
@@ -32,7 +36,7 @@ module OandaAPI
       # @param [Symbol] method an http verb (see {OandaAPI::Client.map_method_to_http_verb}).
       def initialize(path, method)
         @path = path
-        path.match(/\/(?<resource_name>[a-z]*)\/?(?<resource_id>\w*?)$/) do |names|
+        path.match(/\/(?<resource_name>[a-z_]*)\/?(?<resource_id>\w*?)$/) do |names|
           initialize_from_resource_name(names[:resource_name], method, names[:resource_id])
         end
       end
@@ -43,15 +47,22 @@ module OandaAPI
         @is_collection
       end
 
+      # True if the resource represented by the path is one found in the "Labs"
+      #  resources in the API.
+      #  See {http://developer.oanda.com/rest-live/forex-labs/ Forex Labs} for
+      #  details on Labs resources.
+      def labs?
+        OandaAPI::ResourceBase.labs_resource? resource_klass
+      end
+
       private
 
       # The resource type
       # @param [String] resource_name
       # @return [void]
       def resource_klass=(resource_name)
-        klass_symbol = OandaAPI::Utils.classify(resource_name).to_sym
-        fail ArgumentError, "Invalid resource" unless OandaAPI::Resource.constants.include?(klass_symbol)
-        @resource_klass = OandaAPI::Resource.const_get klass_symbol
+        @resource_klass = OandaAPI::ResourceBase.class_from_symbol resource_name.to_sym
+        fail ArgumentError, "Invalid resource: #{resource_name}" unless @resource_klass
       end
 
       # Will set instance attributes based on resource_name, method and resource_id.
@@ -65,7 +76,10 @@ module OandaAPI
                                                  { resource_name: Utils.singularize(resource_name) })
         self.resource_klass = mapped_resource.fetch :resource_name
         @is_collection      = mapped_resource.fetch :is_collection, method == :get && resource_id.empty?
-        @collection_name    = Utils.pluralize(mapped_resource.fetch(:resource_name)).to_sym if is_collection?
+        @collection_name    = ResourceBase.pluralize(mapped_resource.fetch(:resource_name)).to_sym if is_collection?
+
+        # If resource is using an alias name, replace it with its real API resource name.
+        @path.sub!(/\w*$/, mapped_resource[:api_resource_name]) if mapped_resource[:api_resource_name]
       end
     end
   end

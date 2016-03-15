@@ -29,11 +29,12 @@ describe "OandaAPI::Streaming::Client" do
 
   describe "#api_uri" do
     let(:client) { Struct.new(:domain) { include OandaAPI::Client }.new }
+    let(:resource_descriptor) {OandaAPI::Client::ResourceDescriptor.new "/accounts", :get}
     it "is domain specific" do
       uris = {}
       OandaAPI::DOMAINS.each do |domain|
         client.domain = domain
-        uris[client.api_uri("/path")] = domain
+        uris[client.api_uri(resource_descriptor)] = domain
       end
       expect(uris.size).to eq(3)
     end
@@ -41,7 +42,7 @@ describe "OandaAPI::Streaming::Client" do
     it "is an absolute URI" do
       OandaAPI::DOMAINS.each do |domain|
         client.domain = domain
-        uri = URI.parse client.api_uri("/path")
+        uri = URI.parse client.api_uri(resource_descriptor)
         expect(uri.absolute?).to be true
       end
     end

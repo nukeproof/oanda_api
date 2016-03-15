@@ -23,10 +23,11 @@ module OandaAPI
 
     # Resource URI templates
     BASE_URI = {
-      live:     "https://api-fxtrade.oanda.com/[API_VERSION]",
-      practice: "https://api-fxpractice.oanda.com/[API_VERSION]",
-      sandbox:  "http://api-sandbox.oanda.com/[API_VERSION]"
+      live:     "https://api-fxtrade.oanda.com/",
+      practice: "https://api-fxpractice.oanda.com/",
+      sandbox:  "http://api-sandbox.oanda.com/"
     }
+
 
     # @private
     # Camelizes keys and transforms array values into comma-delimited strings.
@@ -58,12 +59,12 @@ module OandaAPI
 
     # Returns an absolute URI for a resource request.
     #
-    # @param [String] path the path portion of the URI.
+    # @param [ResourceDescriptor]
     #
     # @return [String] a URI.
-    def api_uri(path)
-      uri = "#{BASE_URI[domain]}#{path}"
-      uri.sub "[API_VERSION]", OandaAPI.configuration.rest_api_version
+    def api_uri(resource_descriptor)
+      api_version = resource_descriptor.labs? ? OandaAPI.configuration.labs_api_version : OandaAPI.configuration.rest_api_version
+      "#{BASE_URI[domain]}#{api_version}#{resource_descriptor.path}"
     end
 
     # Binds a persistent connection adapter. See documentation for the
@@ -102,19 +103,21 @@ module OandaAPI
     #
     # @raise [OandaAPI::RequestError] if the API return code is not 2xx.
     def execute_request(method, path, conditions = {})
+      method = Client.map_method_to_http_verb method
+      resource_descriptor = ResourceDescriptor.new path, method
+
       response = Http::Exceptions.wrap_and_check do
-        method = Client.map_method_to_http_verb(method)
         params_key = [:post, :patch, :put].include?(method) ? :body : :query
         Client.throttle_request_rate
         Client.send method,
-                    api_uri(path),
+                    api_uri(resource_descriptor),
                     params_key    => Utils.stringify_keys(conditions.merge(default_params)),
                     :headers      => OandaAPI.configuration.headers.merge(headers),
                     :open_timeout => OandaAPI.configuration.open_timeout,
                     :read_timeout => OandaAPI.configuration.read_timeout
       end
 
-      handle_response response, ResourceDescriptor.new(path, method)
+      handle_response response, resource_descriptor
       rescue Http::Exceptions::HttpException => e
         raise OandaAPI::RequestError, e.message
     end
