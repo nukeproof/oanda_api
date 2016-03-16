@@ -132,6 +132,7 @@ module OandaAPI
                                                                 uri: api_uri(path),
                                                                 query: Utils.stringify_keys(conditions),
                                                                 headers: OandaAPI.configuration.headers.merge(headers)
+          @streaming_request.emit_heartbeats = emit_heartbeats?
           @streaming_request.stream(&block)
           return nil
         end
