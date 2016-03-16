@@ -2,6 +2,8 @@
 
 ## Head
 
+* 2016-03-16 Fixed `OandaAPI::Streaming::Client#emit_heartbeats=true`. Now heartbeats actually will be emitted if true. Previously this setting was ignored and heartbeats were never emitted. Thanks [dogwood008](https://github.com/dogwood008)!
+
 * 2016-03-15  Now TLS verify_mode is explicitly set to OpenSSL::SSL::VERIFY_PEER instead of relying on underlying library defaults.
 
 * 2016-03-14  Added support for the Oanda Forex Labs Economic Calendar API:
