@@ -74,6 +74,33 @@ describe "OandaAPI::Streaming::Client" do
         expect(client.emit_heartbeats?).to be value
       end
     end
+
+    it "includes heartbeats when true" do
+      events_json = <<-END
+      {"heartbeat":{"time":"2014-05-26T13:58:40Z"}}\r\n
+      {"transaction":{"id":10001}}\r\n
+      {"transaction":{"id":10002}}
+      END
+
+      client = OandaAPI::Streaming::Client.new(:practice, "token")
+      stub_request(:get, "https://stream-fxpractice.oanda.com/v1/events").to_return(body: events_json, status: 200)
+      
+      [{emit_heartbeats: true,  heartbeats: 1, non_heartbeats: 2},
+       {emit_heartbeats: false, heartbeats: 0, non_heartbeats: 2}].each do |test|
+        
+        client.emit_heartbeats = test[:emit_heartbeats]
+        heartbeats = non_heartbeats = 0
+        client.events.stream do |resource|
+          if resource.is_a? OandaAPI::Resource::Heartbeat
+            heartbeats += 1
+          else
+            non_heartbeats += 1
+          end
+        end
+        expect(heartbeats).to eq test[:heartbeats]
+        expect(non_heartbeats).to eq test[:non_heartbeats]
+      end
+    end
   end
 
   describe "headers" do
