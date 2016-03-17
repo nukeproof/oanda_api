@@ -25,7 +25,9 @@ module OandaAPI
       RESOURCES_MAPPER = {
           alltransactions: { resource_name: "transaction_history", is_collection: false},
           calendar:        { resource_name: "calendar_event",      is_collection: true},
-          calendar_events: { resource_name: "calendar_event",      is_collection: true,  api_resource_name: "calendar"}
+          calendar_events: { resource_name: "calendar_event",      is_collection: true,  api_resource_name: "calendar"},
+          spreads:         { resource_name: "spread_history",      is_collection: false, api_resource_name: "spreads"},
+          spread_historys: { resource_name: "spread_history",      is_collection: false, api_resource_name: "spreads"}
       }
 
       # Analyzes the resource request and determines the type of resource

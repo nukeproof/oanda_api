@@ -2,36 +2,64 @@
 
 ## Head
 
+* 2016-03-16  Added support for the Oanda [Forex Labs Spread History](http://developer.oanda.com/rest-live/forex-labs/#spreads) API:
+
+   ```ruby
+     require 'oanda_api'
+     # If you want to use sugar like: 1.day, 1.hour, 1.week, etc.
+     require 'active_support/core_ext/numeric/time'
+   
+     client = OandaAPI::Client::TokenClient.new(:practice, ENV.fetch("OANDA_PRACTICE_TOKEN"))   
+     spreads = client.spreads(instrument: "EUR_USD", period: 1.day).get
+     
+     spreads.class                    # OandaAPI::Resource::Labs::SpreadHistory
+     spreads.averages.size            # => 94
+     spreads.maximums.size            # => 76
+     spreads.averages.size            # => 50
+     
+     spreads.averages.first.spread    # => 1.81711
+     spreads.averages.first.timestamp # => 1458081900
+     spreads.averages.first.time      # => 2016-03-15 23:00:00 UTC
+     
+     spreads.maximums.first.spread    # => 2.1
+     spreads.maximums.first.timestamp # => 1458082800
+     spreads.maximums.first.time      # => 2016-03-15 23:00:00 UTC
+     
+     spreads.minimums.first.spread    # => 1.6
+     spreads.minimums.first.timestamp # => 1458081900
+     spreads.minimums.first.time      # => 2016-03-15 23:00:00 UTC
+   ```
+
 * 2016-03-16 Fixed `OandaAPI::Streaming::Client#emit_heartbeats=true`. Now heartbeats actually will be emitted if true. Previously this setting was ignored and heartbeats were never emitted. Thanks [dogwood008](https://github.com/dogwood008)!
 
 * 2016-03-15  Now TLS verify_mode is explicitly set to OpenSSL::SSL::VERIFY_PEER instead of relying on underlying library defaults.
 
-* 2016-03-14  Added support for the Oanda Forex Labs Economic Calendar API:
+* 2016-03-14  Added support for the Oanda [Forex Labs Economic Calendar](http://developer.oanda.com/rest-live/forex-labs/#calendar) API:
 
   Thanks [unageanu](https://github.com/unageanu)!
 
-```ruby
-  require 'oanda_api'
-  # If you want to use sugar like: 1.day, 1.hour, 1.week, etc.
-  require 'active_support/core_ext/numeric/time'
-
-  client = OandaAPI::Client::TokenClient.new(:practice, ENV.fetch("OANDA_PRACTICE_TOKEN"))
-
-  client.calendar_events(period: 1.day).get.each do |event|
-    event.class     # => OandaAPI::Resource::CalendarEvent
-    event.title     # => "Industrial Production"
-    event.currency  # => "EUR"
-    event.region    # => "europe"
-    event.forecast  # => "-0.3"
-    event.previous  # => "-0.3"
-    event.actual    # => "3.3"
-    event.impact    # => "2"
-    event.unit      # => "% m/m"
-    event.timestamp # => 1457420400
-    event.time      # => 2016-03-08 07:00:00 UTC
-  end
-```
-
+   ```ruby
+     require 'oanda_api'
+     # If you want to use sugar like: 1.day, 1.hour, 1.week, etc.
+     require 'active_support/core_ext/numeric/time'
+   
+     client = OandaAPI::Client::TokenClient.new(:practice, ENV.fetch("OANDA_PRACTICE_TOKEN"))
+   
+     client.calendar_events(period: 1.day).get.each do |event|
+       event.class     # => OandaAPI::Resource::CalendarEvent
+       event.title     # => "Industrial Production"
+       event.currency  # => "EUR"
+       event.region    # => "europe"
+       event.forecast  # => "-0.3"
+       event.previous  # => "-0.3"
+       event.actual    # => "3.3"
+       event.impact    # => "2"
+       event.unit      # => "% m/m"
+       event.timestamp # => 1457420400
+       event.time      # => 2016-03-08 07:00:00 UTC
+     end
+   ```
+     
 * 2016-03-14 Deprecated `OandaAPI::Client::UsernameClient`. The `http://api-sandbox.oanda.com/` endpoint that this client used is no longer supported by Oanda. Instead, you can use `OandaAPI::Client::TokenClient` with a practice account.
 
 ## 0.9.4

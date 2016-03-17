@@ -1,0 +1,53 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api-fxpractice.oanda.com/labs/v1/spreads?instrument=EUR_CAD&period=3600
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Accept-Datetime-Format:
+      - RFC3339
+      Authorization:
+      - Bearer <OANDA_TESTING_API_TOKEN>
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - 30
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty/1.7.0.1
+      Date:
+      - Wed, 16 Mar 2016 23:58:13 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '135'
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      - Accept-Encoding
+      - Content-Type
+      Version:
+      - '0.2'
+      X-Catalyst:
+      - '5.90042'
+      Set-Cookie:
+      - opc_id=F1D059CA-EBD2-11E5-A2A0-91DFF4FD6E4D; path=/; Expires=Sat, 14-Mar-2026
+        23:58:13 GMT
+      - opc_id=F1D05EF2-EBD2-11E5-9AB7-E33F39B60049; path=/; Expires=Sat, 14-Mar-2026
+        23:58:13 GMT
+      Access-Control-Allow-Origin:
+      - "*"
+    body:
+      encoding: UTF-8
+      string: '{"avg":[[1458169200,5.12678],[1458170100,4.07667]],"min":[[1458169200,2.9],[1458170100,2.9]],"max":[[1458169200,8.1],[1458170100,6.3]]}'
+    http_version: 
+  recorded_at: Wed, 16 Mar 2016 23:58:13 GMT
+recorded_with: VCR 3.0.1
