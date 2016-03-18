@@ -112,7 +112,7 @@ module OandaAPI
         Client.throttle_request_rate
         Client.send method,
                     api_uri(resource_descriptor),
-                    params_key    => Utils.stringify_keys(conditions.merge(default_params)),
+                    params_key    => Utils.stringify_keys(conditions.merge(default_params).merge(resource_descriptor.conditions)),
                     :headers      => OandaAPI.configuration.headers.merge(headers),
                     :open_timeout => OandaAPI.configuration.open_timeout,
                     :read_timeout => OandaAPI.configuration.read_timeout

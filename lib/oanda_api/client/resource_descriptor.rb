@@ -7,6 +7,9 @@ module OandaAPI
     #   @return [Symbol] method name that returns a collection of the resource
     #     from the API response.
     #
+    # @!attribute [r] conditions
+    #   @return [Hash] a hash of conditions that are required by the resource.
+    #
     # @!attribute [r] path
     #   @return [String] path of the resource URI.
     #
@@ -14,20 +17,23 @@ module OandaAPI
     #   @return [Symbol] class of the resource.
     class ResourceDescriptor
 
-      attr_reader :collection_name, :path, :resource_klass
+      attr_reader :collection_name, :conditions, :path, :resource_klass
 
       # Mapper for not "typical" resources.
       #   Key is a resource from the API path.
-      #   Value is a hash that can contain: 1) "resource_name" which is the OandaAPI ruby resource name and/or
-      #   2) "is_collection" (if true: response treated as a collection,
+      #   Value is a hash that can contain: 1) :resource_name which is the OandaAPI ruby resource name and/or
+      #   2) :is_collection (if true: response treated as a collection,
       #   false: response treated as a singular resource) and/or
-      #   3) "api_resource_name" the actual API resource name
+      #   3) :api_resource_name the actual API resource name and/or
+      #   4) :conditions a hash of conditions that are required by the resource
       RESOURCES_MAPPER = {
-          alltransactions: { resource_name: "transaction_history", is_collection: false},
-          calendar:        { resource_name: "calendar_event",      is_collection: true},
-          calendar_events: { resource_name: "calendar_event",      is_collection: true,  api_resource_name: "calendar"},
-          spreads:         { resource_name: "spread_history",      is_collection: false, api_resource_name: "spreads"},
-          spread_historys: { resource_name: "spread_history",      is_collection: false, api_resource_name: "spreads"}
+          alltransactions: { resource_name: "transaction_history", is_collection: false },
+          calendar:        { resource_name: "calendar_event",      is_collection: true },
+          calendar_events: { resource_name: "calendar_event",      is_collection: true,  api_resource_name: "calendar" },
+          spreads:         { resource_name: "spread_history",      is_collection: false, api_resource_name: "spreads" },
+          spread_historys: { resource_name: "spread_history",      is_collection: false, api_resource_name: "spreads" },
+          signals:         { resource_name: "signal",              is_collection: true,  api_resource_name: "signal/autochartist" },
+          key_levels:      { resource_name: "key_level",           is_collection: true,  api_resource_name: "signal/autochartist", collection_name: "signals", conditions: { type: "keylevel" } }
       }
 
       # Analyzes the resource request and determines the type of resource
@@ -74,11 +80,12 @@ module OandaAPI
       # @param [Symbol] resource_id id of the resource.
       # @return [void]
       def initialize_from_resource_name(resource_name, method, resource_id)
-        mapped_resource = RESOURCES_MAPPER.fetch(resource_name.to_sym,
-                                                 { resource_name: Utils.singularize(resource_name) })
+        mapped_resource = RESOURCES_MAPPER.fetch(resource_name.to_sym, { resource_name: Utils.singularize(resource_name) })
         self.resource_klass = mapped_resource.fetch :resource_name
-        @is_collection      = mapped_resource.fetch :is_collection, method == :get && resource_id.empty?
-        @collection_name    = ResourceBase.pluralize(mapped_resource.fetch(:resource_name)).to_sym if is_collection?
+        @is_collection = mapped_resource.fetch :is_collection, method == :get && resource_id.empty?
+        @collection_name = mapped_resource.fetch(:collection_name, ResourceBase.pluralize(mapped_resource.fetch(:resource_name)).to_sym) if is_collection?
+        # @collection_name    = ResourceBase.pluralize(mapped_resource.fetch(:resource_name)).to_sym if is_collection?
+        @conditions = mapped_resource.fetch(:conditions, {})
 
         # If resource is using an alias name, replace it with its real API resource name.
         @path.sub!(/\w*$/, mapped_resource[:api_resource_name]) if mapped_resource[:api_resource_name]

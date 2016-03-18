@@ -2,6 +2,36 @@
 
 ## Head
 
+* 2016-03-18  Added support for the Oanda [Forex Labs Autochartist](http://developer.oanda.com/rest-live/forex-labs/#autochartist) API:
+
+   ```ruby
+     require 'oanda_api'
+     # If you want to use sugar like: 1.day, 1.hour, 1.week, etc.
+     require 'active_support/core_ext/numeric/time'
+   
+     client = OandaAPI::Client::TokenClient.new(:practice, ENV.fetch("OANDA_PRACTICE_TOKEN"))   
+     signals = client.signals(type:"keylevel", instrument:"EUR_CHF", direction:"bearish").get
+     signals.each do |signal|
+       signal.class                 # => OandaAPI::Resource::Labs::Signal
+       signal.instrument            # => "EUR_CHF"
+       signal.type                  # => "keylevel"
+       signal.data.price            # => 1.09055
+       signal.data.pattern_endtime  # => 1458273600 (2016-03-18 04:00:00 UTC)
+       signal.data.points.keytimes  # => [1453320000, 1458201600, 1457697600, 1457409600, 
+                                          1456401600, 1456214400, 1453420800, 1453320000] 
+       signal.meta.pattern          # => "support"
+       signal.meta.pattern_type     # => "Approaching"
+       signal.meta.probability      # => 77.59
+       signal.meta.direction        # => -1
+       signal.meta.length           # => 252
+       signal.meta.completed?       # => true
+       signal.meta.scores.quality   # => 7
+       signal.meta.historical_stats.hour_of_day.correct # => 377
+       # ...
+       # See the Forex Labs Autochartist documentation for a complete list of data values. 
+     end
+    ```
+
 * 2016-03-16  Added support for the Oanda [Forex Labs Spread History](http://developer.oanda.com/rest-live/forex-labs/#spreads) API:
 
    ```ruby
