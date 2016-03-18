@@ -23,10 +23,10 @@ module OandaAPI
 
       def initialize(attributes = {})
         attribs = attributes.dup
-        self.order_opened  = attribs.delete(order_opened)  || {}
-        self.trade_opened  = attribs.delete(trade_opened)  || {}
-        self.trade_reduced = attribs.delete(trade_reduced) || {}
-        self.trades_closed = attribs.delete(trades_closed) || []
+        self.order_opened  = attribs.delete(:order_opened)  || {}
+        self.trade_opened  = attribs.delete(:trade_opened)  || {}
+        self.trade_reduced = attribs.delete(:trade_reduced) || {}
+        self.trades_closed = attribs.delete(:trades_closed) || []
         super attribs
       end
 
