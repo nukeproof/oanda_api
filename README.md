@@ -193,8 +193,8 @@ for detailed documentation and API usage notes.
 | client.account(123).transactions.get | GET /v1/accounts/123/transactions |
 | client.account(123).transaction(123).get | GET /v1/accounts/123/transactions/123 |
 | client.account(123).alltransactions.get | GET /v1/accounts/123/alltransactions |
-| client.calendar(instrument: ["AUD_USD", period: 86400).get | GET /labs/v1/calendar?instrument=AUD_USD&period=86400|
-| client.spreads(instrument: ["AUD_USD", period: 86400).get | GET /labs/v1/spreads?instrument=AUD_USD&period=86400|
+| client.calendar(instrument: "AUD_USD", period: 86400).get | GET /labs/v1/calendar?instrument=AUD_USD&period=86400|
+| client.spreads(instrument: "AUD_USD", period: 86400).get | GET /labs/v1/spreads?instrument=AUD_USD&period=86400|
 
 
 
