@@ -67,6 +67,16 @@ describe "OandaAPI::Client" do
         end
         expect(OandaAPI::Client.last_throttled_at).to be > before_throttled_at
       end
+      it "tracks the time the last request was issued" do
+        OandaAPI.configuration.use_request_throttling = true
+        before_throttled_at = Time.now
+        (OandaAPI.configuration.max_requests_per_second + 2).times do
+          OandaAPI::Client.throttle_request_rate
+        end
+        expect(OandaAPI::Client.last_request_at).to be > before_throttled_at
+        
+      end
+      
     end
   end
 
