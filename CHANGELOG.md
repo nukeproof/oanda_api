@@ -1,6 +1,6 @@
 # Change Log
 
-## Head
+## 0.9.5
 * 2016-03-18 Fixed `OandaAPI::Resource::Order#initialize` to correctly initialize `#order_opened`, `#trade_opened`, `#trade_reduced`, and `#trades_closed` from the response data.
 
 * 2016-03-16 Added support for the Oanda [Forex Labs Spread History](http://developer.oanda.com/rest-live/forex-labs/#spreads) API:
