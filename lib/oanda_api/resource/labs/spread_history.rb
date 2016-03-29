@@ -25,32 +25,32 @@ module OandaAPI
           @avg = []
           array.each { |elements| @avg << Tuple.new(*elements) }
         end
-        
+
         def maximums=(array=[])
           @max = []
           array.each { |elements| @max << Tuple.new(*elements) }
         end
-        
+
         def minimums=(array=[])
           @min = []
           array.each { |elements| @min << Tuple.new(*elements) }
         end
-        
+
         # @private
         class Tuple
           attr_accessor :spread,
                         :time,
                         :timestamp
-          
+
           def initialize(timestamp, spread)
-            @timestamp = timestamp  
+            @timestamp = timestamp
             @spread = spread
           end
-          
+
           def time
             Time.at(timestamp).utc if timestamp
           end
-          
+
           def to_s
             spread
           end

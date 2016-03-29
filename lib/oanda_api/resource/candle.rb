@@ -16,7 +16,7 @@ module OandaAPI
 
         # Top of hour alignments
         M2  = "M2"
-        M3  = "M3" 
+        M3  = "M3"
         M4  = "M4"
         M5  = "M5"
         M10 = "M10"
