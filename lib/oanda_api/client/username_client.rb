@@ -1,9 +1,10 @@
 module OandaAPI
   module Client
+    # :nocov:
     #
     # *DEPRECATED:* The Sandbox API endpoint is no longer supported by Oanda.
     # @deprecated Please use {OandaAPI::Client::TokenClient} with a practice account instead.
-    #
+    # 
     # Makes requests to the API.
     # Instances access the Oanda _sandbox_ environment.
     # Most client requests require a valid Oanda sandbox account username.
@@ -54,5 +55,7 @@ module OandaAPI
         { "username" => @username }
       end
     end
+    # :nocov:
   end
 end
+

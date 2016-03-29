@@ -30,7 +30,8 @@ module OandaAPI
         @open_trades = []
         super
       end
-
+      
+      # :nocov:
       def password=(v)
         deprecated :password
       end
@@ -46,7 +47,8 @@ module OandaAPI
       def username
         deprecated :username
       end
-
+      # :nocov:
+      
       def deprecated (method)
         warn Kernel.caller.first + " [ DEPRECATED ] #{method} has been removed by Oanda"
       end

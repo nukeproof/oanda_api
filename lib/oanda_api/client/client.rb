@@ -59,7 +59,8 @@ module OandaAPI
 
     # Returns an absolute URI for a resource request.
     #
-    # @param [ResourceDescriptor]
+    # @param [OandaAPI::Client::ResourceDescriptor] resource_descriptor metadata
+    #   describing the requested resource.
     #
     # @return [String] a URI.
     def api_uri(resource_descriptor)
