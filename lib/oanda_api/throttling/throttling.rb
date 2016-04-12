@@ -76,6 +76,10 @@ module OandaAPI
           return
         end
 
+        # Use an anonymous module, so that it can be prepended into
+        # the including class. Prepending is important because we're
+        # monkey-patching the including class's `.new` method, and want
+        # to be able to call `super` to invoke that original `.new`.
         connection_rate_limiter = Module.new do
           klass.define_singleton_method :new do |*args, &block|
             Throttling.throttle_connection_rate
