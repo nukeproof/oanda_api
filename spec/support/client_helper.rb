@@ -2,8 +2,12 @@ require 'support/vcr'
 
 module ClientHelper
   # Returns a practice API client
-  def self.client
-    @client ||= OandaAPI::Client::TokenClient.new :practice, test_account_token
+  def self.client(force_new: false)
+    if force_new
+      OandaAPI::Client::TokenClient.new(:practice, test_account_token)
+    else
+      @client ||= OandaAPI::Client::TokenClient.new :practice, test_account_token
+    end
   end
 
   def self.test_account_token

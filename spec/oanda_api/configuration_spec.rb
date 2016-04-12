@@ -72,6 +72,7 @@ describe "OandaAPI::Configuration" do
     end
   end
 
+  #---
   describe "#max_requests_per_second" do
     it "returns the default max requests per second" do
       expect(config.max_requests_per_second).to eq OandaAPI::Configuration::MAX_REQUESTS_PER_SECOND
@@ -99,6 +100,36 @@ describe "OandaAPI::Configuration" do
     it "is the inverse of #max_requests_per_second" do
       config.max_requests_per_second = 2
       expect(config.min_request_interval).to eq(0.5)
+    end
+  end
+  
+  describe "#max_new_connections_per_second" do
+    it "returns the default max new connections per second" do
+      expect(config.max_new_connections_per_second).to eq OandaAPI::Configuration::MAX_NEW_CONNECTIONS_PER_SECOND
+    end
+  end
+
+  describe "#max_new_connections_per_second=" do
+    it "overrides the default max new connections per second" do
+      config.max_new_connections_per_second = 5
+      expect(config.max_new_connections_per_second).to eq 5
+    end
+
+    it "must be numeric" do
+      expect { config.max_new_connections_per_second = "X" }.to raise_error(ArgumentError)
+    end
+
+    it "must be > 0" do
+      [-10, 0].each do |val|
+        expect { config.max_new_connections_per_second = val }.to raise_error(ArgumentError)
+      end
+    end
+  end
+
+  describe "#min_new_connection_interval" do
+    it "is the inverse of #max_new_connections_per_second" do
+      config.max_new_connections_per_second = 2
+      expect(config.min_new_connection_interval).to eq(0.5)
     end
   end
 

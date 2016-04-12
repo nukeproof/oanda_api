@@ -3,15 +3,16 @@ module OandaAPI
 
   # Configures client API settings.
   class Configuration
-    DATETIME_FORMAT         = :rfc3339
-    LABS_API_VERSION        = "labs/v1"
-    MAX_REQUESTS_PER_SECOND = 15
-    OPEN_TIMEOUT            = 10
-    READ_TIMEOUT            = 10
-    REST_API_VERSION        = "v1"
-    USE_COMPRESSION         = false
-    USE_REQUEST_THROTTLING  = false
-    CONNECTION_POOL_SIZE    = 2
+    DATETIME_FORMAT                = :rfc3339
+    LABS_API_VERSION               = "labs/v1"
+    MAX_NEW_CONNECTIONS_PER_SECOND = 2
+    MAX_REQUESTS_PER_SECOND        = 15
+    OPEN_TIMEOUT                   = 10
+    READ_TIMEOUT                   = 10
+    REST_API_VERSION               = "v1"
+    USE_COMPRESSION                = false
+    USE_REQUEST_THROTTLING         = false
+    CONNECTION_POOL_SIZE           = 2
 
     # Maximum size of the persistent connection pool.
     # @return [Numeric]
@@ -27,7 +28,7 @@ module OandaAPI
     end
 
     # The format in which dates will be returned by the API (`:rfc3339` or `:unix`).
-    # See the Oanda Development Guide for more details about {http://developer.oanda.com/rest-live/development-guide/#date_Time_Format DateTime formats}.
+    #  See the Oanda Development Guide for more details about {http://developer.oanda.com/rest-live/development-guide/#date_Time_Format DateTime formats}.
     # @return [Symbol]
     def datetime_format
       @datetime_format ||= DATETIME_FORMAT
@@ -54,8 +55,34 @@ module OandaAPI
       @labs_api_version = value
     end
 
+    # The maximum number of new connections per second allowed to be made
+    #  to the API. Only enforced if {#use_request_throttling?} is `true`.
+    #
+    # @return [Numeric]
+    def max_new_connections_per_second
+      @max_new_connections_per_second ||= MAX_NEW_CONNECTIONS_PER_SECOND
+    end
+
+    # See {#max_new_connections_per_second}.
+    # @param [Numeric] value
+    # @return [void]
+    def max_new_connections_per_second=(value)
+      fail ArgumentError, "must be a number > 0" unless value.is_a?(Numeric) && value > 0
+      @min_new_connection_interval = nil
+      @max_new_connections_per_second = value
+    end
+
+    # The minimum amount of time in seconds that must elapse between
+    #  new connection attempts to the API.
+    #  Determined by {#max_new_connections_per_second}. Only enforced if
+    #  {#use_request_throttling?} is `true`.
+    # @return [Float]
+    def min_new_connection_interval
+      @min_new_connection_interval ||= (1.0 / max_new_connections_per_second)
+    end
+
     # The maximum number of requests per second allowed to be made through the
-    # API. Only enforced if {#use_request_throttling?} is `true`.
+    #  API. Only enforced if {#use_request_throttling?} is `true`.
     #
     # @return [Numeric]
     def max_requests_per_second
@@ -71,15 +98,17 @@ module OandaAPI
       @max_requests_per_second = value
     end
 
-    # The minimum amount of time in seconds that must elapse between consecutive requests to the API.
-    # Determined by {#max_requests_per_second}. Only enforced if {#use_request_throttling?} is `true`.
+    # The minimum amount of time in seconds that must elapse between
+    #  consecutive requests to the API. Determined by
+    #  {#max_requests_per_second}. Only enforced if {#use_request_throttling?}
+    #   is `true`.
     # @return [Float]
     def min_request_interval
       @min_request_interval ||= (1.0 / max_requests_per_second)
     end
 
-    # The number of seconds the client waits for a new HTTP connection to be established before
-    # raising a timeout exception.
+    # The number of seconds the client waits for a new HTTP connection to be
+    #  established before raising a timeout exception.
     # @return [Numeric]
     def open_timeout
       @open_timeout ||= OPEN_TIMEOUT
@@ -94,7 +123,7 @@ module OandaAPI
     end
 
     # The number of seconds the client waits for a response from the API before
-    # raising a timeout exception.
+    #  raising a timeout exception.
     # @return [Numeric]
     def read_timeout
       @read_timeout ||= READ_TIMEOUT
@@ -121,8 +150,9 @@ module OandaAPI
       @rest_api_version = value
     end
 
-    # Specifies whether the API uses compressed responses. See the Oanda Development Guide
-    # for more information about {http://developer.oanda.com/rest-live/best-practices/#compression compression}.
+    # Specifies whether the API uses compressed responses. See the Oanda
+    #  Development Guide for more information about
+    #  {http://developer.oanda.com/rest-live/best-practices/#compression compression}.
     #
     # @return [Boolean]
     def use_compression
@@ -140,12 +170,12 @@ module OandaAPI
     end
 
     # Throttles the rate of requests made to the API. See the Oanda Developers
-    # Guide for information about
-    # {http://developer.oanda.com/rest-live/best-practices/ connection limits}.
-    # If enabled, requests will not exceed {#max_requests_per_second}. If the
-    # rate of requests received by the client exceeds this limit, the client
-    # delays the rate-exceeding request for the minimum amount of time needed
-    # to satisfy the rate limit.
+    #  Guide for information about
+    #  {http://developer.oanda.com/rest-live/best-practices/ connection limits}.
+    #  If enabled, requests will not exceed {#max_requests_per_second}. If the
+    #  rate of requests received by the client exceeds this limit, the client
+    #  delays the rate-exceeding request for the minimum amount of time needed
+    #  to satisfy the rate limit.
     #
     # @return [Boolean]
     def use_request_throttling
@@ -160,6 +190,9 @@ module OandaAPI
     # @return [void]
     def use_request_throttling=(value)
       @use_request_throttling = !!value
+      #
+      # See OandaAPI::Throttling
+      Net::HTTP.limit_connection_rate !!value
     end
 
     # @private

@@ -4,7 +4,7 @@
 [![Test Coverage](https://codeclimate.com/github/nukeproof/oanda_api/badges/coverage.svg)](https://codeclimate.com/github/nukeproof/oanda_api)
 
 Access Oanda FX accounts, get market data, trade, build trading strategies using Ruby.
-## Synopsis 
+## Synopsis
 OandaAPI is a simple Ruby wrapper for the [Oanda REST API](http://developer.oanda.com/rest-live/introduction/).
 
 This style of API wrapper is typically called a [fluent](http://en.wikipedia.org/wiki/Fluent_interface) interface. The wrapper translates native Ruby objects to and from JSON representations that the API understands.
@@ -12,8 +12,8 @@ This style of API wrapper is typically called a [fluent](http://en.wikipedia.org
 For example,
 
 ```ruby
-client = OandaAPI::Client::TokenClient.new(:practice, "practice_account_token") 
-account = client.account(12345).get 
+client = OandaAPI::Client::TokenClient.new(:practice, "practice_account_token")
+account = client.account(12345).get
 ```
 
 returns an `OandaAPI::Resource::Account`, with method accessors for all of the [Account](http://developer.oanda.com/rest-live/accounts/) attributes defined by the Oanda API.
@@ -85,7 +85,7 @@ require 'oanda_api'
 client = OandaAPI::Client::TokenClient.new(:practice, ENV.fetch("OANDA_PRACTICE_TOKEN"))
 
 order = client.account(12345)
-              .order(instrument: "USD_JPY", 
+              .order(instrument: "USD_JPY",
                            type: "market",
                            side: "buy",
                           units: 10_000)
@@ -93,7 +93,7 @@ order = client.account(12345)
 
 order.price            # => 114.887
 order.time             # => 2014-12-20 21:25:57 UTC
-order.trade_opened.id  # => 175491416                         
+order.trade_opened.id  # => 175491416
 ```
 
 ### Closing a position
@@ -107,7 +107,7 @@ position = account.position("USD_JPY").get  # => OandaAPI::Resource::Position
 
 position.ave_price  # => 114.898
 position.side       # => "buy"
-position.units      # => 30_000 
+position.units      # => 30_000
 
 # Close out the 30_000 long position
 closed_position = account.position("USD_JPY").close  # => OandaAPI::Resource::Position
@@ -153,7 +153,7 @@ OandaAPI also supports the [Oanda realtime streaming API](http://developer.oanda
 For example to stream live prices,
 
 ```ruby
-client = OandaAPI::Streaming::Client.new(:practice, ENV.fetch("OANDA_PRACTICE_TOKEN")) 
+client = OandaAPI::Streaming::Client.new(:practice, ENV.fetch("OANDA_PRACTICE_TOKEN"))
 prices = client.prices(account_id: 1234, instruments: %w[AUD_CAD AUD_CHF])
 prices.stream do |price|
   # Note: The code in this block should handle the price
@@ -161,7 +161,7 @@ prices.stream do |price|
   #       For example, you could publish the tick on a queue to be handled
   #       by some other thread or process.
   price  # => OandaAPI::Resource::Price
-end 
+end
 ```
 
 
@@ -229,6 +229,7 @@ OandaAPI.configure do |config|
   config.use_compression = true
   config.use_request_throttling = true
   config.max_requests_per_second = 10
+	config.max_new_connections_per_second = 1
 end
 ```
 
@@ -240,7 +241,7 @@ OandaAPI works with Ruby 2.0 and higher.
 Tested on:
 
 * MRI 2.1, 2.2, 2.3
-* JRuby 1.7, 9.0.0.0.pre
+* JRuby 9.0.0, 9.0.5
 * Rubinius 2.4, 2.5
 
 Contributing

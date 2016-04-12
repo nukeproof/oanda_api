@@ -1,5 +1,17 @@
 # Change Log
 
+## Head
+* 2016-04-11 Added support for rate limiting new connections. See [Connection Limits](http://developer.oanda.com/rest-live/best-practices/#connection_limits) for details on limits. Rate limiting is NOT enabled by default. To enable rate limiting:
+
+   ```ruby
+		OandaAPI.configure do |config|
+		  config.use_request_throttling = true
+		  config.max_new_connections_per_second = 1
+		end
+	```
+
+  `config.use_request_throttling = true` can prevent exceeding Oanda's limit on the rate of creating new connections (you'll receive an HTTP 429 response, and a message stating: "Rate limit violation of newly established connections" if you exceed the limit). Note that this is a completely separate rate limit from the maximum number of requests allowed per second on an established connection (use `config.max_requests_per_second` to configure that).
+
 ## 0.9.5
 * 2016-03-18 Fixed `OandaAPI::Resource::Order#initialize` to correctly initialize `#order_opened`, `#trade_opened`, `#trade_reduced`, and `#trades_closed` from the response data.
 
@@ -9,23 +21,23 @@
      require 'oanda_api'
      # If you want to use sugar like: 1.day, 1.hour, 1.week, etc.
      require 'active_support/core_ext/numeric/time'
-   
-     client = OandaAPI::Client::TokenClient.new(:practice, ENV.fetch("OANDA_PRACTICE_TOKEN"))   
+
+     client = OandaAPI::Client::TokenClient.new(:practice, ENV.fetch("OANDA_PRACTICE_TOKEN"))
      spreads = client.spreads(instrument: "EUR_USD", period: 1.day).get
-     
+
      spreads.class                    # OandaAPI::Resource::Labs::SpreadHistory
      spreads.averages.size            # => 94
      spreads.maximums.size            # => 76
      spreads.averages.size            # => 50
-     
+
      spreads.averages.first.spread    # => 1.81711
      spreads.averages.first.timestamp # => 1458081900
      spreads.averages.first.time      # => 2016-03-15 23:00:00 UTC
-     
+
      spreads.maximums.first.spread    # => 2.1
      spreads.maximums.first.timestamp # => 1458082800
      spreads.maximums.first.time      # => 2016-03-15 23:00:00 UTC
-     
+
      spreads.minimums.first.spread    # => 1.6
      spreads.minimums.first.timestamp # => 1458081900
      spreads.minimums.first.time      # => 2016-03-15 23:00:00 UTC
@@ -43,9 +55,9 @@
      require 'oanda_api'
      # If you want to use sugar like: 1.day, 1.hour, 1.week, etc.
      require 'active_support/core_ext/numeric/time'
-   
+
      client = OandaAPI::Client::TokenClient.new(:practice, ENV.fetch("OANDA_PRACTICE_TOKEN"))
-   
+
      client.calendar_events(period: 1.day).get.each do |event|
        event.class     # => OandaAPI::Resource::CalendarEvent
        event.title     # => "Industrial Production"
@@ -60,7 +72,7 @@
        event.time      # => 2016-03-08 07:00:00 UTC
      end
    ```
-     
+
 * 2016-03-14 Deprecated `OandaAPI::Client::UsernameClient`. The `http://api-sandbox.oanda.com/` endpoint that this client used is no longer supported by Oanda. Instead, you can use `OandaAPI::Client::TokenClient` with a practice account.
 
 ## 0.9.4

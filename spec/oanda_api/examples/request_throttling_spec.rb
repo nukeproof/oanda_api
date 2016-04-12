@@ -5,11 +5,13 @@ describe "OandaAPI::Client" do
   let(:client) { ClientHelper.client }
 
   around do |example|
-    reset_configuration(:use_request_throttling, :max_requests_per_second) { example.call }
+    reset_configuration(:use_request_throttling, 
+                        :max_requests_per_second, 
+                        :max_new_connections_per_second) { example.call }
   end
 
   context "when NOT using request throttling" do
-    it "it does NOT limit the request rate of multiple sequential requests", :vcr do
+    it "does NOT limit the request rate of multiple sequential requests", :vcr do
       OandaAPI.configuration.use_request_throttling = false
       VCR.use_cassette("without_throttling") do
         start_time = Time.now
@@ -24,11 +26,40 @@ describe "OandaAPI::Client" do
         expect(Time.now - start_time).to be > 0.0 && be < 1.0
       end
     end
+
+    it "does NOT limit the rate of NEW connections", :vcr do
+      OandaAPI.configuration.use_request_throttling = false
+      VCR.use_cassette("without_throttling_new_connections") do
+        message = ""
+        begin
+          1.upto(10) do
+            client = ClientHelper.client force_new: true
+            client.prices(instruments: ["EUR_USD"]).get
+          end
+        rescue OandaAPI::RequestError => e
+          message = e.message
+        end
+        expect(message).to match(/Rate limit violation of newly established connections/)
+      end
+    end
   end
 
   context "when using request throttling" do
+    it "limits the rate of NEW connections", :vcr do
+      OandaAPI.configuration.use_request_throttling = true
+      VCR.use_cassette("with_throttling_new_connections") do
+        successful_connections = 0
+        1.upto(10) do
+          client = ClientHelper.client force_new: true
+          client.accounts.get
+          successful_connections += 1
+        end
+        expect(successful_connections).to eq 10
+      end
+    end
+
     context "with a positive value set for max_requests_per_second" do
-      it "it limits multiple sequential requests to the rate specified in the requests_per_second setting " do
+      it "limits multiple sequential requests to the rate specified in the requests_per_second setting " do
         OandaAPI.configuration.use_request_throttling = true
         OandaAPI.configuration.max_requests_per_second = 2
 
@@ -47,7 +78,7 @@ describe "OandaAPI::Client" do
       end
 
       context "when multiple threads make synchronized requests to the same client instance" do
-        it "it throttles the combined requests made by all threads" do
+        it "throttles the combined requests made by all threads" do
           OandaAPI.configuration.use_request_throttling = true
           OandaAPI.configuration.max_requests_per_second = 3
 
