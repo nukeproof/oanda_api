@@ -1,6 +1,7 @@
 # Change Log
 
 ## Head
+* 2016-06-06 Fixed request rate throttling to correct calculation of wait times. Prior to this fix, under heavy loads from multiple threads, wait times could be calculated incorrectly and result in excessive delays between requests. Thanks [LifeBCE](https://github.com/lifeBCE)!   
 * 2016-04-11 Added support for rate limiting new connections. See [Connection Limits](http://developer.oanda.com/rest-live/best-practices/#connection_limits) for details on limits. Rate limiting is NOT enabled by default. To enable rate limiting:
 
    ```ruby
