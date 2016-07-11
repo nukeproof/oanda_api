@@ -116,7 +116,8 @@ module OandaAPI
                     params_key    => Utils.stringify_keys(conditions.merge(default_params)),
                     :headers      => OandaAPI.configuration.headers.merge(headers),
                     :open_timeout => OandaAPI.configuration.open_timeout,
-                    :read_timeout => OandaAPI.configuration.read_timeout
+                    :read_timeout => OandaAPI.configuration.read_timeout,
+                    :timeout      => OandaAPI.configuration.open_timeout
       end
 
       handle_response response, resource_descriptor
