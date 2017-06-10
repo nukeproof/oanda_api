@@ -14,6 +14,7 @@ module OandaAPI
   # - Uses request rate limiting if enabled (see {Configuration#use_request_throttling}).
   module Client
     include HTTParty
+    include Http
 
     # Used to synchronize throttling metrics
     @throttle_mutex = Mutex.new
@@ -108,7 +109,7 @@ module OandaAPI
       method = Client.map_method_to_http_verb method
       resource_descriptor = ResourceDescriptor.new path, method
 
-      response = Http::Exceptions.wrap_and_check do
+      response = Exceptions.wrap_and_check do
         params_key = [:post, :patch, :put].include?(method) ? :body : :query
         Client.throttle_request_rate
         Client.send method,
@@ -121,7 +122,7 @@ module OandaAPI
       end
 
       handle_response response, resource_descriptor
-      rescue Http::Exceptions::HttpException => e
+      rescue Exceptions::HttpException => e
         raise OandaAPI::RequestError, e.message
     end
 
