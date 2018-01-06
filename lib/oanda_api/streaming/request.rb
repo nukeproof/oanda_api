@@ -88,14 +88,18 @@ module OandaAPI
         @stop_requested = false
         @running = true
         # @http.set_debug_output $stderr
+        buffer = StringIO.new
         @http.request(@request) do |response|
           response.read_body do |chunk|
-            handle_response(chunk).each do |resource|
+            buffer << chunk
+            next unless chunk.match(/\r\n\Z/)
+            handle_response(buffer.string).each do |resource|
               block.call(resource, @client)
               return if stop_requested?
             end
             return if stop_requested?
             sleep 0.01
+            buffer.flush
           end
         end
       ensure
