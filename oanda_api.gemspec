@@ -21,12 +21,12 @@ Gem::Specification.new do |s|
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.require_paths = ["lib"]
 
-  s.add_dependency "httparty",                  "~> 0.13", ">= 0.13.5"
+  s.add_dependency "httparty",                  "= 0.13.5"
   s.add_dependency "persistent_httparty",       "~> 0.1"
   s.add_dependency "http-exceptions",           "~> 0.0"
 
   s.add_development_dependency "rspec",         "~> 3.2"
-  s.add_development_dependency "vcr",           "~> 3.0"
-  s.add_development_dependency "webmock",       "~> 1.24"
+  s.add_development_dependency "vcr",           "~> 4.0"
+  s.add_development_dependency "webmock",       "~> 3.2.1"
   s.add_development_dependency "yard",          "~> 0.8"
 end
