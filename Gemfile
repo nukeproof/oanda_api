@@ -16,7 +16,7 @@ end
 
 group :test do
   gem "simplecov", :require => false
-  gem "codeclimate-test-reporter", :group => :test, :require => nil
-  # gem "yajl-ruby"      # install this if you're running under mri or rubinius
-  # gem "gson"           # install this if you're running under jruby
+ # gem "codeclimate-test-reporter", :group => :test, :require => nil
+ # gem "yajl-ruby"      # install this if you're running under mri or rubinius
+ # gem "gson"           # install this if you're running under jruby
 end
