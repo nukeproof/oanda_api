@@ -119,7 +119,6 @@ module OandaAPI
                     :read_timeout => OandaAPI.configuration.read_timeout,
                     :timeout      => OandaAPI.configuration.open_timeout
       end
-
       handle_response response, resource_descriptor
       rescue Http::Exceptions::HttpException => e
         raise OandaAPI::RequestError, e.message
@@ -211,9 +210,10 @@ module OandaAPI
     # @return [OandaAPI::ResourceBase, OandaAPI::ResourceCollection] see {#execute_request}
     def handle_response(response, resource_descriptor)
       if resource_descriptor.is_collection?
-        ResourceCollection.new response, resource_descriptor
+        location = response.respond_to?(:location) ? response.location : nil
+        ResourceCollection.new response.parsed_response, resource_descriptor, location: location
       else
-        resource_descriptor.resource_klass.new response
+        resource_descriptor.resource_klass.new response.parsed_response
       end
     end
 

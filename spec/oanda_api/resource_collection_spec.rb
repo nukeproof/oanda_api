@@ -44,6 +44,15 @@ describe "OandaAPI::ResourceCollection" do
           expect(resource_collection.extra).to eq "I'm special"
         end
       end
+
+      describe "with location argument" do
+        let(:resource_collection) { OandaAPI::ResourceCollection.new({ candles: []}, resource_descriptor, location: "/some/resource/id" ) }
+
+        it "has a location accessor" do
+          expect(resource_collection.location).to eq "/some/resource/id"
+        end
+      end
+
     end
 
     context "without the collection attribute expected by the resource descriptor " do

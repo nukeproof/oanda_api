@@ -26,7 +26,9 @@ module OandaAPI
     #
     # @param [OandaAPI::Client::ResourceDescriptor] resource_descriptor metadata
     #   about the resource collection and its elements.
-    def initialize(attributes, resource_descriptor)
+    #
+    # @param [String] location optional may contain a URI to related resources
+    def initialize(attributes, resource_descriptor, location:nil)
       attributes = {} if attributes.nil? || attributes.respond_to?(:empty) && attributes.empty?
       if attributes.kind_of?(Array)
         h = {}
@@ -38,7 +40,7 @@ module OandaAPI
       @attributes = Utils.rubyize_keys attributes
       @collection = @attributes.delete(resource_descriptor.collection_name) || []
       @collection.map! { |resource| resource_descriptor.resource_klass.new resource }
-      @location = attributes.location if attributes.respond_to? :location
+      @location = location
     end
 
     # @yield [OandaAPI::ResourceBase]
