@@ -14,26 +14,28 @@ http_interactions:
       Connection:
       - keep-alive
       Keep-Alive:
-      - 30
+      - '30'
   response:
     status:
       code: 200
       message: OK
     headers:
       Server:
-      - openresty/1.7.0.1
+      - openresty/1.9.15.1
       Date:
-      - Mon, 14 Mar 2016 23:01:12 GMT
+      - Mon, 08 Jan 2018 18:26:33 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '14383'
+      - '14611'
       Connection:
       - keep-alive
       Etag:
-      - '"21cbe123ce099d570ae83273e2ce2743987ca052"'
+      - '"f1504381da368d2d283522ba5f785563884e11bb"'
       Expires:
-      - Tue, 15 Mar 2016 23:01:12 GMT
+      - Tue, 09 Jan 2018 18:26:33 GMT
+      Access-Control-Allow-Origin:
+      - "*"
     body:
       encoding: UTF-8
       string: "{\n\t\"instruments\" : [\n\t\t{\n\t\t\t\"instrument\" : \"AU200_AUD\",\n\t\t\t\"displayName\"
@@ -57,17 +59,17 @@ http_interactions:
         : \"CAD_JPY\",\n\t\t\t\"displayName\" : \"CAD\\/JPY\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\"
         : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"CAD_SGD\",\n\t\t\t\"displayName\"
         : \"CAD\\/SGD\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"CH20_CHF\",\n\t\t\t\"displayName\" : \"Swiss 20\",\n\t\t\t\"pip\" : \"1.0\",\n\t\t\t\"maxTradeUnits\"
-        : 100\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"CHF_HKD\",\n\t\t\t\"displayName\"
-        : \"CHF\\/HKD\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
-        : \"CHF_JPY\",\n\t\t\t\"displayName\" : \"CHF\\/JPY\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\"
-        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"CHF_ZAR\",\n\t\t\t\"displayName\"
-        : \"CHF\\/ZAR\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
+        : \"CHF_HKD\",\n\t\t\t\"displayName\" : \"CHF\\/HKD\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
+        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"CHF_JPY\",\n\t\t\t\"displayName\"
+        : \"CHF\\/JPY\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
+        : \"CHF_ZAR\",\n\t\t\t\"displayName\" : \"CHF\\/ZAR\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
+        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"CN50_USD\",\n\t\t\t\"displayName\"
+        : \"China A50\",\n\t\t\t\"pip\" : \"1.0\",\n\t\t\t\"maxTradeUnits\" : 100\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
         : \"CORN_USD\",\n\t\t\t\"displayName\" : \"Corn\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\"
         : 150000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"DE10YB_EUR\",\n\t\t\t\"displayName\"
         : \"Bund\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\" : 6000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
         : \"DE30_EUR\",\n\t\t\t\"displayName\" : \"Germany 30\",\n\t\t\t\"pip\" :
-        \"1.0\",\n\t\t\t\"maxTradeUnits\" : 250\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
+        \"1.0\",\n\t\t\t\"maxTradeUnits\" : 25\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
         : \"EU50_EUR\",\n\t\t\t\"displayName\" : \"Europe 50\",\n\t\t\t\"pip\" : \"1.0\",\n\t\t\t\"maxTradeUnits\"
         : 300\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"EUR_AUD\",\n\t\t\t\"displayName\"
         : \"EUR\\/AUD\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
@@ -114,8 +116,10 @@ http_interactions:
         : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"HK33_HKD\",\n\t\t\t\"displayName\"
         : \"Hong Kong 33\",\n\t\t\t\"pip\" : \"1.0\",\n\t\t\t\"maxTradeUnits\" : 400\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
         : \"HKD_JPY\",\n\t\t\t\"displayName\" : \"HKD\\/JPY\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
-        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"JP225_USD\",\n\t\t\t\"displayName\"
-        : \"Japan 225\",\n\t\t\t\"pip\" : \"1.0\",\n\t\t\t\"maxTradeUnits\" : 100\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
+        : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"IN50_USD\",\n\t\t\t\"displayName\"
+        : \"India 50\",\n\t\t\t\"pip\" : \"1.0\",\n\t\t\t\"maxTradeUnits\" : 100\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
+        : \"JP225_USD\",\n\t\t\t\"displayName\" : \"Japan 225\",\n\t\t\t\"pip\" :
+        \"1.0\",\n\t\t\t\"maxTradeUnits\" : 100\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
         : \"NAS100_USD\",\n\t\t\t\"displayName\" : \"US Nas 100\",\n\t\t\t\"pip\"
         : \"1.0\",\n\t\t\t\"maxTradeUnits\" : 400\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
         : \"NATGAS_USD\",\n\t\t\t\"displayName\" : \"Natural Gas\",\n\t\t\t\"pip\"
@@ -144,13 +148,15 @@ http_interactions:
         : \"SUGAR_USD\",\n\t\t\t\"displayName\" : \"Sugar\",\n\t\t\t\"pip\" : \"0.0001\",\n\t\t\t\"maxTradeUnits\"
         : 4000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"TRY_JPY\",\n\t\t\t\"displayName\"
         : \"TRY\\/JPY\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
+        : \"TWIX_USD\",\n\t\t\t\"displayName\" : \"Taiwan Index\",\n\t\t\t\"pip\"
+        : \"1.0\",\n\t\t\t\"maxTradeUnits\" : 100\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
         : \"UK100_GBP\",\n\t\t\t\"displayName\" : \"UK 100\",\n\t\t\t\"pip\" : \"1.0\",\n\t\t\t\"maxTradeUnits\"
-        : 100\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"UK10YB_GBP\",\n\t\t\t\"displayName\"
+        : 20\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"UK10YB_GBP\",\n\t\t\t\"displayName\"
         : \"UK 10Y Gilt\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\" : 6000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
         : \"US2000_USD\",\n\t\t\t\"displayName\" : \"US Russ 2000\",\n\t\t\t\"pip\"
         : \"0.01\",\n\t\t\t\"maxTradeUnits\" : 1000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
         : \"US30_USD\",\n\t\t\t\"displayName\" : \"US Wall St 30\",\n\t\t\t\"pip\"
-        : \"1.0\",\n\t\t\t\"maxTradeUnits\" : 100\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
+        : \"1.0\",\n\t\t\t\"maxTradeUnits\" : 25\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
         : \"USB02Y_USD\",\n\t\t\t\"displayName\" : \"US 2Y T-Note\",\n\t\t\t\"pip\"
         : \"0.01\",\n\t\t\t\"maxTradeUnits\" : 6000\n\t\t},\n\t\t{\n\t\t\t\"instrument\"
         : \"USB05Y_USD\",\n\t\t\t\"displayName\" : \"US 5Y T-Note\",\n\t\t\t\"pip\"
@@ -231,5 +237,5 @@ http_interactions:
         : 500\n\t\t},\n\t\t{\n\t\t\t\"instrument\" : \"ZAR_JPY\",\n\t\t\t\"displayName\"
         : \"ZAR\\/JPY\",\n\t\t\t\"pip\" : \"0.01\",\n\t\t\t\"maxTradeUnits\" : 10000000\n\t\t}\n\t]\n}"
     http_version: 
-  recorded_at: Mon, 14 Mar 2016 23:01:13 GMT
-recorded_with: VCR 2.9.3
+  recorded_at: Mon, 08 Jan 2018 18:26:44 GMT
+recorded_with: VCR 4.0.0

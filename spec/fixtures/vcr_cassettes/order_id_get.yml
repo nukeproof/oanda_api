@@ -5,7 +5,7 @@ http_interactions:
     uri: https://api-fxpractice.oanda.com/v1/accounts/1871900/orders
     body:
       encoding: UTF-8
-      string: expiry=2016-03-14T22%3A30%3A16%2B00%3A00&instrument=EUR_USD&price=1.0101499999999999&side=buy&type=limit&units=10000
+      string: expiry=2018-01-08T19%3A26%3A42%2B00%3A00&instrument=EUR_USD&price=1.0967&side=buy&type=limit&units=10000
     headers:
       X-Accept-Datetime-Format:
       - RFC3339
@@ -14,36 +14,38 @@ http_interactions:
       Connection:
       - keep-alive
       Keep-Alive:
-      - 30
+      - '30'
   response:
     status:
       code: 201
       message: CREATED
     headers:
       Server:
-      - openresty/1.7.0.1
+      - openresty/1.9.15.1
       Date:
-      - Mon, 14 Mar 2016 21:30:17 GMT
+      - Mon, 08 Jan 2018 18:26:31 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '315'
+      - '314'
       Connection:
       - keep-alive
       Location:
-      - https://api-fxpractice.oanda.com/v1/accounts/1871900/orders/10173828259
+      - http://api-fxpractice.oanda.com/v1/accounts/1871900/orders/10903628493
+      Access-Control-Allow-Origin:
+      - "*"
     body:
       encoding: UTF-8
-      string: "{\n\t\"instrument\" : \"EUR_USD\",\n\t\"time\" : \"2016-03-14T21:30:17.000000Z\",\n\t\"price\"
-        : 1.01015,\n\t\"orderOpened\" : {\n\t\t\"id\" : 10173828259,\n\t\t\"units\"
+      string: "{\n\t\"instrument\" : \"EUR_USD\",\n\t\"time\" : \"2018-01-08T18:26:31.000000Z\",\n\t\"price\"
+        : 1.0967,\n\t\"orderOpened\" : {\n\t\t\"id\" : 10903628493,\n\t\t\"units\"
         : 10000,\n\t\t\"side\" : \"buy\",\n\t\t\"takeProfit\" : 0,\n\t\t\"stopLoss\"
-        : 0,\n\t\t\"expiry\" : \"2016-03-14T22:30:16.000000Z\",\n\t\t\"upperBound\"
+        : 0,\n\t\t\"expiry\" : \"2018-01-08T19:26:42.000000Z\",\n\t\t\"upperBound\"
         : 0,\n\t\t\"lowerBound\" : 0,\n\t\t\"trailingStop\" : 0\n\t}\n}"
     http_version: 
-  recorded_at: Mon, 14 Mar 2016 21:30:17 GMT
+  recorded_at: Mon, 08 Jan 2018 18:26:42 GMT
 - request:
     method: get
-    uri: https://api-fxpractice.oanda.com/v1/accounts/1871900/orders/10173828259
+    uri: https://api-fxpractice.oanda.com/v1/accounts/1871900/orders
     body:
       encoding: US-ASCII
       string: ''
@@ -55,30 +57,110 @@ http_interactions:
       Connection:
       - keep-alive
       Keep-Alive:
-      - 30
+      - '30'
   response:
     status:
       code: 200
       message: OK
     headers:
       Server:
-      - openresty/1.7.0.1
+      - openresty/1.9.15.1
       Date:
-      - Mon, 14 Mar 2016 21:30:17 GMT
+      - Mon, 08 Jan 2018 18:26:31 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '303'
+      - '2361'
+      Connection:
+      - keep-alive
+      Access-Control-Expose-Headers:
+      - X-Result-Count
+      Etag:
+      - '"ff0a5884d6797d07fec03ce9ca872dd2de699d38"'
+      X-Result-Count:
+      - '7'
+      Access-Control-Allow-Origin:
+      - "*"
+    body:
+      encoding: UTF-8
+      string: "{\n\t\"orders\" : [\n\t\t{\n\t\t\t\"id\" : 10903628493,\n\t\t\t\"instrument\"
+        : \"EUR_USD\",\n\t\t\t\"units\" : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"type\"
+        : \"limit\",\n\t\t\t\"time\" : \"2018-01-08T18:26:31.000000Z\",\n\t\t\t\"price\"
+        : 1.0967,\n\t\t\t\"takeProfit\" : 0,\n\t\t\t\"stopLoss\" : 0,\n\t\t\t\"expiry\"
+        : \"2018-01-08T19:26:42.000000Z\",\n\t\t\t\"upperBound\" : 0,\n\t\t\t\"lowerBound\"
+        : 0,\n\t\t\t\"trailingStop\" : 0\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10903628490,\n\t\t\t\"instrument\"
+        : \"USD_JPY\",\n\t\t\t\"units\" : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"type\"
+        : \"limit\",\n\t\t\t\"time\" : \"2018-01-08T18:26:31.000000Z\",\n\t\t\t\"price\"
+        : 112.964,\n\t\t\t\"takeProfit\" : 0,\n\t\t\t\"stopLoss\" : 0,\n\t\t\t\"expiry\"
+        : \"2018-01-08T19:26:42.000000Z\",\n\t\t\t\"upperBound\" : 0,\n\t\t\t\"lowerBound\"
+        : 0,\n\t\t\t\"trailingStop\" : 0\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10903628489,\n\t\t\t\"instrument\"
+        : \"EUR_USD\",\n\t\t\t\"units\" : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"type\"
+        : \"limit\",\n\t\t\t\"time\" : \"2018-01-08T18:26:31.000000Z\",\n\t\t\t\"price\"
+        : 1.0967,\n\t\t\t\"takeProfit\" : 0,\n\t\t\t\"stopLoss\" : 0,\n\t\t\t\"expiry\"
+        : \"2018-01-08T19:26:41.000000Z\",\n\t\t\t\"upperBound\" : 0,\n\t\t\t\"lowerBound\"
+        : 0,\n\t\t\t\"trailingStop\" : 0\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10903622531,\n\t\t\t\"instrument\"
+        : \"EUR_USD\",\n\t\t\t\"units\" : 9000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"type\"
+        : \"limit\",\n\t\t\t\"time\" : \"2018-01-08T18:03:53.000000Z\",\n\t\t\t\"price\"
+        : 1.09742,\n\t\t\t\"takeProfit\" : 0,\n\t\t\t\"stopLoss\" : 0,\n\t\t\t\"expiry\"
+        : \"2018-01-08T19:01:22.000000Z\",\n\t\t\t\"upperBound\" : 0,\n\t\t\t\"lowerBound\"
+        : 0,\n\t\t\t\"trailingStop\" : 0\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10903622526,\n\t\t\t\"instrument\"
+        : \"EUR_USD\",\n\t\t\t\"units\" : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"type\"
+        : \"limit\",\n\t\t\t\"time\" : \"2018-01-08T18:01:11.000000Z\",\n\t\t\t\"price\"
+        : 1.09742,\n\t\t\t\"takeProfit\" : 0,\n\t\t\t\"stopLoss\" : 0,\n\t\t\t\"expiry\"
+        : \"2018-01-08T19:01:21.000000Z\",\n\t\t\t\"upperBound\" : 0,\n\t\t\t\"lowerBound\"
+        : 0,\n\t\t\t\"trailingStop\" : 0\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10903622521,\n\t\t\t\"instrument\"
+        : \"USD_JPY\",\n\t\t\t\"units\" : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"type\"
+        : \"limit\",\n\t\t\t\"time\" : \"2018-01-08T18:01:11.000000Z\",\n\t\t\t\"price\"
+        : 112.981,\n\t\t\t\"takeProfit\" : 0,\n\t\t\t\"stopLoss\" : 0,\n\t\t\t\"expiry\"
+        : \"2018-01-08T19:01:21.000000Z\",\n\t\t\t\"upperBound\" : 0,\n\t\t\t\"lowerBound\"
+        : 0,\n\t\t\t\"trailingStop\" : 0\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10903622514,\n\t\t\t\"instrument\"
+        : \"EUR_USD\",\n\t\t\t\"units\" : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"type\"
+        : \"limit\",\n\t\t\t\"time\" : \"2018-01-08T18:01:10.000000Z\",\n\t\t\t\"price\"
+        : 1.09742,\n\t\t\t\"takeProfit\" : 0,\n\t\t\t\"stopLoss\" : 0,\n\t\t\t\"expiry\"
+        : \"2018-01-08T19:01:21.000000Z\",\n\t\t\t\"upperBound\" : 0,\n\t\t\t\"lowerBound\"
+        : 0,\n\t\t\t\"trailingStop\" : 0\n\t\t}\n\t]\n}"
+    http_version: 
+  recorded_at: Mon, 08 Jan 2018 18:26:42 GMT
+- request:
+    method: get
+    uri: https://api-fxpractice.oanda.com/v1/accounts/1871900/orders/10903628493
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Accept-Datetime-Format:
+      - RFC3339
+      Authorization:
+      - Bearer <OANDA_TESTING_API_TOKEN>
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - '30'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - openresty/1.9.15.1
+      Date:
+      - Mon, 08 Jan 2018 18:34:28 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '302'
       Connection:
       - keep-alive
       Etag:
-      - '"badd17e09acaed9a0aa8686ce12e975b81eacf8d"'
+      - '"e03a78de5981b275693739a4e771c3c4bd5d6b4a"'
+      Access-Control-Allow-Origin:
+      - "*"
     body:
       encoding: UTF-8
-      string: "{\n\t\"id\" : 10173828259,\n\t\"instrument\" : \"EUR_USD\",\n\t\"units\"
-        : 10000,\n\t\"side\" : \"buy\",\n\t\"type\" : \"limit\",\n\t\"time\" : \"2016-03-14T21:30:17.000000Z\",\n\t\"price\"
-        : 1.01015,\n\t\"takeProfit\" : 0,\n\t\"stopLoss\" : 0,\n\t\"expiry\" : \"2016-03-14T22:30:16.000000Z\",\n\t\"upperBound\"
+      string: "{\n\t\"id\" : 10903628493,\n\t\"instrument\" : \"EUR_USD\",\n\t\"units\"
+        : 10000,\n\t\"side\" : \"buy\",\n\t\"type\" : \"limit\",\n\t\"time\" : \"2018-01-08T18:26:31.000000Z\",\n\t\"price\"
+        : 1.0967,\n\t\"takeProfit\" : 0,\n\t\"stopLoss\" : 0,\n\t\"expiry\" : \"2018-01-08T19:26:42.000000Z\",\n\t\"upperBound\"
         : 0,\n\t\"lowerBound\" : 0,\n\t\"trailingStop\" : 0\n}"
     http_version: 
-  recorded_at: Mon, 14 Mar 2016 21:30:17 GMT
-recorded_with: VCR 2.9.3
+  recorded_at: Mon, 08 Jan 2018 18:34:39 GMT
+recorded_with: VCR 4.0.0

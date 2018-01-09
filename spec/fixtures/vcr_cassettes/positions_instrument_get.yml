@@ -14,31 +14,33 @@ http_interactions:
       Connection:
       - keep-alive
       Keep-Alive:
-      - 30
+      - '30'
   response:
     status:
       code: 200
       message: OK
     headers:
       Server:
-      - openresty/1.7.0.1
+      - openresty/1.9.15.1
       Date:
-      - Mon, 14 Mar 2016 23:06:51 GMT
+      - Mon, 08 Jan 2018 18:26:33 GMT
       Content-Type:
       - application/json
       Content-Length:
       - '275'
       Connection:
       - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
     body:
       encoding: UTF-8
-      string: "{\n\t\"instrument\" : \"USD_JPY\",\n\t\"time\" : \"2016-03-14T23:06:51.000000Z\",\n\t\"price\"
-        : 113.808,\n\t\"tradeOpened\" : {\n\t\t\"id\" : 10173950020,\n\t\t\"units\"
+      string: "{\n\t\"instrument\" : \"USD_JPY\",\n\t\"time\" : \"2018-01-08T18:26:33.000000Z\",\n\t\"price\"
+        : 113.076,\n\t\"tradeOpened\" : {\n\t\t\"id\" : 10903628503,\n\t\t\"units\"
         : 10000,\n\t\t\"side\" : \"buy\",\n\t\t\"takeProfit\" : 0,\n\t\t\"stopLoss\"
         : 0,\n\t\t\"trailingStop\" : 0\n\t},\n\t\"tradesClosed\" : [],\n\t\"tradeReduced\"
         : {}\n}"
     http_version: 
-  recorded_at: Mon, 14 Mar 2016 23:06:52 GMT
+  recorded_at: Mon, 08 Jan 2018 18:26:44 GMT
 - request:
     method: get
     uri: https://api-fxpractice.oanda.com/v1/accounts/1871900/positions/USD_JPY
@@ -53,16 +55,16 @@ http_interactions:
       Connection:
       - keep-alive
       Keep-Alive:
-      - 30
+      - '30'
   response:
     status:
       code: 200
       message: OK
     headers:
       Server:
-      - openresty/1.7.0.1
+      - openresty/1.9.15.1
       Date:
-      - Mon, 14 Mar 2016 23:06:51 GMT
+      - Mon, 08 Jan 2018 18:26:33 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -70,11 +72,13 @@ http_interactions:
       Connection:
       - keep-alive
       Etag:
-      - '"c4db4750bb723e7c523d935a49d104b6ce3ca9c3"'
+      - '"de8884e346ed6cf6f97ceede0f186e8c77a71a50"'
+      Access-Control-Allow-Origin:
+      - "*"
     body:
       encoding: UTF-8
       string: "{\n\t\"instrument\" : \"USD_JPY\",\n\t\"units\" : 80000,\n\t\"side\"
-        : \"buy\",\n\t\"avgPrice\" : 113.648\n}"
+        : \"buy\",\n\t\"avgPrice\" : 113.091\n}"
     http_version: 
-  recorded_at: Mon, 14 Mar 2016 23:06:52 GMT
-recorded_with: VCR 2.9.3
+  recorded_at: Mon, 08 Jan 2018 18:26:44 GMT
+recorded_with: VCR 4.0.0

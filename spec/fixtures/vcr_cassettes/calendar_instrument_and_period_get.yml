@@ -14,48 +14,51 @@ http_interactions:
       Connection:
       - keep-alive
       Keep-Alive:
-      - 30
+      - '30'
   response:
     status:
       code: 200
       message: OK
     headers:
       Server:
-      - openresty/1.7.0.1
+      - openresty/1.9.15.1
       Date:
-      - Tue, 15 Mar 2016 03:18:02 GMT
+      - Mon, 08 Jan 2018 18:26:30 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '1521'
+      - '1292'
       Connection:
       - keep-alive
       Vary:
       - Accept-Encoding
       - Accept-Encoding
       - Content-Type
+      Access-Control-Allow-Headers:
+      - Accept, Authorization, Content-Type, Origin, X-Accept-DateTime-Format, X-HTTP-Method-Override
+      Access-Control-Allow-Methods:
+      - GET, OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
       Version:
       - '0.2'
       X-Catalyst:
       - '5.90042'
       Set-Cookie:
-      - opc_id=86B5FFB8-EA5C-11E5-881F-D1E6F4BDB1E4; path=/; Expires=Fri, 13-Mar-2026
-        03:18:02 GMT
-      - opc_id=86B6044A-EA5C-11E5-B985-AD0F236BD5E3; path=/; Expires=Fri, 13-Mar-2026
-        03:18:02 GMT
-      Access-Control-Allow-Origin:
-      - "*"
+      - opc_id=7250BBAC-F4A1-11E7-BE04-88F12FF57115; path=/; Expires=Thu, 06-Jan-2028
+        18:26:30 GMT
+      - opc_id=7250C322-F4A1-11E7-A624-8A0207DAA140; path=/; Expires=Thu, 06-Jan-2028
+        18:26:30 GMT
     body:
       encoding: UTF-8
-      string: '[{"market":"0.5","actual":"3.3","region":"europe","currency":"EUR","forecast":"-0.3","previous":"-0.3","unit":"%
-        m/m","timestamp":1457420400,"title":"Industrial Production","impact":2},{"market":"180","actual":"212.6","region":"americas","currency":"CAD","previous":"165.1","unit":"k","timestamp":1457442900,"title":"Housing
-        starts","impact":2},{"market":"-2.3","actual":"-9.8","region":"americas","currency":"CAD","previous":"7.7","unit":"%
-        m/m","timestamp":1457443800,"title":"Building permits","impact":2},{"currency":"CAD","unit":"","timestamp":1457535600,"region":"americas","title":"BoC
-        interest rate announcement","impact":3},{"market":"0.05","actual":"0.00","region":"europe","currency":"EUR","forecast":"0.05","previous":"0.05","unit":"%","timestamp":1457613900,"title":"ECB
-        - Refinancing Rate","impact":3},{"market":"-0.4","actual":"-0.40","region":"europe","currency":"EUR","forecast":"-0.4","previous":"-0.3","unit":"%","timestamp":1457613900,"title":"ECB
-        - Deposit Rate","impact":3},{"currency":"EUR","unit":"","timestamp":1457616600,"region":"europe","title":"ECB
-        President Draghi gives press conference following interest rate announcement","impact":3},{"market":"10","actual":"-2.3","region":"americas","currency":"CAD","forecast":"0","previous":"-5.7","unit":"k","timestamp":1457703000,"title":"Net
-        Change in Employment","impact":2},{"market":"7.2","actual":"7.3","region":"americas","currency":"CAD","forecast":"7.2","previous":"7.2","unit":"%","timestamp":1457703000,"title":"Unemployment","impact":2}]'
+      string: '[{"market":"-13","actual":"-29","region":"europe","currency":"EUR","previous":"-20","unit":"k","timestamp":1514969700,"title":"Unemployment
+        Change","impact":2},{"market":"5.5","actual":"5.5","region":"europe","currency":"EUR","previous":"5.5","unit":"%","timestamp":1514969700,"title":"Unemployment
+        Rate (sa)","impact":2},{"market":"1","actual":"2.3","region":"europe","currency":"EUR","previous":"-1.0","unit":"%
+        m/m","timestamp":1515135600,"title":"Retail Sales","impact":2},{"market":"1.4","actual":"1.4","region":"europe","currency":"EUR","forecast":"1.4","previous":"1.5","unit":"%
+        y/y","timestamp":1515146400,"title":"HICP","impact":3},{"market":"1.0","actual":"0.9","region":"europe","currency":"EUR","forecast":"0.9","previous":"0.9","unit":"%
+        y/y","timestamp":1515146400,"title":"HICP - Core","impact":3},{"market":"6.0","actual":"5.7","region":"americas","currency":"CAD","previous":"5.9","unit":"%","timestamp":1515159000,"title":"Unemployment","impact":3},{"actual":"60.4","previous":"63.0","currency":"CAD","unit":"index","timestamp":1515164400,"region":"americas","title":"Ivey
+        PMI","impact":2},{"market":"-0.2","actual":"-0.4","region":"europe","currency":"EUR","forecast":"-0.8","previous":"0.7","unit":"%
+        m/m","timestamp":1515394800,"title":"Factory orders (sa)","impact":2}]'
     http_version: 
-  recorded_at: Tue, 15 Mar 2016 03:18:02 GMT
-recorded_with: VCR 3.0.1
+  recorded_at: Mon, 08 Jan 2018 18:26:41 GMT
+recorded_with: VCR 4.0.0

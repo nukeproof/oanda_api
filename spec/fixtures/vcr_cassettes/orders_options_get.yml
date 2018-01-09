@@ -5,7 +5,7 @@ http_interactions:
     uri: https://api-fxpractice.oanda.com/v1/accounts/1871900/orders
     body:
       encoding: UTF-8
-      string: expiry=2016-03-14T22%3A30%3A16%2B00%3A00&instrument=USD_JPY&price=113.673&side=buy&type=limit&units=10000
+      string: expiry=2018-01-08T19%3A26%3A42%2B00%3A00&instrument=USD_JPY&price=112.964&side=buy&type=limit&units=10000
     headers:
       X-Accept-Datetime-Format:
       - RFC3339
@@ -14,16 +14,16 @@ http_interactions:
       Connection:
       - keep-alive
       Keep-Alive:
-      - 30
+      - '30'
   response:
     status:
       code: 201
       message: CREATED
     headers:
       Server:
-      - openresty/1.7.0.1
+      - openresty/1.9.15.1
       Date:
-      - Mon, 14 Mar 2016 21:30:16 GMT
+      - Mon, 08 Jan 2018 18:26:31 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -31,16 +31,18 @@ http_interactions:
       Connection:
       - keep-alive
       Location:
-      - https://api-fxpractice.oanda.com/v1/accounts/1871900/orders/10173828251
+      - http://api-fxpractice.oanda.com/v1/accounts/1871900/orders/10903628490
+      Access-Control-Allow-Origin:
+      - "*"
     body:
       encoding: UTF-8
-      string: "{\n\t\"instrument\" : \"USD_JPY\",\n\t\"time\" : \"2016-03-14T21:30:16.000000Z\",\n\t\"price\"
-        : 113.673,\n\t\"orderOpened\" : {\n\t\t\"id\" : 10173828251,\n\t\t\"units\"
+      string: "{\n\t\"instrument\" : \"USD_JPY\",\n\t\"time\" : \"2018-01-08T18:26:31.000000Z\",\n\t\"price\"
+        : 112.964,\n\t\"orderOpened\" : {\n\t\t\"id\" : 10903628490,\n\t\t\"units\"
         : 10000,\n\t\t\"side\" : \"buy\",\n\t\t\"takeProfit\" : 0,\n\t\t\"stopLoss\"
-        : 0,\n\t\t\"expiry\" : \"2016-03-14T22:30:16.000000Z\",\n\t\t\"upperBound\"
+        : 0,\n\t\t\"expiry\" : \"2018-01-08T19:26:42.000000Z\",\n\t\t\"upperBound\"
         : 0,\n\t\t\"lowerBound\" : 0,\n\t\t\"trailingStop\" : 0\n\t}\n}"
     http_version: 
-  recorded_at: Mon, 14 Mar 2016 21:30:16 GMT
+  recorded_at: Mon, 08 Jan 2018 18:26:42 GMT
 - request:
     method: get
     uri: https://api-fxpractice.oanda.com/v1/accounts/1871900/orders?instrument=USD_JPY
@@ -55,66 +57,43 @@ http_interactions:
       Connection:
       - keep-alive
       Keep-Alive:
-      - 30
+      - '30'
   response:
     status:
       code: 200
       message: OK
     headers:
       Server:
-      - openresty/1.7.0.1
+      - openresty/1.9.15.1
       Date:
-      - Mon, 14 Mar 2016 21:30:16 GMT
+      - Mon, 08 Jan 2018 18:26:31 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '2364'
+      - '689'
       Connection:
       - keep-alive
       Access-Control-Expose-Headers:
       - X-Result-Count
       Etag:
-      - '"423e273543c08346c70ca836ba731aa1dc94bae5"'
+      - '"b37885951eacf8e081809450c54ac1b64c461f85"'
       X-Result-Count:
-      - '7'
+      - '2'
+      Access-Control-Allow-Origin:
+      - "*"
     body:
       encoding: UTF-8
-      string: "{\n\t\"orders\" : [\n\t\t{\n\t\t\t\"id\" : 10173828251,\n\t\t\t\"instrument\"
+      string: "{\n\t\"orders\" : [\n\t\t{\n\t\t\t\"id\" : 10903628490,\n\t\t\t\"instrument\"
         : \"USD_JPY\",\n\t\t\t\"units\" : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"type\"
-        : \"limit\",\n\t\t\t\"time\" : \"2016-03-14T21:30:16.000000Z\",\n\t\t\t\"price\"
-        : 113.673,\n\t\t\t\"takeProfit\" : 0,\n\t\t\t\"stopLoss\" : 0,\n\t\t\t\"expiry\"
-        : \"2016-03-14T22:30:16.000000Z\",\n\t\t\t\"upperBound\" : 0,\n\t\t\t\"lowerBound\"
-        : 0,\n\t\t\t\"trailingStop\" : 0\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10173825142,\n\t\t\t\"instrument\"
+        : \"limit\",\n\t\t\t\"time\" : \"2018-01-08T18:26:31.000000Z\",\n\t\t\t\"price\"
+        : 112.964,\n\t\t\t\"takeProfit\" : 0,\n\t\t\t\"stopLoss\" : 0,\n\t\t\t\"expiry\"
+        : \"2018-01-08T19:26:42.000000Z\",\n\t\t\t\"upperBound\" : 0,\n\t\t\t\"lowerBound\"
+        : 0,\n\t\t\t\"trailingStop\" : 0\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10903622521,\n\t\t\t\"instrument\"
         : \"USD_JPY\",\n\t\t\t\"units\" : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"type\"
-        : \"limit\",\n\t\t\t\"time\" : \"2016-03-14T21:27:01.000000Z\",\n\t\t\t\"price\"
-        : 113.673,\n\t\t\t\"takeProfit\" : 0,\n\t\t\t\"stopLoss\" : 0,\n\t\t\t\"expiry\"
-        : \"2016-03-14T22:27:01.000000Z\",\n\t\t\t\"upperBound\" : 0,\n\t\t\t\"lowerBound\"
-        : 0,\n\t\t\t\"trailingStop\" : 0\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10173824146,\n\t\t\t\"instrument\"
-        : \"USD_JPY\",\n\t\t\t\"units\" : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"type\"
-        : \"limit\",\n\t\t\t\"time\" : \"2016-03-14T21:26:10.000000Z\",\n\t\t\t\"price\"
-        : 113.673,\n\t\t\t\"takeProfit\" : 0,\n\t\t\t\"stopLoss\" : 0,\n\t\t\t\"expiry\"
-        : \"2016-03-14T22:26:09.000000Z\",\n\t\t\t\"upperBound\" : 0,\n\t\t\t\"lowerBound\"
-        : 0,\n\t\t\t\"trailingStop\" : 0\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10173822590,\n\t\t\t\"instrument\"
-        : \"USD_JPY\",\n\t\t\t\"units\" : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"type\"
-        : \"limit\",\n\t\t\t\"time\" : \"2016-03-14T21:24:48.000000Z\",\n\t\t\t\"price\"
-        : 113.665,\n\t\t\t\"takeProfit\" : 0,\n\t\t\t\"stopLoss\" : 0,\n\t\t\t\"expiry\"
-        : \"2016-03-14T22:24:48.000000Z\",\n\t\t\t\"upperBound\" : 0,\n\t\t\t\"lowerBound\"
-        : 0,\n\t\t\t\"trailingStop\" : 0\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10173768333,\n\t\t\t\"instrument\"
-        : \"USD_JPY\",\n\t\t\t\"units\" : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"type\"
-        : \"limit\",\n\t\t\t\"time\" : \"2016-03-14T20:57:58.000000Z\",\n\t\t\t\"price\"
-        : 113.695,\n\t\t\t\"takeProfit\" : 0,\n\t\t\t\"stopLoss\" : 0,\n\t\t\t\"expiry\"
-        : \"2016-03-14T21:57:58.000000Z\",\n\t\t\t\"upperBound\" : 0,\n\t\t\t\"lowerBound\"
-        : 0,\n\t\t\t\"trailingStop\" : 0\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10173764680,\n\t\t\t\"instrument\"
-        : \"USD_JPY\",\n\t\t\t\"units\" : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"type\"
-        : \"limit\",\n\t\t\t\"time\" : \"2016-03-14T20:56:57.000000Z\",\n\t\t\t\"price\"
-        : 113.695,\n\t\t\t\"takeProfit\" : 0,\n\t\t\t\"stopLoss\" : 0,\n\t\t\t\"expiry\"
-        : \"2016-03-14T21:56:56.000000Z\",\n\t\t\t\"upperBound\" : 0,\n\t\t\t\"lowerBound\"
-        : 0,\n\t\t\t\"trailingStop\" : 0\n\t\t},\n\t\t{\n\t\t\t\"id\" : 10173700793,\n\t\t\t\"instrument\"
-        : \"USD_JPY\",\n\t\t\t\"units\" : 10000,\n\t\t\t\"side\" : \"buy\",\n\t\t\t\"type\"
-        : \"limit\",\n\t\t\t\"time\" : \"2016-03-14T20:38:59.000000Z\",\n\t\t\t\"price\"
-        : 113.686,\n\t\t\t\"takeProfit\" : 0,\n\t\t\t\"stopLoss\" : 0,\n\t\t\t\"expiry\"
-        : \"2016-03-14T21:38:59.000000Z\",\n\t\t\t\"upperBound\" : 0,\n\t\t\t\"lowerBound\"
+        : \"limit\",\n\t\t\t\"time\" : \"2018-01-08T18:01:11.000000Z\",\n\t\t\t\"price\"
+        : 112.981,\n\t\t\t\"takeProfit\" : 0,\n\t\t\t\"stopLoss\" : 0,\n\t\t\t\"expiry\"
+        : \"2018-01-08T19:01:21.000000Z\",\n\t\t\t\"upperBound\" : 0,\n\t\t\t\"lowerBound\"
         : 0,\n\t\t\t\"trailingStop\" : 0\n\t\t}\n\t]\n}"
     http_version: 
-  recorded_at: Mon, 14 Mar 2016 21:30:16 GMT
-recorded_with: VCR 2.9.3
+  recorded_at: Mon, 08 Jan 2018 18:26:42 GMT
+recorded_with: VCR 4.0.0

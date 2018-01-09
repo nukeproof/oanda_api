@@ -14,16 +14,16 @@ http_interactions:
       Connection:
       - keep-alive
       Keep-Alive:
-      - 30
+      - '30'
   response:
     status:
       code: 200
       message: OK
     headers:
       Server:
-      - openresty/1.7.0.1
+      - openresty/1.9.15.1
       Date:
-      - Mon, 14 Mar 2016 16:28:07 GMT
+      - Mon, 08 Jan 2018 18:26:30 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -32,6 +32,8 @@ http_interactions:
       - keep-alive
       Etag:
       - '"efb224b14d5e6c03ab1a19a9983274e09d124b20"'
+      Access-Control-Allow-Origin:
+      - "*"
     body:
       encoding: UTF-8
       string: "{\n\t\"accounts\" : [\n\t\t{\n\t\t\t\"accountId\" : 1871900,\n\t\t\t\"accountName\"
@@ -41,7 +43,7 @@ http_interactions:
         : 5094848,\n\t\t\t\"accountName\" : \"WTI\",\n\t\t\t\"accountCurrency\" :
         \"CAD\",\n\t\t\t\"marginRate\" : 0.05\n\t\t}\n\t]\n}"
     http_version: 
-  recorded_at: Mon, 14 Mar 2016 16:28:07 GMT
+  recorded_at: Mon, 08 Jan 2018 18:26:40 GMT
 - request:
     method: get
     uri: https://api-fxpractice.oanda.com/v1/accounts/1871900
@@ -56,30 +58,32 @@ http_interactions:
       Connection:
       - keep-alive
       Keep-Alive:
-      - 30
+      - '30'
   response:
     status:
       code: 200
       message: OK
     headers:
       Server:
-      - openresty/1.7.0.1
+      - openresty/1.9.15.1
       Date:
-      - Mon, 14 Mar 2016 16:28:08 GMT
+      - Mon, 08 Jan 2018 18:26:30 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '276'
+      - '281'
       Connection:
       - keep-alive
       Etag:
-      - '"158b907f059d85274d407e88979dc2a616a3e0c9"'
+      - '"2b9c9470fe6b14a3b70f84f38c304849658437fd"'
+      Access-Control-Allow-Origin:
+      - "*"
     body:
       encoding: UTF-8
       string: "{\n\t\"accountId\" : 1871900,\n\t\"accountName\" : \"Primary\",\n\t\"balance\"
-        : 100375.6663,\n\t\"unrealizedPl\" : -18.712,\n\t\"realizedPl\" : 332.7989,\n\t\"marginUsed\"
-        : 8111.17,\n\t\"marginAvail\" : 92245.7843,\n\t\"openTrades\" : 16,\n\t\"openOrders\"
-        : 0,\n\t\"marginRate\" : 0.05,\n\t\"accountCurrency\" : \"USD\"\n}"
+        : 95861.8318,\n\t\"unrealizedPl\" : 20787.7185,\n\t\"realizedPl\" : 802.0217,\n\t\"marginUsed\"
+        : 19156.3275,\n\t\"marginAvail\" : 97493.2228,\n\t\"openTrades\" : 33,\n\t\"openOrders\"
+        : 4,\n\t\"marginRate\" : 0.05,\n\t\"accountCurrency\" : \"USD\"\n}"
     http_version: 
-  recorded_at: Mon, 14 Mar 2016 16:28:08 GMT
-recorded_with: VCR 3.0.1
+  recorded_at: Mon, 08 Jan 2018 18:26:40 GMT
+recorded_with: VCR 4.0.0

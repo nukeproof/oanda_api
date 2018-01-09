@@ -14,30 +14,32 @@ http_interactions:
       Connection:
       - keep-alive
       Keep-Alive:
-      - 30
+      - '30'
   response:
     status:
       code: 200
       message: OK
     headers:
       Server:
-      - openresty/1.7.0.1
+      - openresty/1.9.15.1
       Date:
-      - Mon, 14 Mar 2016 23:03:28 GMT
+      - Mon, 08 Jan 2018 18:26:34 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '259'
+      - '254'
       Connection:
       - keep-alive
       Etag:
-      - '"c7552c220406ff187c34d0c25964c2f79aed1d9f"'
+      - '"6d5bf87c951bbd04839c13ab691326007159991a"'
+      Access-Control-Allow-Origin:
+      - "*"
     body:
       encoding: UTF-8
       string: "{\n\t\"instrument\" : \"EUR_USD\",\n\t\"granularity\" : \"M1\",\n\t\"candles\"
-        : [\n\t\t{\n\t\t\t\"time\" : \"2016-03-14T23:03:00.000000Z\",\n\t\t\t\"openMid\"
-        : 1.110365,\n\t\t\t\"highMid\" : 1.110365,\n\t\t\t\"lowMid\" : 1.11036,\n\t\t\t\"closeMid\"
-        : 1.11036,\n\t\t\t\"volume\" : 2,\n\t\t\t\"complete\" : false\n\t\t}\n\t]\n}"
+        : [\n\t\t{\n\t\t\t\"time\" : \"2018-01-08T18:26:00.000000Z\",\n\t\t\t\"openMid\"
+        : 1.1968,\n\t\t\t\"highMid\" : 1.1968,\n\t\t\t\"lowMid\" : 1.19676,\n\t\t\t\"closeMid\"
+        : 1.1968,\n\t\t\t\"volume\" : 5,\n\t\t\t\"complete\" : false\n\t\t}\n\t]\n}"
     http_version: 
-  recorded_at: Mon, 14 Mar 2016 23:03:29 GMT
-recorded_with: VCR 2.9.3
+  recorded_at: Mon, 08 Jan 2018 18:26:45 GMT
+recorded_with: VCR 4.0.0

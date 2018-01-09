@@ -14,41 +14,47 @@ http_interactions:
       Connection:
       - keep-alive
       Keep-Alive:
-      - 30
+      - '30'
   response:
     status:
       code: 200
       message: OK
     headers:
       Server:
-      - openresty/1.7.0.1
+      - openresty/1.9.15.1
       Date:
-      - Tue, 15 Mar 2016 03:18:02 GMT
+      - Mon, 08 Jan 2018 18:26:30 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '141'
+      - '503'
       Connection:
       - keep-alive
       Vary:
       - Accept-Encoding
       - Accept-Encoding
       - Content-Type
+      Access-Control-Allow-Headers:
+      - Accept, Authorization, Content-Type, Origin, X-Accept-DateTime-Format, X-HTTP-Method-Override
+      Access-Control-Allow-Methods:
+      - GET, OPTIONS
+      Access-Control-Allow-Origin:
+      - "*"
       Version:
       - '0.2'
       X-Catalyst:
       - '5.90042'
       Set-Cookie:
-      - opc_id=86D286D8-EA5C-11E5-BFAA-A35DFB29ED21; path=/; Expires=Fri, 13-Mar-2026
-        03:18:02 GMT
-      - opc_id=86D28C82-EA5C-11E5-B66E-E64900000000; path=/; Expires=Fri, 13-Mar-2026
-        03:18:02 GMT
-      Access-Control-Allow-Origin:
-      - "*"
+      - opc_id=72769714-F4A1-11E7-B1C7-C41200000000; path=/; Expires=Thu, 06-Jan-2028
+        18:26:30 GMT
+      - opc_id=7276A57E-F4A1-11E7-A835-D187E969E271; path=/; Expires=Thu, 06-Jan-2028
+        18:26:30 GMT
     body:
       encoding: UTF-8
-      string: '[{"actual":"-0.1","previous":"0.5","currency":"AUD","unit":"% m/m","timestamp":1458001800,"region":"asia","title":"New
-        motor vehicle sales"}]'
+      string: '[{"market":"-0.2","actual":"-0.4","region":"europe","currency":"EUR","forecast":"-0.8","previous":"0.7","unit":"%
+        m/m","timestamp":1515394800,"title":"Factory orders (sa)","impact":2},{"market":"-0.1","actual":"0.0","region":"europe","currency":"CHF","previous":"-0.1","unit":"%
+        m/m","timestamp":1515399300,"title":"CPI","impact":3},{"market":"0.2","actual":"-0.6","region":"europe","currency":"GBP","previous":"0.3","unit":"%
+        m/m","timestamp":1515400200,"title":"Halifax House Price Index","impact":1}]'
     http_version: 
-  recorded_at: Tue, 15 Mar 2016 03:18:02 GMT
-recorded_with: VCR 3.0.1
+  recorded_at: Mon, 08 Jan 2018 18:26:41 GMT
+recorded_with: VCR 4.0.0

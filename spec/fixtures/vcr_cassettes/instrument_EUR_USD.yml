@@ -14,29 +14,31 @@ http_interactions:
       Connection:
       - keep-alive
       Keep-Alive:
-      - 30
+      - '30'
   response:
     status:
       code: 200
       message: OK
     headers:
       Server:
-      - openresty/1.7.0.1
+      - openresty/1.9.15.1
       Date:
-      - Mon, 14 Mar 2016 21:27:00 GMT
+      - Mon, 08 Jan 2018 18:26:31 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '139'
+      - '138'
       Connection:
       - keep-alive
       Etag:
-      - '"71a1a9fb60980bbf53ef4bfc3a238d77e468739a"'
+      - '"7ae48eaaf99b13c86a4ff0374d1f777d5f08ae97"'
+      Access-Control-Allow-Origin:
+      - "*"
     body:
       encoding: UTF-8
       string: "{\n\t\"prices\" : [\n\t\t{\n\t\t\t\"instrument\" : \"EUR_USD\",\n\t\t\t\"time\"
-        : \"2016-03-14T21:26:36.569124Z\",\n\t\t\t\"bid\" : 1.11015,\n\t\t\t\"ask\"
-        : 1.11036\n\t\t}\n\t]\n}"
+        : \"2018-01-08T18:26:29.565399Z\",\n\t\t\t\"bid\" : 1.1967,\n\t\t\t\"ask\"
+        : 1.19683\n\t\t}\n\t]\n}"
     http_version: 
-  recorded_at: Mon, 14 Mar 2016 21:27:00 GMT
-recorded_with: VCR 2.9.3
+  recorded_at: Mon, 08 Jan 2018 18:26:41 GMT
+recorded_with: VCR 4.0.0

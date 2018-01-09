@@ -14,16 +14,16 @@ http_interactions:
       Connection:
       - keep-alive
       Keep-Alive:
-      - 30
+      - '30'
   response:
     status:
       code: 200
       message: OK
     headers:
       Server:
-      - openresty/1.7.0.1
+      - openresty/1.9.15.1
       Date:
-      - Mon, 14 Mar 2016 16:23:39 GMT
+      - Mon, 08 Jan 2018 18:26:41 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -31,14 +31,16 @@ http_interactions:
       Connection:
       - keep-alive
       Etag:
-      - '"01b82f3f9c73b53655860ad76ce02ed086b60f0c"'
+      - '"f31dec3261edd9030df81dc0ba69fe5a9d4e2fc9"'
+      Access-Control-Allow-Origin:
+      - "*"
     body:
       encoding: UTF-8
       string: "{\n\t\"prices\" : [\n\t\t{\n\t\t\t\"instrument\" : \"EUR_USD\",\n\t\t\t\"time\"
-        : \"2016-03-14T16:23:38.477982Z\",\n\t\t\t\"bid\" : 1.11149,\n\t\t\t\"ask\"
-        : 1.11162\n\t\t}\n\t]\n}"
+        : \"2018-01-08T18:26:31.344805Z\",\n\t\t\t\"bid\" : 1.19674,\n\t\t\t\"ask\"
+        : 1.19686\n\t\t}\n\t]\n}"
     http_version: 
-  recorded_at: Mon, 14 Mar 2016 16:23:39 GMT
+  recorded_at: Mon, 08 Jan 2018 18:26:52 GMT
 - request:
     method: get
     uri: https://api-fxpractice.oanda.com/v1/prices?instruments=EUR_USD
@@ -53,16 +55,16 @@ http_interactions:
       Connection:
       - keep-alive
       Keep-Alive:
-      - 30
+      - '30'
   response:
     status:
       code: 200
       message: OK
     headers:
       Server:
-      - openresty/1.7.0.1
+      - openresty/1.9.15.1
       Date:
-      - Mon, 14 Mar 2016 16:23:40 GMT
+      - Mon, 08 Jan 2018 18:26:42 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -70,14 +72,16 @@ http_interactions:
       Connection:
       - keep-alive
       Etag:
-      - '"01b82f3f9c73b53655860ad76ce02ed086b60f0c"'
+      - '"f31dec3261edd9030df81dc0ba69fe5a9d4e2fc9"'
+      Access-Control-Allow-Origin:
+      - "*"
     body:
       encoding: UTF-8
       string: "{\n\t\"prices\" : [\n\t\t{\n\t\t\t\"instrument\" : \"EUR_USD\",\n\t\t\t\"time\"
-        : \"2016-03-14T16:23:38.477982Z\",\n\t\t\t\"bid\" : 1.11149,\n\t\t\t\"ask\"
-        : 1.11162\n\t\t}\n\t]\n}"
+        : \"2018-01-08T18:26:31.344805Z\",\n\t\t\t\"bid\" : 1.19674,\n\t\t\t\"ask\"
+        : 1.19686\n\t\t}\n\t]\n}"
     http_version: 
-  recorded_at: Mon, 14 Mar 2016 16:23:40 GMT
+  recorded_at: Mon, 08 Jan 2018 18:26:52 GMT
 - request:
     method: get
     uri: https://api-fxpractice.oanda.com/v1/prices?instruments=EUR_USD
@@ -92,16 +96,16 @@ http_interactions:
       Connection:
       - keep-alive
       Keep-Alive:
-      - 30
+      - '30'
   response:
     status:
       code: 200
       message: OK
     headers:
       Server:
-      - openresty/1.7.0.1
+      - openresty/1.9.15.1
       Date:
-      - Mon, 14 Mar 2016 16:23:40 GMT
+      - Mon, 08 Jan 2018 18:26:43 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -109,14 +113,16 @@ http_interactions:
       Connection:
       - keep-alive
       Etag:
-      - '"01b82f3f9c73b53655860ad76ce02ed086b60f0c"'
+      - '"f31dec3261edd9030df81dc0ba69fe5a9d4e2fc9"'
+      Access-Control-Allow-Origin:
+      - "*"
     body:
       encoding: UTF-8
       string: "{\n\t\"prices\" : [\n\t\t{\n\t\t\t\"instrument\" : \"EUR_USD\",\n\t\t\t\"time\"
-        : \"2016-03-14T16:23:38.477982Z\",\n\t\t\t\"bid\" : 1.11149,\n\t\t\t\"ask\"
-        : 1.11162\n\t\t}\n\t]\n}"
+        : \"2018-01-08T18:26:31.344805Z\",\n\t\t\t\"bid\" : 1.19674,\n\t\t\t\"ask\"
+        : 1.19686\n\t\t}\n\t]\n}"
     http_version: 
-  recorded_at: Mon, 14 Mar 2016 16:23:40 GMT
+  recorded_at: Mon, 08 Jan 2018 18:26:54 GMT
 - request:
     method: get
     uri: https://api-fxpractice.oanda.com/v1/prices?instruments=EUR_USD
@@ -131,16 +137,16 @@ http_interactions:
       Connection:
       - keep-alive
       Keep-Alive:
-      - 30
+      - '30'
   response:
     status:
       code: 200
       message: OK
     headers:
       Server:
-      - openresty/1.7.0.1
+      - openresty/1.9.15.1
       Date:
-      - Mon, 14 Mar 2016 16:23:41 GMT
+      - Mon, 08 Jan 2018 18:26:43 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -148,14 +154,16 @@ http_interactions:
       Connection:
       - keep-alive
       Etag:
-      - '"01b82f3f9c73b53655860ad76ce02ed086b60f0c"'
+      - '"f31dec3261edd9030df81dc0ba69fe5a9d4e2fc9"'
+      Access-Control-Allow-Origin:
+      - "*"
     body:
       encoding: UTF-8
       string: "{\n\t\"prices\" : [\n\t\t{\n\t\t\t\"instrument\" : \"EUR_USD\",\n\t\t\t\"time\"
-        : \"2016-03-14T16:23:38.477982Z\",\n\t\t\t\"bid\" : 1.11149,\n\t\t\t\"ask\"
-        : 1.11162\n\t\t}\n\t]\n}"
+        : \"2018-01-08T18:26:31.344805Z\",\n\t\t\t\"bid\" : 1.19674,\n\t\t\t\"ask\"
+        : 1.19686\n\t\t}\n\t]\n}"
     http_version: 
-  recorded_at: Mon, 14 Mar 2016 16:23:40 GMT
+  recorded_at: Mon, 08 Jan 2018 18:26:54 GMT
 - request:
     method: get
     uri: https://api-fxpractice.oanda.com/v1/prices?instruments=EUR_USD
@@ -170,31 +178,33 @@ http_interactions:
       Connection:
       - keep-alive
       Keep-Alive:
-      - 30
+      - '30'
   response:
     status:
       code: 200
       message: OK
     headers:
       Server:
-      - openresty/1.7.0.1
+      - openresty/1.9.15.1
       Date:
-      - Mon, 14 Mar 2016 16:23:41 GMT
+      - Mon, 08 Jan 2018 18:26:43 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '138'
+      - '139'
       Connection:
       - keep-alive
       Etag:
-      - '"e04ddc2bcbd6de4403009d272f707a35bcb871bb"'
+      - '"f31dec3261edd9030df81dc0ba69fe5a9d4e2fc9"'
+      Access-Control-Allow-Origin:
+      - "*"
     body:
       encoding: UTF-8
       string: "{\n\t\"prices\" : [\n\t\t{\n\t\t\t\"instrument\" : \"EUR_USD\",\n\t\t\t\"time\"
-        : \"2016-03-14T16:23:41.519333Z\",\n\t\t\t\"bid\" : 1.11147,\n\t\t\t\"ask\"
-        : 1.1116\n\t\t}\n\t]\n}"
+        : \"2018-01-08T18:26:31.344805Z\",\n\t\t\t\"bid\" : 1.19674,\n\t\t\t\"ask\"
+        : 1.19686\n\t\t}\n\t]\n}"
     http_version: 
-  recorded_at: Mon, 14 Mar 2016 16:23:41 GMT
+  recorded_at: Mon, 08 Jan 2018 18:26:54 GMT
 - request:
     method: get
     uri: https://api-fxpractice.oanda.com/v1/prices?instruments=EUR_USD
@@ -209,29 +219,31 @@ http_interactions:
       Connection:
       - keep-alive
       Keep-Alive:
-      - 30
+      - '30'
   response:
     status:
       code: 200
       message: OK
     headers:
       Server:
-      - openresty/1.7.0.1
+      - openresty/1.9.15.1
       Date:
-      - Mon, 14 Mar 2016 16:23:42 GMT
+      - Mon, 08 Jan 2018 18:26:44 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '138'
+      - '139'
       Connection:
       - keep-alive
       Etag:
-      - '"e04ddc2bcbd6de4403009d272f707a35bcb871bb"'
+      - '"f31dec3261edd9030df81dc0ba69fe5a9d4e2fc9"'
+      Access-Control-Allow-Origin:
+      - "*"
     body:
       encoding: UTF-8
       string: "{\n\t\"prices\" : [\n\t\t{\n\t\t\t\"instrument\" : \"EUR_USD\",\n\t\t\t\"time\"
-        : \"2016-03-14T16:23:41.519333Z\",\n\t\t\t\"bid\" : 1.11147,\n\t\t\t\"ask\"
-        : 1.1116\n\t\t}\n\t]\n}"
+        : \"2018-01-08T18:26:31.344805Z\",\n\t\t\t\"bid\" : 1.19674,\n\t\t\t\"ask\"
+        : 1.19686\n\t\t}\n\t]\n}"
     http_version: 
-  recorded_at: Mon, 14 Mar 2016 16:23:41 GMT
-recorded_with: VCR 3.0.1
+  recorded_at: Mon, 08 Jan 2018 18:26:55 GMT
+recorded_with: VCR 4.0.0
