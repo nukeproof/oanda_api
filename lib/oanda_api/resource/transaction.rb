@@ -31,10 +31,9 @@ module OandaAPI
                     :upper_bound
 
       def initialize(attributes = {})
-        attribs = attributes.dup
-        self.trade_opened  = attribs.delete(:trade_opened)  || {}
-        self.trade_reduced = attribs.delete(:trade_reduced) || {}
-        super attribs
+        self.trade_opened  = {}
+        self.trade_reduced = {}
+        super
       end
 
       def expiry=(v)

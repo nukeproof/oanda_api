@@ -1,4 +1,5 @@
 module OandaAPI
+  require 'pry'
   module Resource
     # Order value object.
     # See the Oanda Developer Guide for information about {http://developer.oanda.com/rest-live/orders/ Orders}.
@@ -22,12 +23,11 @@ module OandaAPI
                     :upper_bound
 
       def initialize(attributes = {})
-        attribs = attributes.dup
-        self.order_opened  = attribs.delete(:order_opened)  || {}
-        self.trade_opened  = attribs.delete(:trade_opened)  || {}
-        self.trade_reduced = attribs.delete(:trade_reduced) || {}
-        self.trades_closed = attribs.delete(:trades_closed) || []
-        super attribs
+        self.order_opened  = {}
+        self.trade_opened  = {}
+        self.trade_reduced = {}
+        self.trades_closed = []
+        super
       end
 
       def expiry=(v)
