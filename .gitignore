@@ -36,3 +36,4 @@ spec/reports
 .rubocop*
 .rvmrc
 .yardoc
+.byebug_history
