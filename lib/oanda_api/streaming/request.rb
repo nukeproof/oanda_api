@@ -92,7 +92,7 @@ module OandaAPI
         @http.request(@request) do |response|
           response.read_body do |chunk|
             buffer << chunk
-            next unless chunk.match(/\r\n\Z/)
+            next unless chunk.match(/\}\s*\z/)
             handle_response(buffer.string).each do |resource|
               block.call(resource, @client)
               return if stop_requested?
