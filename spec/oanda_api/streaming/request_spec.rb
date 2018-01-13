@@ -196,5 +196,51 @@ describe "OandaAPI::Streaming::Request" do
         expect(ticks).to contain_exactly(1, 2, 3)
       end
     end
+
+    context "when the stream contains incomplete chunks" do
+      it "yields all of the objects grouping them" do
+        case
+        when gem_installed?(:Yajl)
+          OandaAPI::Streaming::JsonParser.use(:yajl)
+        when gem_installed?(:Gson)
+          OandaAPI::Streaming::JsonParser.use(:gson)
+        else
+          OandaAPI::Streaming::JsonParser.use(:generic)
+        end
+
+        WebMock.disable!
+
+        client = Net::HTTP.new('a.url.com', 443)
+        allow(Net::HTTP).to receive(:new).with('a.url.com', 443).and_return(client)
+        http_response_json = <<-END
+HTTP/1.1 200 OK
+Content-Type: application/json
+Transfer-Encoding: chunked
+
+22
+{"tick":{"bid": 1}}{"tick":{"bid":
+
+18
+2}}{"tick":{"bid": 3}}\r\n
+
+0
+
+END
+
+        socket = Net::BufferedIO.new(StringIO.new(http_response_json))
+        response = Net::HTTPResponse.read_new(socket)
+        allow(client).to receive(:request).and_yield(response)
+
+        response.reading_body(socket, true) do
+          ticks = []
+          streaming_request.stream do |resource|
+            ticks << resource.bid
+          end
+          expect(ticks.last).to eq(3)
+        end
+
+        WebMock.enable!
+      end
+    end
   end
 end
