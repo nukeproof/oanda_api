@@ -1,5 +1,4 @@
 module OandaAPI
-  require 'pry'
   module Resource
     # Order value object.
     # See the Oanda Developer Guide for information about {http://developer.oanda.com/rest-live/orders/ Orders}.
