@@ -9,6 +9,7 @@ require 'oanda_api'
 RSpec.configure do |c|
   c.before(:suite) do
     # Disable request throttling because all examples are stubbed with VCR and webmock.
+   WebMock.enable!
    OandaAPI.configure { |config| config.use_request_throttling = false }
   end
 end
