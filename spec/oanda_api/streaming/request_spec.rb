@@ -56,8 +56,8 @@ describe "OandaAPI::Streaming::Request" do
   describe "#stream" do
     it "yields all resources returned in the response stream" do
       events_json = <<-END
-        {"transaction":{"id": 1}}\r\n
-        {"transaction":{"id": 2}}
+        {"transaction":{"id": 1}}\r
+        {"transaction":{"id": 2}}\r
       END
       ids = []
       stub_request(:any, /\.com/).to_return(body: events_json, status: 200)
@@ -71,11 +71,11 @@ describe "OandaAPI::Streaming::Request" do
     context "when emit_heartbeats? is false" do
       it "ignores 'heartbeats' in the response stream" do
         events_json = <<-END
-          {"heartbeat":{"id" : 0}}\r\n
-          {"transaction":{"id": 1}}\r\n
-          {"heartbeat":{"id" : 0}}\r\n
-          {"transaction":{"id": 2}}\r\n
-          {"heartbeat":{"id" : 0}}
+          {"heartbeat":{"id" : 0}}\r
+          {"transaction":{"id": 1}}\r
+          {"heartbeat":{"id" : 0}}\r
+          {"transaction":{"id": 2}}\r
+          {"heartbeat":{"id" : 0}}\r
         END
         ids =  []
         stub_request(:any, /\.com/).to_return(body: events_json, status: 200)
@@ -88,11 +88,11 @@ describe "OandaAPI::Streaming::Request" do
     context "when emit_heartbeats? is true" do
       it "includes 'heartbeats' in the response stream" do
         events_json = <<-END
-          {"heartbeat":{"id" : 10}}\r\n
-          {"transaction":{"id": 1}}\r\n
-          {"heartbeat":{"id" : 20}}\r\n
-          {"transaction":{"id": 2}}\r\n
-          {"heartbeat":{"id" : 30}}
+          {"heartbeat":{"id" : 10}}\r
+          {"transaction":{"id": 1}}\r
+          {"heartbeat":{"id" : 20}}\r
+          {"transaction":{"id": 2}}\r
+          {"heartbeat":{"id" : 30}}\r
         END
         transactions = []
         heartbeats = 0
@@ -113,9 +113,9 @@ describe "OandaAPI::Streaming::Request" do
     context "when a 'disconnect' is received the response stream" do
       it "raises an OandaAPI::StreamingDisconnect" do
         events_json = <<-END
-          {"transaction":{"id": 1}}\r\n
-          {"disconnect":{"code":60,"message":"Access Token connection limit exceeded"}}\r\n
-          {"transaction":{"id": 2}}
+          {"transaction":{"id": 1}}\r
+          {"disconnect":{"code":60,"message":"Access Token connection limit exceeded"}}\r
+          {"transaction":{"id": 2}}\r
         END
 
         stub_request(:any, /\.com/).to_return(body: events_json, status: 200)
@@ -128,9 +128,9 @@ describe "OandaAPI::Streaming::Request" do
     context "when an unknown resource type is received the response stream" do
       it "raises an OandaAPI::RequestError" do
         events_json = <<-END
-          {"transaction":{"id": 1}}\r\n
-          {"sponge-bob":{"is": "awesome"}}\r\n
-          {"transaction":{"id": 2}}
+          {"transaction":{"id": 1}}\r
+          {"sponge-bob":{"is": "awesome"}}\r
+          {"transaction":{"id": 2}}\r
         END
 
         stub_request(:any, /\.com/).to_return(body: events_json, status: 200)
@@ -142,9 +142,9 @@ describe "OandaAPI::Streaming::Request" do
 
     it "yields an object that responds to stop! and terminates streaming when called" do
       events_json = <<-END
-      {"transaction":{"id": 1}}\r\n
-      {"transaction":{"id": 2}}\r\n
-      {"transaction":{"id": 3}}
+      {"transaction":{"id": 1}}\r
+      {"transaction":{"id": 2}}\r
+      {"transaction":{"id": 3}}\r
       END
       stub_request(:any, /\.com/).to_return(body: events_json, status: 200)
       ids = []
@@ -158,9 +158,9 @@ describe "OandaAPI::Streaming::Request" do
     context "when the stream contains only heartbeats" do
       it "terminates streaming when a stop signal is received" do
         events_json = <<-END
-        {"heartbeat":{"id": 1}}\r\n
-        {"heartbeat":{"id": 2}}\r\n
-        {"heartbeat":{"id": 3}}
+        {"heartbeat":{"id": 1}}\r
+        {"heartbeat":{"id": 2}}\r
+        {"heartbeat":{"id": 3}}\r
         END
         stub_request(:any, /\.com/).to_return(body: events_json, status: 200)
         heartbeats = 0
@@ -175,7 +175,7 @@ describe "OandaAPI::Streaming::Request" do
 
     context "when the stream contains multiple undelimited objects" do
       events_json = <<-END
-        {"tick":{"bid": 1}}{"tick":{"bid": 2}}\r\n{"tick":{"bid": 3}}
+        {"tick":{"bid": 1}}{"tick":{"bid": 2}}\r{"tick":{"bid": 3}}\r
       END
 
       it "yields all of the objects" do
@@ -217,11 +217,11 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 Transfer-Encoding: chunked
 
-22
-{"tick":{"bid": 1}}{"tick":{"bid":
+25
+{"tick":{"bid": 1}}{"tick":{"bid": 2}
 
-18
-2}}{"tick":{"bid": 3}}\r\n
+16
+}{"tick":{"bid": 3}}\r\n
 
 0
 

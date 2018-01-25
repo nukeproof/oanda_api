@@ -77,17 +77,17 @@ describe "OandaAPI::Streaming::Client" do
 
     it "includes heartbeats when true" do
       events_json = <<-END
-      {"heartbeat":{"time":"2014-05-26T13:58:40Z"}}\r\n
-      {"transaction":{"id":10001}}\r\n
-      {"transaction":{"id":10002}}
+      {"heartbeat":{"time":"2014-05-26T13:58:40Z"}}\r
+      {"transaction":{"id":10001}}\r
+      {"transaction":{"id":10002}}\r
       END
 
       client = OandaAPI::Streaming::Client.new(:practice, "token")
       stub_request(:get, "https://stream-fxpractice.oanda.com/v1/events").to_return(body: events_json, status: 200)
-      
+
       [{emit_heartbeats: true,  heartbeats: 1, non_heartbeats: 2},
        {emit_heartbeats: false, heartbeats: 0, non_heartbeats: 2}].each do |test|
-        
+
         client.emit_heartbeats = test[:emit_heartbeats]
         heartbeats = non_heartbeats = 0
         client.events.stream do |resource|
@@ -113,9 +113,9 @@ describe "OandaAPI::Streaming::Client" do
   describe "#running?" do
     it "returns true if a streaming request is running" do
       events_json = <<-END
-      {"heartbeat":{"time":"2014-05-26T13:58:40Z"}}\r\n
-      {"transaction":{"id":10001}}\r\n
-      {"transaction":{"id":10002}}
+      {"heartbeat":{"time":"2014-05-26T13:58:40Z"}}\r
+      {"transaction":{"id":10001}}\r
+      {"transaction":{"id":10002}}\r
       END
       stub_request(:get, "https://stream-fxpractice.oanda.com/v1/events").to_return(body: events_json, status: 200)
 
@@ -130,8 +130,8 @@ describe "OandaAPI::Streaming::Client" do
 
   describe "#stop!" do
     events_json = <<-END
-      {"transaction":{"id": 1}}\r\n
-      {"transaction":{"id": 2}}
+      {"transaction":{"id": 1}}\r
+      {"transaction":{"id": 2}}\r
     END
 
     context "without using #stop!" do
