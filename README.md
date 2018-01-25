@@ -2,6 +2,7 @@
 [![Gem Version](https://badge.fury.io/rb/oanda_api.svg)](https://rubygems.org/gems/oanda_api)
 [![Code Climate](https://codeclimate.com/github/nukeproof/oanda_api/badges/gpa.svg)](https://codeclimate.com/github/nukeproof/oanda_api)
 [![Test Coverage](https://codeclimate.com/github/nukeproof/oanda_api/badges/coverage.svg)](https://codeclimate.com/github/nukeproof/oanda_api)
+[![Build Status](https://travis-ci.org/nukeproof/oanda_api.svg?branch=master)](https://travis-ci.org/nukeproof/oanda_api)
 
 Access Oanda FX accounts, get market data, trade, build trading strategies using Ruby.
 ## Synopsis
