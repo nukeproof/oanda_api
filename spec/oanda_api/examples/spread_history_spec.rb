@@ -10,15 +10,15 @@ describe "OandaAPI::Resource::Labs::SpreadHistory" do
       expect(spread_history).to be_an OandaAPI::Resource::Labs::SpreadHistory
 
       expect(spread_history.averages.first.spread).to be_a Numeric
-      expect(spread_history.averages.first.timestamp).to be_a Fixnum
+      expect(spread_history.averages.first.timestamp).to be_a Integer
       expect(spread_history.averages.first.time).to be_a Time
 
       expect(spread_history.maximums.first.spread).to be_a Numeric
-      expect(spread_history.maximums.first.timestamp).to be_a Fixnum
+      expect(spread_history.maximums.first.timestamp).to be_a Integer
       expect(spread_history.maximums.first.time).to be_a Time
 
       expect(spread_history.minimums.first.spread).to be_a Numeric
-      expect(spread_history.minimums.first.timestamp).to be_a Fixnum
+      expect(spread_history.minimums.first.timestamp).to be_a Integer
       expect(spread_history.minimums.first.time).to be_a Time
     end
   end
