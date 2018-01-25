@@ -1,6 +1,5 @@
 env:
   global:
-    - CC_TEST_REPORTER_ID=XXXX
     - OANDA_API_TESTING_TOKEN=test
 language: ruby
 rvm:
