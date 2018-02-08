@@ -57,7 +57,7 @@ describe "OandaAPI::Streaming::Request" do
     it "yields all resources returned in the response stream" do
       events_json = <<-END
         {"transaction":{"id": 1}}\r\n
-        {"transaction":{"id": 2}}
+        {"transaction":{"id": 2}}\r\n
       END
       ids = []
       stub_request(:any, /\.com/).to_return(body: events_json, status: 200)
@@ -75,7 +75,7 @@ describe "OandaAPI::Streaming::Request" do
           {"transaction":{"id": 1}}\r\n
           {"heartbeat":{"id" : 0}}\r\n
           {"transaction":{"id": 2}}\r\n
-          {"heartbeat":{"id" : 0}}
+          {"heartbeat":{"id" : 0}}\r\n
         END
         ids =  []
         stub_request(:any, /\.com/).to_return(body: events_json, status: 200)
@@ -92,7 +92,7 @@ describe "OandaAPI::Streaming::Request" do
           {"transaction":{"id": 1}}\r\n
           {"heartbeat":{"id" : 20}}\r\n
           {"transaction":{"id": 2}}\r\n
-          {"heartbeat":{"id" : 30}}
+          {"heartbeat":{"id" : 30}}\r\n
         END
         transactions = []
         heartbeats = 0
@@ -115,7 +115,7 @@ describe "OandaAPI::Streaming::Request" do
         events_json = <<-END
           {"transaction":{"id": 1}}\r\n
           {"disconnect":{"code":60,"message":"Access Token connection limit exceeded"}}\r\n
-          {"transaction":{"id": 2}}
+          {"transaction":{"id": 2}}\r\n
         END
 
         stub_request(:any, /\.com/).to_return(body: events_json, status: 200)
@@ -130,7 +130,7 @@ describe "OandaAPI::Streaming::Request" do
         events_json = <<-END
           {"transaction":{"id": 1}}\r\n
           {"sponge-bob":{"is": "awesome"}}\r\n
-          {"transaction":{"id": 2}}
+          {"transaction":{"id": 2}}\r\n
         END
 
         stub_request(:any, /\.com/).to_return(body: events_json, status: 200)
@@ -144,7 +144,7 @@ describe "OandaAPI::Streaming::Request" do
       events_json = <<-END
       {"transaction":{"id": 1}}\r\n
       {"transaction":{"id": 2}}\r\n
-      {"transaction":{"id": 3}}
+      {"transaction":{"id": 3}}\r\n
       END
       stub_request(:any, /\.com/).to_return(body: events_json, status: 200)
       ids = []
@@ -160,7 +160,7 @@ describe "OandaAPI::Streaming::Request" do
         events_json = <<-END
         {"heartbeat":{"id": 1}}\r\n
         {"heartbeat":{"id": 2}}\r\n
-        {"heartbeat":{"id": 3}}
+        {"heartbeat":{"id": 3}}\r\n
         END
         stub_request(:any, /\.com/).to_return(body: events_json, status: 200)
         heartbeats = 0
@@ -175,7 +175,7 @@ describe "OandaAPI::Streaming::Request" do
 
     context "when the stream contains multiple undelimited objects" do
       events_json = <<-END
-        {"tick":{"bid": 1}}{"tick":{"bid": 2}}\r\n{"tick":{"bid": 3}}
+        {"tick":{"bid": 1}}{"tick":{"bid": 2}}{"tick":{"bid": 3}}\r\n
       END
 
       it "yields all of the objects" do
@@ -198,48 +198,17 @@ describe "OandaAPI::Streaming::Request" do
     end
 
     context "when the stream contains incomplete chunks" do
-      it "yields all of the objects grouping them" do
-        case
-        when gem_installed?(:Yajl)
-          OandaAPI::Streaming::JsonParser.use(:yajl)
-        when gem_installed?(:Gson)
-          OandaAPI::Streaming::JsonParser.use(:gson)
-        else
-          OandaAPI::Streaming::JsonParser.use(:generic)
+      it "yields all of the objects grouping them", focus: true do
+        events_json = <<-END
+          {"tick":{"bid": 1}}\r\n{"ti\r\nck":{"bid": 2}}\r\n{"tick":{"b\r\nid": 3}}\r\n
+        END
+
+        stub_request(:any, /\.com/).to_return(body: events_json, status: 200)
+        ticks = []
+        streaming_request.stream do |resource|
+          ticks << resource.bid
         end
-
-        WebMock.disable!
-
-        client = Net::HTTP.new('a.url.com', 443)
-        allow(Net::HTTP).to receive(:new).with('a.url.com', 443).and_return(client)
-        http_response_json = <<-END
-HTTP/1.1 200 OK
-Content-Type: application/json
-Transfer-Encoding: chunked
-
-22
-{"tick":{"bid": 1}}{"tick":{"bid":
-
-18
-2}}{"tick":{"bid": 3}}\r\n
-
-0
-
-END
-
-        socket = Net::BufferedIO.new(StringIO.new(http_response_json))
-        response = Net::HTTPResponse.read_new(socket)
-        allow(client).to receive(:request).and_yield(response)
-
-        response.reading_body(socket, true) do
-          ticks = []
-          streaming_request.stream do |resource|
-            ticks << resource.bid
-          end
-          expect(ticks.last).to eq(3)
-        end
-
-        WebMock.enable!
+        expect(ticks).to contain_exactly(1, 2, 3)
       end
     end
   end
