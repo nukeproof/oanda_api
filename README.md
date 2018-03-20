@@ -5,6 +5,7 @@
 [![Build Status](https://travis-ci.org/nukeproof/oanda_api.svg?branch=master)](https://travis-ci.org/nukeproof/oanda_api)
 
 Access Oanda FX accounts, get market data, trade, build trading strategies using Ruby.
+
 ## Synopsis
 OandaAPI is a simple Ruby wrapper for the [Oanda REST API](http://developer.oanda.com/rest-live/introduction/).
 
@@ -266,7 +267,7 @@ When you're ready to code:
 License
 -------
 
-Copyright (c) 2014 Dean Missikowski. Distributed under the MIT License. See
+Copyright (c) 2014 - 2018 Dean Missikowski. Distributed under the MIT License. See
 [LICENSE](LICENSE) for further details.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
